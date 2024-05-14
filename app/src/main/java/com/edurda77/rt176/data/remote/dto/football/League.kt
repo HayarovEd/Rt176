@@ -1,0 +1,20 @@
+package com.edurda77.rt176.data.remote.dto.football
+
+
+import kotlinx.serialization.SerialName
+data class League(
+    @SerialName("country")
+    val country: String,
+    @SerialName("flag")
+    val flag: String?,
+    @SerialName("id")
+    val id: Int,
+    @SerialName("logo")
+    val logo: String,
+    @SerialName("name")
+    val name: String,
+    @SerialName("round")
+    val round: String,
+    @SerialName("season")
+    val season: Int
+)
