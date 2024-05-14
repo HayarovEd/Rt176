@@ -87,13 +87,19 @@ dependencies {
     implementation (libs.accompanist.systemuicontroller)
 
     //retrofit
-    implementation (libs.gson)
-    implementation (libs.retrofit)
-    implementation (libs.converter.gson)
+    //implementation (libs.gson)
+    //implementation (libs.retrofit)
+    //implementation (libs.converter.gson)
 
     implementation (libs.mobmetricalib)
 
     implementation(libs.backendless)
 
     implementation (libs.mobileads)
+
+    implementation(libs.ktor.client.core)
+    implementation(libs.ktor.client.okhttp)
+    implementation(libs.ktor.client.content.negotiation)
+    implementation(libs.ktor.serialization.kotlinx.json)
+    implementation(libs.ktor.client.logging)
 }
