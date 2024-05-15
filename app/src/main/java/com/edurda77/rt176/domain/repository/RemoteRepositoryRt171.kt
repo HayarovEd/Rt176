@@ -2,7 +2,7 @@ package com.edurda77.rt176.domain.repository
 
 import com.edurda77.rt176.domain.model.BasketballMatchRt176
 import com.edurda77.rt176.domain.model.FootballMatchRt176
-import com.edurda77.rt176.domain.model.HokkeyMatchRt176
+import com.edurda77.rt176.domain.model.HockeyMatchRt176
 import com.edurda77.rt176.domain.utils.ResourceRt176
 import kotlin.random.Random
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -90,9 +90,20 @@ interface RemoteRepositoryrt176 {
 
     val remoteData: MutableStateFlow<ResourceRt176<String>>
     suspend fun isInternetConnectedrt176(): Boolean
-    suspend fun getBasketballData(
+    suspend fun getBasketballH2hData(
         timeStamp: Date,
     ): ResourceRt176<List<BasketballMatchRt176>>
 
-    suspend fun getHockeyData(timeStamp: Date): ResourceRt176<List<HokkeyMatchRt176>>
+    suspend fun getHockeyData(timeStamp: Date): ResourceRt176<List<HockeyMatchRt176>>
+    suspend fun getFootballH2HData(
+        idHome: Int,
+        idAway: Int
+    ): ResourceRt176<List<FootballMatchRt176>>
+
+    suspend fun getBasketballH2hData(
+        idHome: Int,
+        idAway: Int
+    ): ResourceRt176<List<BasketballMatchRt176>>
+
+    suspend fun getHockeyH2HData(idHome: Int, idAway: Int): ResourceRt176<List<HockeyMatchRt176>>
 }

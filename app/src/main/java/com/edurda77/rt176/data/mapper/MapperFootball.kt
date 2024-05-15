@@ -23,6 +23,7 @@ fun FootballDto.convertToFootballMatches(): List<FootballMatchRt176> {
             homeScoreFirstTime = response.score.halftime.home,
             homeScoreSecondTime = response.score.halftime.away,
             homeName = response.teams.home.name,
+            isPlay = checkLiveGame(response.fixture.status.short)
         )
     }
 }
@@ -42,6 +43,13 @@ private fun setStatusGame(status: String): String {
         "CANC" -> "Отменен"
         "AWD", "WO" -> "Не сыгран"
         else -> "Другое"
+    }
+}
+
+private fun checkLiveGame(status: String): Boolean {
+    return when (status) {
+        "1H", "HT", "2H", "ET", "BT", "P", "SUSP", "INT"  -> true
+        else -> false
     }
 }
 

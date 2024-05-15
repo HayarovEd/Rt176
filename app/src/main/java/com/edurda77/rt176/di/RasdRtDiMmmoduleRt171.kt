@@ -1,25 +1,22 @@
 package com.edurda77.rt176.di
 
 
+import com.edurda77.rt176.data.repository.RemoteRepositoryrt176Impl
+import com.edurda77.rt176.domain.repository.RemoteRepositoryrt176
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
-import kotlin.random.Random
 
 
 @Module
 @InstallIn(SingletonComponent::class)
 abstract class RasdRtDiMmmoduleRt171 {
 
-   /* @Binds
+   @Binds
     @Singleton
-    abstract fun fghbindRepositoryRt171(repositoryRt171: RemoteRepositoryKtor): RemoteRepositoryRt171
+    abstract fun fghbindRepositoryRt171(remoteRepositoryrt176: RemoteRepositoryrt176Impl): RemoteRepositoryrt176
 
-    fun mvvvvove(velocity: Int) {
-        val df = Random.nextInt()
-        val bh = Random.nextInt()
-        if (df> bh) println(df) else println(df)
-    }*/
+
 }

@@ -27,6 +27,7 @@ fun BasketBallDto.convertToBasketBallMatches(): List<BasketballMatchRt176> {
             homeQuarter3 = response.scores.home.quarter3,
             homeQuarter4 = response.scores.home.quarter4,
             homeName = response.teams.home.name,
+            isPlay = checkLiveGame(response.status.short)
         )
     }
 }
@@ -45,6 +46,13 @@ private fun setStatusGame(status: String): String {
         "POST" -> "Отложена"
         "CANC" -> "Отменена"
         else -> "Другое"
+    }
+}
+
+private fun checkLiveGame(status: String): Boolean {
+    return when (status) {
+        "Q1", "Q2", "Q3", "Q4", "OT", "BT", "HT"  -> true
+        else -> false
     }
 }
 

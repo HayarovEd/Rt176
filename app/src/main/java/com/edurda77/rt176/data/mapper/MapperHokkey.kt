@@ -1,14 +1,12 @@
 package com.edurda77.rt176.data.mapper
 
-import com.edurda77.rt176.data.remote.dto.football.FootballDto
 import com.edurda77.rt176.data.remote.dto.hokkey.HokkeyDto
-import com.edurda77.rt176.domain.model.FootballMatchRt176
-import com.edurda77.rt176.domain.model.HokkeyMatchRt176
+import com.edurda77.rt176.domain.model.HockeyMatchRt176
 
 
-fun HokkeyDto.convertToHokkeyMatches(): List<HokkeyMatchRt176> {
+fun HokkeyDto.convertToHokkeyMatches(): List<HockeyMatchRt176> {
     return this.response.map { response ->
-        HokkeyMatchRt176(
+        HockeyMatchRt176(
             timeStamp = response.date.substring(11, 16),
             dateStamp = response.date.substring(0, 10),
             statusGame = setStatusGame(response.status.short),
@@ -25,7 +23,8 @@ fun HokkeyDto.convertToHokkeyMatches(): List<HokkeyMatchRt176> {
             scoreSecondPeriod = response.periods.second,
             scoreThirdPeriod = response.periods.third,
             scoreOverTime = response.periods.overtime,
-            scorePenalties = response.periods.penalties
+            scorePenalties = response.periods.penalties,
+            isPlay = checkLiveGame(response.status.short)
         )
     }
 }
@@ -44,6 +43,13 @@ private fun setStatusGame(status: String): String {
         "FT", "AOT", "AP" -> "Окончен"
         "CANC" -> "Отменен"
         else -> "Другое"
+    }
+}
+
+private fun checkLiveGame(status: String): Boolean {
+    return when (status) {
+        "P1", "P2", "P3", "OT", "PT", "BT"  -> true
+        else -> false
     }
 }
 
