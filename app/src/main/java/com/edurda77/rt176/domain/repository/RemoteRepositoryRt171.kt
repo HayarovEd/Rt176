@@ -90,7 +90,7 @@ interface RemoteRepositoryrt176 {
 
     val remoteData: MutableStateFlow<ResourceRt176<String>>
     suspend fun isInternetConnectedrt176(): Boolean
-    suspend fun getBasketballH2hData(
+    suspend fun getBasketballData(
         timeStamp: Date,
     ): ResourceRt176<List<BasketballMatchRt176>>
 

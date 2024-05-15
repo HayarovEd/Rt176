@@ -100,7 +100,7 @@ class RemoteRepositoryrt176Impl @Inject constructor(
         }
     }
 
-    override suspend fun getBasketballH2hData(
+    override suspend fun getBasketballData(
         timeStamp: Date,
     ): ResourceRt176<List<BasketballMatchRt176>> {
         return try {

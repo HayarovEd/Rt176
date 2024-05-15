@@ -17,7 +17,7 @@ data class Response(
     @SerialName("scores")
     val scores: Scores,
     @SerialName("stage")
-    val stage: Any?,
+    val stage: String?,
     @SerialName("status")
     val status: Status,
     @SerialName("teams")

@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class BasketBallDto(
     @SerialName("errors")
-    val errors: List<Any>,
+    val errors: List<String>,
     @SerialName("get")
     val getSt: String,
     @SerialName("parameters")

@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class HokkeyDto(
     @SerialName("errors")
-    val errors: List<Any>,
+    val errors: List<String>,
     @SerialName("get")
     val `get`: String,
     @SerialName("parameters")

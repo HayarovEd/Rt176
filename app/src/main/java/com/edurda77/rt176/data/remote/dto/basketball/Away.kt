@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class Away(
     @SerialName("over_time")
-    val overTime: Any?,
+    val overTime: Int?,
     @SerialName("quarter_1")
     val quarter1: Int?,
     @SerialName("quarter_2")

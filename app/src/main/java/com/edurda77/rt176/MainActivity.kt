@@ -4,10 +4,11 @@ import android.content.pm.ActivityInfo
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.edurda77.rt176.domain.model.Sport
+import androidx.compose.runtime.collectAsState
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.edurda77.rt176.ui.state.MainViewModelRt176
 import com.edurda77.rt176.ui.theme.Rt176Theme
 import dagger.hilt.android.AndroidEntryPoint
-import kotlin.random.Random
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -18,6 +19,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             Rt176Theme {
                 //val sport = Sport.entries.toTypedArray().random()
+                val viewModel: MainViewModelRt176 = hiltViewModel()
+                val state = viewModel.state.collectAsState()
             }
         }
     }

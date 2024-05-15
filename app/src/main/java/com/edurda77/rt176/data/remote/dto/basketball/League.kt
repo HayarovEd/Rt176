@@ -12,8 +12,6 @@ data class League(
     val logo: String,
     @SerialName("name")
     val name: String,
-    @SerialName("season")
-    val season: Int,
     @SerialName("type")
     val type: String
 )
