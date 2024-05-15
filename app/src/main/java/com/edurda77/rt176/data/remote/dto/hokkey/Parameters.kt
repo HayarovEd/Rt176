@@ -1,4 +1,4 @@
-package com.edurda77.rt176.data.remote.dto.voleyball
+package com.edurda77.rt176.data.remote.dto.hokkey
 
 
 import kotlinx.serialization.SerialName

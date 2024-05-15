@@ -1,6 +1,8 @@
 package com.edurda77.rt176.domain.utils
 
 import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Date
 import java.util.Locale
 import kotlin.random.Random
 
@@ -29,4 +31,9 @@ fun formatDateRT176(date: Long): String {
     println(sd)
     val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
     return sdf.format(date)
+}
+
+fun formattedDateRt176(currentDate:Date):String {
+    val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+    return dateFormat.format(currentDate)
 }

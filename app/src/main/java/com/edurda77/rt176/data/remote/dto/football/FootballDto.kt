@@ -8,7 +8,7 @@ data class FootballDto(
     @SerialName("errors")
     val errors: List<Any>,
     @SerialName("get")
-    val `get`: String,
+    val getSt: String,
     @SerialName("paging")
     val paging: Paging,
     @SerialName("parameters")

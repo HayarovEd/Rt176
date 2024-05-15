@@ -9,7 +9,7 @@ data class BasketBallDto(
     @SerialName("errors")
     val errors: List<Any>,
     @SerialName("get")
-    val `get`: String,
+    val getSt: String,
     @SerialName("parameters")
     val parameters: Parameters,
     @SerialName("response")

@@ -21,14 +21,20 @@ const val SHARED_PHONE_RT176 = "shared_phone"
 const val SHARED_BEST_SCORE_RT176 = "shared_best_score"
 
 
-const val RAPID_TOKEN_RT_171 = "2e36f40d5459af121845a471a7c37286"
-const val RAPID_HOST_RT_171 = "allscores.p.rapidapi.com"
+const val RAPID_TOKEN_RT_176 = "2e36f40d5459af121845a471a7c37286"
+const val RAPID_FOOTBALL_HOST_RT_176 = "v3.football.api-sports.io"
+const val RAPID_BASKETBALL_HOST_RT_176 = "v1.basketball.api-sports.io"
+const val RAPID_HOKKEY_HOST_RT_176 ="v1.hockey.api-sports.io"
 const val TIME_ZONE = "Europe/Moscow"
 
 
-const val UNKNOWN_ERROR_RT_171 = "Unknown error"
+const val UNKNOWN_ERROR_RT_176 = "Unknown error"
 
 
 
 const val WAITING_RT176 = "Ожидание"
 const val LIVE_RT176 = "Live"
+
+const val URL_FOOTBALL_RT_145 = "https://v3.football.api-sports.io/"
+const val URL_BASKETBALL_RT_145 = "https://v1.basketball.api-sports.io/"
+const val  URL_HOKKEY_RT_145 =  "https://v1.hockey.api-sports.io/"

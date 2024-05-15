@@ -1,4 +1,4 @@
-package com.edurda77.rt176.data.remote.dto.voleyball
+package com.edurda77.rt176.data.remote.dto.hokkey
 
 
 import kotlinx.serialization.SerialName
@@ -10,6 +10,8 @@ data class Response(
     val country: Country,
     @SerialName("date")
     val date: String,
+    @SerialName("events")
+    val events: Boolean,
     @SerialName("id")
     val id: Int,
     @SerialName("league")
@@ -24,10 +26,12 @@ data class Response(
     val teams: Teams,
     @SerialName("time")
     val time: String,
+    @SerialName("timer")
+    val timer: Any?,
     @SerialName("timestamp")
     val timestamp: Int,
     @SerialName("timezone")
     val timezone: String,
     @SerialName("week")
-    val week: Any?
+    val week: String?
 )

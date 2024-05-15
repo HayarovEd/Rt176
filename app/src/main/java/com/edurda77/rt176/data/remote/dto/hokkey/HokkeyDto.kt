@@ -1,11 +1,11 @@
-package com.edurda77.rt176.data.remote.dto.voleyball
+package com.edurda77.rt176.data.remote.dto.hokkey
 
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class VolleyBallDto(
+data class HokkeyDto(
     @SerialName("errors")
     val errors: List<Any>,
     @SerialName("get")
