@@ -6,4 +6,8 @@
     <string name="events">События</string>
     <string name="games">Игры</string>
     <string name="lives">Лайв</string>
+    <string name="basketbal">Баскетбол</string>
+    <string name="football">Футбол</string>
+    <string name="hockey">Хоккей</string>
+    <string name="today">Сегодня</string>
 </resources>

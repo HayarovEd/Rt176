@@ -27,7 +27,7 @@ data class Response(
     @SerialName("time")
     val time: String,
     @SerialName("timer")
-    val timer: String?,
+    val timer: Int?,
     @SerialName("timestamp")
     val timestamp: Int,
     @SerialName("timezone")

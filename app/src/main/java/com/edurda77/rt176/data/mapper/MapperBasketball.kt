@@ -35,17 +35,16 @@ fun BasketBallDto.convertToBasketBallMatches(): List<BasketballMatchRt176> {
 
 private fun setStatusGame(status: String): String {
     return when (status) {
-        "NS" -> "Запланирован"
-        "Q1" -> "Первая четверть"
-        "Q2" -> "Вторая четверть"
-        "Q3" -> "Третья четверть"
-        "Q4" -> "Четвертая четверть"
-        "HT", "BT" -> "Перерыв"
-        "OT" -> "Овертайм"
-        "FT", "AOT" -> "Окончен"
-        "POST" -> "Отложена"
-        "CANC" -> "Отменена"
-        else -> "Другое"
+        "NS" -> "СК"
+        "Q1" -> "1Ч"
+        "Q2" -> "2Ч"
+        "Q3" -> "3Ч"
+        "Q4" -> "4Ч"
+        "HT", "BT" -> "ПР"
+        "OT" -> "ОТ"
+        "FT", "AOT" -> "ОК"
+        "POST" -> "ОТЛ"
+        else -> "ДРГ"
     }
 }
 

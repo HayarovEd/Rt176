@@ -20,6 +20,6 @@ data class BasketballMatchRt176(
     val timeStamp: String,
     val dateStamp: String,
     val statusGame: String,
-    val currentTimeMatch: String?,
+    val currentTimeMatch: Int?,
     val isPlay: Boolean,
 )

@@ -11,5 +11,5 @@ data class Status(
     @SerialName("short")
     val short: String,
     @SerialName("timer")
-    val timer: String?
+    val timer: Int?
 )

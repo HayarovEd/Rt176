@@ -10,7 +10,7 @@ fun HokkeyDto.convertToHokkeyMatches(): List<HockeyMatchRt176> {
             timeStamp = response.date.substring(11, 16),
             dateStamp = response.date.substring(0, 10),
             statusGame = setStatusGame(response.status.short),
-            currentTimeMatch = response.timer.toString(),
+            currentTimeMatch = response.timer,
             awayId = response.teams.away.id,
             awayImage = response.teams.away.logo,
             awayScore = response.scores.away,
@@ -32,17 +32,16 @@ fun HokkeyDto.convertToHokkeyMatches(): List<HockeyMatchRt176> {
 
 private fun setStatusGame(status: String): String {
     return when (status) {
-        "NS" -> "Запланирован"
-        "P1" -> "Первый пероид"
-        "P2" -> "Второй пероид"
-        "P3" -> "Третий пероид"
-        "OT" -> "Овертайм"
-        "PT" -> "Буллиты"
-        "BT" -> "Перерыв"
-        "POST" -> "Отложен"
-        "FT", "AOT", "AP" -> "Окончен"
-        "CANC" -> "Отменен"
-        else -> "Другое"
+        "NS" -> "СК"
+        "P1" -> "1П"
+        "P2" -> "2П"
+        "P3" -> "3П"
+        "OT" -> "ОТ"
+        "PT" -> "БЛ"
+        "BT" -> "ПР"
+        "POST" -> "ОТЛ"
+        "FT", "AOT", "AP" -> "ОК"
+        else -> "ДРГ"
     }
 }
 

@@ -31,18 +31,17 @@ fun FootballDto.convertToFootballMatches(): List<FootballMatchRt176> {
 
 private fun setStatusGame(status: String): String {
     return when (status) {
-        "TBD", "NS" -> "Запланирован"
-        "1H" -> "Первый тайм"
-        "HT" -> "Перерыв"
-        "2H" -> "Второй тайм"
-        "ET", "BT" -> "Дополнительное время"
-        "P" -> "Серия Пенальти"
-        "SUSP", "INT" -> "Приостановлен"
-        "FT", "AET", "PEN" -> "Окончен"
-        "PST" -> "Перенесен"
-        "CANC" -> "Отменен"
-        "AWD", "WO" -> "Не сыгран"
-        else -> "Другое"
+        "TBD", "NS" -> "СК"
+        "1H" -> "1Т"
+        "HT" -> "ПР"
+        "2H" -> "2Т"
+        "ET", "BT" -> "ДВ"
+        "P" -> "ПЕН"
+        "SUSP", "INT" -> "ОСТ"
+        "FT", "AET", "PEN" -> "ОК"
+        "PST" -> "ПЕР"
+        "CANC" -> "ОТМ"
+        else -> "ДРГ"
     }
 }
 

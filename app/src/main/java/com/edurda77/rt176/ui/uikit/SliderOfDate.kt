@@ -104,7 +104,7 @@ fun SliderOfDate(
                 event(ApplicationEventRt176.OnSetSelectedDateRt176(date5.value))
             })
         IconButton(onClick = {
-            if (counter.value < 3) {
+            if (counter.longValue < 3) {
                 counter.value++
                 date1.value = date1.value.plusDays(1)
                 date2.value = date2.value.plusDays(1)

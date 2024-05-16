@@ -54,6 +54,9 @@ fun BaseSceneRt176(
         is ApplicationStRt176.EventsRt176 -> {
             EventsScreen(
                 typeEventsRt176 = rst.typeEventsRt176,
+                applicationStRt176 = stateRt171.value.applicationStRt176,
+                name = stateRt171.value.name,
+                phone = stateRt171.value.phone,
                 selectedDate = stateRt171.value.selectedDate,
                 event = eventRt171)
         }

@@ -33,6 +33,7 @@ import com.edurda77.rt176.ui.state.TypeEventsRt176
 import com.edurda77.rt176.ui.state.TypeGame
 import com.edurda77.rt176.ui.theme.darkRed
 import com.edurda77.rt176.ui.theme.yellow
+import com.edurda77.rt176.ui.uikit.BottomNavigationRow
 import com.edurda77.rt176.ui.uikit.SliderOfDate
 import com.edurda77.rt176.ui.uikit.SliderTypeGames
 import java.time.LocalDate
@@ -41,8 +42,11 @@ import java.time.LocalDate
 @Composable
 private fun Sample() {
     EventsScreen(
-        typeEventsRt176 = TypeEventsRt176.LiveGames(TypeGame.BasketballRt176()),
+        typeEventsRt176 = TypeEventsRt176.LiveGames(TypeGame.FootballRt176()),
+        applicationStRt176 = ApplicationStRt176.GameRt176(),
         selectedDate = LocalDate.now(),
+        name = "ddfgg",
+        phone = "89026355319",
         event = {}
     )
 }
@@ -51,6 +55,9 @@ private fun Sample() {
 @Composable
 fun EventsScreen(
     modifier: Modifier = Modifier,
+    applicationStRt176: ApplicationStRt176,
+    name:String,
+    phone:String,
     typeEventsRt176: TypeEventsRt176,
     selectedDate: LocalDate,
     event: (ApplicationEventRt176) -> Unit
@@ -59,6 +66,18 @@ fun EventsScreen(
         event(ApplicationEventRt176.OnSetApplicationStateRt176(ApplicationStRt176.StartRt176()))
     }
 
+    val title = when (val rt = typeEventsRt176) {
+        is TypeEventsRt176.GamesOfDay -> when (rt.typeGame) {
+            is TypeGame.BasketballRt176 -> stringResource(R.string.basketbal)
+            is TypeGame.FootballRt176 ->  stringResource(R.string.football)
+            is TypeGame.HockeyRt176 ->  stringResource(R.string.hockey)
+        }
+        is TypeEventsRt176.LiveGames -> when (rt.typeGame) {
+            is TypeGame.BasketballRt176 -> stringResource(R.string.basketbal)
+            is TypeGame.FootballRt176 ->  stringResource(R.string.football)
+            is TypeGame.HockeyRt176 ->  stringResource(R.string.hockey)
+        }
+    }
     Scaffold(
         modifier = modifier.fillMaxSize(),
         topBar = {
@@ -146,9 +165,26 @@ fun EventsScreen(
                     selectedDate = selectedDate,
                     event = event
                 )
+                Spacer(modifier = modifier.height(16.dp))
+                Text(
+                    text = title,
+                    style = TextStyle(
+                        fontSize = 26.sp,
+                        color = yellow,
+                        //fontFamily = FontFamily(Font(R.font.gilroy)),
+                        fontWeight = FontWeight(800),
+                    )
+                )
             }
+        },
+        bottomBar = {
+            BottomNavigationRow(
+                applicationStRt176 = applicationStRt176,
+                name = name,
+                phone = phone,
+                event = event)
         }
-    ) {
+    ) {paddings->
 
     }
 }

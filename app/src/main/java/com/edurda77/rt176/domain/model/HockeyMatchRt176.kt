@@ -12,7 +12,7 @@ data class HockeyMatchRt176(
     val timeStamp: String,
     val dateStamp: String,
     val statusGame: String,
-    val currentTimeMatch: String,
+    val currentTimeMatch: Int?,
     val scoreFirstPeriod: String?,
     val scoreSecondPeriod: String?,
     val scoreThirdPeriod: String?,
