@@ -10,7 +10,7 @@ import java.util.Date
 
 interface RemoteRepositoryrt176 {
     suspend fun getFootballData(
-        timeStamp: Date,
+        timeStamp: String,
     ): ResourceRt176<List<FootballMatchRt176>> {
         val fg = Random.nextDouble(0.0, 20.0)
         val vbn = 8
@@ -91,10 +91,10 @@ interface RemoteRepositoryrt176 {
     val remoteData: MutableStateFlow<ResourceRt176<String>>
     suspend fun isInternetConnectedrt176(): Boolean
     suspend fun getBasketballData(
-        timeStamp: Date,
+        timeStamp: String,
     ): ResourceRt176<List<BasketballMatchRt176>>
 
-    suspend fun getHockeyData(timeStamp: Date): ResourceRt176<List<HockeyMatchRt176>>
+    suspend fun getHockeyData(timeStamp: String): ResourceRt176<List<HockeyMatchRt176>>
     suspend fun getFootballH2HData(
         idHome: Int,
         idAway: Int

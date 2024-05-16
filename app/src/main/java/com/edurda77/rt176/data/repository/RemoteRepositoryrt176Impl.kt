@@ -68,18 +68,17 @@ class RemoteRepositoryrt176Impl @Inject constructor(
         MutableStateFlow<ResourceRt176<String>>(ResourceRt176.SuccessRt176(bnm = null))
 
     override suspend fun getFootballData(
-        timeStamp: Date
+        timeStamp: String
     ): ResourceRt176<List<FootballMatchRt176>> {
         return try {
             val fg = Random.nextDouble(0.0, 20.0)
             val vbn = 8
             val sd = if (fg > vbn) fg else vbn
             println(sd)
-            val formattedDate = formattedDateRt176(timeStamp)
             val result = httpClient.get(URL_FOOTBALL_RT_145 + "fixtures") {
                 contentType(ContentType.Application.Json)
                 url {
-                    parameter("date", formattedDate)
+                    parameter("date", timeStamp)
                     parameter("timezone", TIME_ZONE)
                     header("x-rapidapi-key", RAPID_TOKEN_RT_176)
                     header("x-rapidapi-host", RAPID_FOOTBALL_HOST_RT_176)
@@ -101,18 +100,17 @@ class RemoteRepositoryrt176Impl @Inject constructor(
     }
 
     override suspend fun getBasketballData(
-        timeStamp: Date,
+        timeStamp: String,
     ): ResourceRt176<List<BasketballMatchRt176>> {
         return try {
             val fg = Random.nextDouble(0.0, 20.0)
             val vbn = 8
             val sd = if (fg > vbn) fg else vbn
             println(sd)
-            val formattedDate = formattedDateRt176(timeStamp)
             val result = httpClient.get(URL_BASKETBALL_RT_145 + "games") {
                 contentType(ContentType.Application.Json)
                 url {
-                    parameter("date", formattedDate)
+                    parameter("date", timeStamp)
                     parameter("timezone", TIME_ZONE)
                     header("x-rapidapi-key", RAPID_TOKEN_RT_176)
                     header("x-rapidapi-host", RAPID_BASKETBALL_HOST_RT_176)
@@ -134,18 +132,17 @@ class RemoteRepositoryrt176Impl @Inject constructor(
     }
 
     override suspend fun getHockeyData(
-        timeStamp: Date
+        timeStamp: String
     ): ResourceRt176<List<HockeyMatchRt176>> {
         return try {
             val fg = Random.nextDouble(0.0, 20.0)
             val vbn = 8
             val sd = if (fg > vbn) fg else vbn
             println(sd)
-            val formattedDate = formattedDateRt176(timeStamp)
             val result = httpClient.get(URL_HOKKEY_RT_145 + "games") {
                 contentType(ContentType.Application.Json)
                 url {
-                    parameter("date", formattedDate)
+                    parameter("date", timeStamp)
                     parameter("timezone", TIME_ZONE)
                     header("x-rapidapi-key", RAPID_TOKEN_RT_176)
                     header("x-rapidapi-host", RAPID_HOKKEY_HOST_RT_176)

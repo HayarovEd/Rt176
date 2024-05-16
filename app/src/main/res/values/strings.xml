@@ -4,4 +4,6 @@
     <string name="bet">сделать\nставку</string>
     <string name="warning">Внимание: ставки - это\nзатратно, помните об этом!</string>
     <string name="events">События</string>
+    <string name="games">Игры</string>
+    <string name="lives">Лайв</string>
 </resources>

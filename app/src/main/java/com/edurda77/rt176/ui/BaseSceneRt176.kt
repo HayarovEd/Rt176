@@ -12,7 +12,7 @@ fun BaseSceneRt176(
 ) {
     val stateRt171 = viewModel.state.collectAsState()
     val eventRt171 = viewModel::onEventRt171
-    when (stateRt171.value.applicationStRt176) {
+    when (val rst = stateRt171.value.applicationStRt176) {
         is ApplicationStRt176.GameRt176 -> {
             /* RacingGameScreen(
                  gameScore = { stateRt171.value.gameScore },
@@ -52,19 +52,10 @@ fun BaseSceneRt176(
         }
 
         is ApplicationStRt176.EventsRt176 -> {
-            /*IncomingScreenRt171(
-                name = stateRt171.value.name,
-                phone = stateRt171.value.phone,
-                countFootball = stateRt171.value.allFootball.size,
-                countBasketball = stateRt171.value.allBasketball.size,
-                ApplicationStRt176 = stateRt171.value.ApplicationStRt176,
+            EventsScreen(
+                typeEventsRt176 = rst.typeEventsRt176,
                 selectedDate = stateRt171.value.selectedDate,
-                footballData = stateRt171.value.allFootball,
-                basketballData = stateRt171.value.allBasketball,
-                isLoading = stateRt171.value.isLoading,
-                message = stateRt171.value.message,
-                event = eventRt171
-            )*/
+                event = eventRt171)
         }
     }
 }

@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.edurda77.rt176.domain.repository.RemoteRepositoryrt176
 import com.edurda77.rt176.domain.utils.ResourceRt176
+import com.edurda77.rt176.domain.utils.formattedDateRt176
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -56,7 +57,7 @@ class MainViewModelRt176 @Inject constructor(
     private suspend fun getFootballDataRt171() {
         when (val result =
             remoteRepositoryRt176.getFootballData(
-               timeStamp = _state.value.selectedDate
+               timeStamp = _state.value.selectedDate.formattedDateRt176()
             )) {
             is ResourceRt176.ErrorRt176 -> {
                 Log.d("MainViewModelRt171", "error football -${result.message}")
@@ -88,7 +89,7 @@ class MainViewModelRt176 @Inject constructor(
     private suspend fun getBasketballDataRt171() {
         when (val result =
             remoteRepositoryRt176.getBasketballData(
-                timeStamp = _state.value.selectedDate
+                timeStamp = _state.value.selectedDate.formattedDateRt176()
             )) {
             is ResourceRt176.ErrorRt176 -> {
                 Log.d("MainViewModelRt171", "error basketball -${result.message}")
@@ -120,7 +121,7 @@ class MainViewModelRt176 @Inject constructor(
     private suspend fun getHockeyDataRt171() {
         when (val result =
             remoteRepositoryRt176.getHockeyData(
-                timeStamp = _state.value.selectedDate
+                timeStamp = _state.value.selectedDate.formattedDateRt176()
             )) {
             is ResourceRt176.ErrorRt176 -> {
                 Log.d("MainViewModelRt171", "error hockey -${result.message}")
@@ -152,8 +153,23 @@ class MainViewModelRt176 @Inject constructor(
 
     fun onEventRt171(mainEvent: ApplicationEventRt176) {
         when (mainEvent) {
-            is ApplicationEventRt176.OnSetApplicationStateRt176 -> TODO()
-            is ApplicationEventRt176.OnSetSelectedDateRt176 -> TODO()
+            is ApplicationEventRt176.OnSetApplicationStateRt176 -> {
+                _state.value.copy(
+                    applicationStRt176 = mainEvent.applicationStRt176
+                )
+                    .fusUpdateStateUIRt171()
+            }
+            is ApplicationEventRt176.OnSetSelectedDateRt176 -> {
+                _state.value.copy(
+                    selectedDate = mainEvent.selectedDate
+                )
+                    .fusUpdateStateUIRt171()
+                viewModelScope.launch {
+                    async { getFootballDataRt171() }.onAwait
+                    async { getBasketballDataRt171() }.onAwait
+                    async { getHockeyDataRt171() }.onAwait
+                }
+            }
             is ApplicationEventRt176.OnUpdateProfileRt176 -> TODO()
         }
     }
