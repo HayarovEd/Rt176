@@ -31,19 +31,6 @@ fun BaseSceneRt176(
              )*/
         }
 
-        is ApplicationStRt176.LiveEventsRt176 -> {
-            /* LiveScreenRt171(
-                 name = stateRt171.value.name,
-                 phone = stateRt171.value.phone,
-                 liveFootballData = stateRt171.value.liveFootballData,
-                 liveBasketballData = stateRt171.value.liveBasketballData,
-                 countFootball = stateRt171.value.liveFootballData.size,
-                 countBasketball = stateRt171.value.liveBasketballData.size,
-                 ApplicationStRt176 = stateRt171.value.ApplicationStRt176,
-                 event = eventRt171
-             )*/
-        }
-
         is ApplicationStRt176.LoadingRt176 -> {
             LoadingScreenRt176()
         }
@@ -64,7 +51,7 @@ fun BaseSceneRt176(
             )
         }
 
-        is ApplicationStRt176.IncomingEventsRt176 -> {
+        is ApplicationStRt176.EventsRt176 -> {
             /*IncomingScreenRt171(
                 name = stateRt171.value.name,
                 phone = stateRt171.value.phone,

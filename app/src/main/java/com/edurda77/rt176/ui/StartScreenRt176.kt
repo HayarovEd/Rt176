@@ -29,8 +29,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.Font
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -41,6 +39,7 @@ import com.edurda77.rt176.domain.utils.POLITIC_URL_BEGINN_RT176
 import com.edurda77.rt176.ui.state.ApplicationEventRt176
 import com.edurda77.rt176.ui.state.ApplicationStRt176
 import com.edurda77.rt176.ui.state.TypeEventsRt176
+import com.edurda77.rt176.ui.state.TypeGame
 import com.edurda77.rt176.ui.theme.darkRed
 import com.edurda77.rt176.ui.theme.white176
 import com.edurda77.rt176.ui.theme.yellow
@@ -95,7 +94,7 @@ fun StartScreenRt176(
                             contentDescription = "",
                             contentScale = ContentScale.FillWidth
                         )
-                        Column (
+                        Column(
                             modifier = modifier
                                 .align(alignment = Alignment.Center),
                             verticalArrangement = Arrangement.Center,
@@ -127,8 +126,8 @@ fun StartScreenRt176(
                 onClick = {
                     event(
                         ApplicationEventRt176.OnSetApplicationStateRt176(
-                            ApplicationStRt176.IncomingEventsRt176(
-                                TypeEventsRt176.FootballRt176()
+                            ApplicationStRt176.EventsRt176(
+                                TypeEventsRt176.GamesOfDay(TypeGame.FootballRt176())
                             )
                         )
                     )
