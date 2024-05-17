@@ -62,7 +62,7 @@ fun ItemHockey(
                         homeScore = hockeyMatchRt176.homeScore,
                         idAway = hockeyMatchRt176.awayId,
                         awayLogo = hockeyMatchRt176.awayImage,
-                        awayName = hockeyMatchRt176.homeName,
+                        awayName = hockeyMatchRt176.awayName,
                         awayScore = hockeyMatchRt176.awayScore,
                         title = "$dsk в ${hockeyMatchRt176.timeStamp}",
                         typeEventsRt176 = TypeEventsRt176.GamesOfDay(TypeGame.HockeyRt176())

@@ -54,7 +54,7 @@ fun Rt176Theme(
         SideEffect {
             systemUiController.setSystemBarsColor(darkRed)
             systemUiController.setNavigationBarColor(
-                color = darkRed
+                color = yellow
             )
         }
     }

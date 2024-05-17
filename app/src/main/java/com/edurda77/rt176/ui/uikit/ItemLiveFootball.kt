@@ -85,7 +85,7 @@ fun ItemLiveFootball(
                         homeScore = footballMatchRt176.homeScore,
                         idAway = footballMatchRt176.awayId,
                         awayLogo = footballMatchRt176.awayImage,
-                        awayName = footballMatchRt176.homeName,
+                        awayName = footballMatchRt176.awayName,
                         awayScore = footballMatchRt176.awayScore,
                         title = dsk,
                         typeEventsRt176 = TypeEventsRt176.LiveGames(TypeGame.FootballRt176())

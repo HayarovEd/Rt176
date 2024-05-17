@@ -84,7 +84,7 @@ fun ItemFootball(
                     homeScore = footballMatchRt176.homeScore,
                     idAway = footballMatchRt176.awayId,
                     awayLogo = footballMatchRt176.awayImage,
-                    awayName = footballMatchRt176.homeName,
+                    awayName = footballMatchRt176.awayName,
                     awayScore = footballMatchRt176.awayScore,
                     title = "$dsk в ${footballMatchRt176.timeStamp}",
                     typeEventsRt176 = TypeEventsRt176.GamesOfDay(TypeGame.FootballRt176())

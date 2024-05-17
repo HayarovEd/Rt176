@@ -56,7 +56,7 @@ fun ItemLiveBasketball(
                         homeScore = basketballMatchRt176.homeScore,
                         idAway = basketballMatchRt176.awayId,
                         awayLogo = basketballMatchRt176.awayImage,
-                        awayName = basketballMatchRt176.homeName,
+                        awayName = basketballMatchRt176.awayName,
                         awayScore = basketballMatchRt176.awayScore,
                         title = dsk,
                         typeEventsRt176 = TypeEventsRt176.LiveGames(TypeGame.BasketballRt176())
