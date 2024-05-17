@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Rt176</string>
-    <string name="loading">загрузка...</string>
+    <string name="loading">загрузка…</string>
     <string name="bet">сделать\nставку</string>
     <string name="warning">Внимание: ставки - это\nзатратно, помните об этом!</string>
     <string name="events">События</string>
@@ -10,4 +10,5 @@
     <string name="football">Футбол</string>
     <string name="hockey">Хоккей</string>
     <string name="today">Сегодня</string>
+    <string name="no_matches">Сейчас нет информации,\nпопробуйте позже</string>
 </resources>

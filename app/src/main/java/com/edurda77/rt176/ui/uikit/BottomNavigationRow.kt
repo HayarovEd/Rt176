@@ -69,7 +69,7 @@ fun BottomNavigationRow(
         )
         ItemNavigation(
             icon = ImageVector.vectorResource(id = R.drawable.profile),
-            color = if (applicationStRt176 is ApplicationStRt176.EventsRt176) darkRed else grey,
+            color = if (applicationStRt176 is ApplicationStRt176.Profile) darkRed else grey,
             onClick = {
                 if (name.isEmpty()||phone.isEmpty()) {
                     event(

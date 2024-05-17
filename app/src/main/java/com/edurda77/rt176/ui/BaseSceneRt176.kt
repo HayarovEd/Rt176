@@ -55,6 +55,13 @@ fun BaseSceneRt176(
             EventsScreen(
                 typeEventsRt176 = rst.typeEventsRt176,
                 applicationStRt176 = stateRt171.value.applicationStRt176,
+                footballMatches = stateRt171.value.allFootball,
+                footballLiveMatches = stateRt171.value.liveFootballData,
+                basketballMatches = stateRt171.value.allBasketball,
+                basketballLiveMatches = stateRt171.value.liveBasketballData,
+                hockeyMatches = stateRt171.value.allHockey,
+                hockeyLiveMatches = stateRt171.value.liveHockeyData,
+                isLoading = stateRt171.value.isLoading,
                 name = stateRt171.value.name,
                 phone = stateRt171.value.phone,
                 selectedDate = stateRt171.value.selectedDate,

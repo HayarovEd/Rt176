@@ -6,6 +6,9 @@ import com.edurda77.rt176.domain.model.HockeyMatchRt176
 
 fun HokkeyDto.convertToHokkeyMatches(): List<HockeyMatchRt176> {
     return this.response.map { response ->
+        val scorePerPeriod1 = if (response.periods.first!=null) response.periods.first.split("-") else null
+        val scorePerPeriod2 = if (response.periods.second!=null) response.periods.second.split("-") else null
+        val scorePerPeriod3 = if (response.periods.third!=null) response.periods.third.split("-") else null
         HockeyMatchRt176(
             timeStamp = response.date.substring(11, 16),
             dateStamp = response.date.substring(0, 10),
@@ -19,9 +22,12 @@ fun HokkeyDto.convertToHokkeyMatches(): List<HockeyMatchRt176> {
             homeImage = response.teams.home.logo,
             homeScore = response.scores.home,
             homeName = response.teams.home.name,
-            scoreFirstPeriod = response.periods.first,
-            scoreSecondPeriod = response.periods.second,
-            scoreThirdPeriod = response.periods.third,
+            scoreHomeFirstPeriod = scorePerPeriod1?.get(0),
+            scoreHomeSecondPeriod = scorePerPeriod2?.get(0),
+            scoreHomeThirdPeriod = scorePerPeriod3?.get(0),
+            scoreAwayFirstPeriod = scorePerPeriod1?.get(1),
+            scoreAwaySecondPeriod = scorePerPeriod2?.get(1),
+            scoreAwayThirdPeriod = scorePerPeriod3?.get(1),
             scoreOverTime = response.periods.overtime,
             scorePenalties = response.periods.penalties,
             isPlay = checkLiveGame(response.status.short)

@@ -51,7 +51,9 @@ fun LoadingScreenRt176 (
             verticalArrangement = Arrangement.Center,
         ){
             CircularProgressIndicator(
-                modifier = Modifier.size(64.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .size(64.dp),
                 color = grey,
                 trackColor = yellow,
             )

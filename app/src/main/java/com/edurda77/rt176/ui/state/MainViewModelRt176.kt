@@ -161,7 +161,8 @@ class MainViewModelRt176 @Inject constructor(
             }
             is ApplicationEventRt176.OnSetSelectedDateRt176 -> {
                 _state.value.copy(
-                    selectedDate = mainEvent.selectedDate
+                    selectedDate = mainEvent.selectedDate,
+                    isLoading = true,
                 )
                     .fusUpdateStateUIRt171()
                 viewModelScope.launch {
