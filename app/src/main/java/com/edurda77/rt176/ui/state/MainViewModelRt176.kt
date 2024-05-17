@@ -7,13 +7,13 @@ import com.edurda77.rt176.domain.repository.RemoteRepositoryrt176
 import com.edurda77.rt176.domain.utils.ResourceRt176
 import com.edurda77.rt176.domain.utils.formattedDateRt176
 import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModelRt176 @Inject constructor(
@@ -172,6 +172,27 @@ class MainViewModelRt176 @Inject constructor(
                 }
             }
             is ApplicationEventRt176.OnUpdateProfileRt176 -> TODO()
+            is ApplicationEventRt176.GetH2hData176 -> {
+                _state.value.copy(
+                    lastStatus = ApplicationStRt176.EventsRt176(mainEvent.typeEventsRt176),
+                    isLoading = true,
+                    applicationStRt176 = ApplicationStRt176.H2h(
+                        homeName = mainEvent.homeName,
+                        homeScore = mainEvent.homeScore,
+                        homeLogo = mainEvent.homeLogo,
+                        awayName = mainEvent.awayName,
+                        awayScore = mainEvent.awayScore,
+                        awayLogo = mainEvent.awayLogo,
+                        title = mainEvent.title
+                    )
+                )
+                    .fusUpdateStateUIRt171()
+                getH2hData(
+                    idHome = mainEvent.idHome,
+                    idAway = mainEvent.idAway,
+                    typeEventsRt176 = mainEvent.typeEventsRt176
+                )
+            }
         }
     }
 
@@ -206,6 +227,110 @@ class MainViewModelRt176 @Inject constructor(
                                 "url SUCCESS -${_state.value.destinationUrl}"
                             )
                             remoteRepositoryRt176.setSharedUrlrt176(_state.value.destinationUrl)
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+    private fun getH2hData(
+        typeEventsRt176: TypeEventsRt176,
+        idHome: Int,
+        idAway: Int,
+    ) {
+        when (val game = typeEventsRt176) {
+            is TypeEventsRt176.GamesOfDay -> {
+                getH2hDataByTypeGame(
+                    idHome = idHome,
+                    idAway = idAway,
+                    typeGame = game.typeGame
+                )
+            }
+
+            is TypeEventsRt176.LiveGames -> {
+                getH2hDataByTypeGame(
+                    idHome = idHome,
+                    idAway = idAway,
+                    typeGame = game.typeGame
+                )
+            }
+        }
+    }
+
+    private fun getH2hDataByTypeGame(
+        idHome: Int,
+        idAway: Int,
+        typeGame: TypeGame
+    ) {
+        viewModelScope.launch {
+            when (typeGame) {
+                is TypeGame.BasketballRt176 -> {
+                    when (val res = remoteRepositoryRt176.getBasketballH2hData(
+                        idHome = idHome,
+                        idAway = idAway
+                    )) {
+                        is ResourceRt176.ErrorRt176 -> {
+                            _state.value.copy(
+                                isLoading = false,
+                                matches = emptyList()
+                            )
+                                .fusUpdateStateUIRt171()
+                        }
+
+                        is ResourceRt176.SuccessRt176 -> {
+                            _state.value.copy(
+                                isLoading = false,
+                                matches = res.dvt ?: emptyList()
+                            )
+                                .fusUpdateStateUIRt171()
+                        }
+                    }
+                }
+
+                is TypeGame.FootballRt176 -> {
+                    when (val res = remoteRepositoryRt176.getFootballH2HData(
+                        idHome = idHome,
+                        idAway = idAway
+                    )) {
+                        is ResourceRt176.ErrorRt176 -> {
+                            _state.value.copy(
+                                isLoading = false,
+                                matches = emptyList()
+                            )
+                                .fusUpdateStateUIRt171()
+                        }
+
+                        is ResourceRt176.SuccessRt176 -> {
+                            _state.value.copy(
+                                isLoading = false,
+                                matches = res.dvt ?: emptyList()
+                            )
+                                .fusUpdateStateUIRt171()
+                        }
+                    }
+                }
+
+                is TypeGame.HockeyRt176 -> {
+                    when (val res = remoteRepositoryRt176.getHockeyH2HData(
+                        idHome = idHome,
+                        idAway = idAway
+                    )) {
+                        is ResourceRt176.ErrorRt176 -> {
+                            _state.value.copy(
+                                isLoading = false,
+                                matches = emptyList()
+                            )
+                                .fusUpdateStateUIRt171()
+                        }
+
+                        is ResourceRt176.SuccessRt176 -> {
+                            _state.value.copy(
+                                isLoading = false,
+                                matches = res.dvt ?: emptyList()
+                            )
+                                .fusUpdateStateUIRt171()
                         }
                     }
                 }

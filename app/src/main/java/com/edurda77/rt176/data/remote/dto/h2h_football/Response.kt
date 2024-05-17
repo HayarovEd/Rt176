@@ -10,10 +10,6 @@ data class Response(
     val fixture: Fixture,
     @SerialName("goals")
     val goals: Goals,
-    @SerialName("league")
-    val league: League,
-    @SerialName("score")
-    val score: Score,
     @SerialName("teams")
     val teams: Teams
 )

@@ -2,6 +2,7 @@ package com.edurda77.rt176.ui.state
 
 import com.edurda77.rt176.domain.model.BasketballMatchRt176
 import com.edurda77.rt176.domain.model.FootballMatchRt176
+import com.edurda77.rt176.domain.model.H2HModel
 import com.edurda77.rt176.domain.model.HockeyMatchRt176
 import java.time.LocalDate
 import java.util.Calendar
@@ -9,7 +10,9 @@ import java.util.Date
 
 data class MainStateRt176(
     val applicationStRt176: ApplicationStRt176 = ApplicationStRt176.LoadingRt176(),
+    val lastStatus: ApplicationStRt176 = ApplicationStRt176.StartRt176(),
     val selectedDate: LocalDate = LocalDate.now(),
+    val matches: List<H2HModel> = emptyList(),
     val destinationUrl: String = "",
     val allFootball: List<FootballMatchRt176> = emptyList(),
     val allBasketball: List<BasketballMatchRt176> = emptyList(),

@@ -1,11 +1,22 @@
 package com.edurda77.rt176.ui.state
 
+import com.edurda77.rt176.domain.model.H2HModel
+
 sealed interface ApplicationStRt176 {
-    class LoadingRt176(valdfg: Int = 67) : ApplicationStRt176
-    class StartRt176(valdfg: Int = 67) : ApplicationStRt176
+    class LoadingRt176(val dfg: Int = 67) : ApplicationStRt176
+    class StartRt176(val dfg: Int = 67) : ApplicationStRt176
     class EventsRt176(val typeEventsRt176: TypeEventsRt176) : ApplicationStRt176
     class GameRt176(valdfg: Int = 67) : ApplicationStRt176
     class Profile(val typeProfileRt176: TypeProfileRt176) : ApplicationStRt176
+    class H2h(
+        val homeName:String,
+        val homeScore:Int?,
+        val awayName:String,
+        val awayScore:Int?,
+        val title:String,
+        val homeLogo:String,
+        val awayLogo:String,
+    ) : ApplicationStRt176
 }
 
 

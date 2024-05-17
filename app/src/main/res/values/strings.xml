@@ -11,4 +11,7 @@
     <string name="hockey">Хоккей</string>
     <string name="today">Сегодня</string>
     <string name="no_matches">Сейчас нет информации,\nпопробуйте позже</string>
+    <string name="match">Матч</string>
+    <string name="h2h">H2H</string>
+    <string name="last_5">Последние 5 матчей</string>
 </resources>

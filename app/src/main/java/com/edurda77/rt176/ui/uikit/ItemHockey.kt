@@ -33,6 +33,8 @@ import com.edurda77.rt176.domain.model.FootballMatchRt176
 import com.edurda77.rt176.domain.model.HockeyMatchRt176
 import com.edurda77.rt176.domain.utils.formattedDateRt176
 import com.edurda77.rt176.ui.state.ApplicationEventRt176
+import com.edurda77.rt176.ui.state.TypeEventsRt176
+import com.edurda77.rt176.ui.state.TypeGame
 import com.edurda77.rt176.ui.theme.darkRed
 import com.edurda77.rt176.ui.theme.yellow
 import java.time.LocalDate
@@ -46,11 +48,27 @@ fun ItemHockey(
     event: (ApplicationEventRt176) -> Unit
 ) {
     val isToday = LocalDate.now().formattedDateRt176() == hockeyMatchRt176.dateStamp
+    val dsk = if (isToday) stringResource(R.string.today) else hockeyMatchRt176.dateStamp
     Row(
         modifier = modifier
             .fillMaxWidth()
             .clip(shape = RoundedCornerShape(16.dp))
-            .clickable { }
+            .clickable {
+                event(
+                    ApplicationEventRt176.GetH2hData176(
+                        idHome = hockeyMatchRt176.homeId,
+                        homeLogo = hockeyMatchRt176.homeImage,
+                        homeName = hockeyMatchRt176.homeName,
+                        homeScore = hockeyMatchRt176.homeScore,
+                        idAway = hockeyMatchRt176.awayId,
+                        awayLogo = hockeyMatchRt176.awayImage,
+                        awayName = hockeyMatchRt176.homeName,
+                        awayScore = hockeyMatchRt176.awayScore,
+                        title = "$dsk в ${hockeyMatchRt176.timeStamp}",
+                        typeEventsRt176 = TypeEventsRt176.GamesOfDay(TypeGame.HockeyRt176())
+                    )
+                )
+            }
             .background(color = darkRed)
             .padding(top = 5.dp, bottom = 5.dp, end = 15.dp),
         verticalAlignment = Alignment.CenterVertically
@@ -118,7 +136,7 @@ fun ItemHockey(
         ) {
             Text(
                 modifier = modifier,
-                text = if (isToday) stringResource(R.string.today) else hockeyMatchRt176.dateStamp,
+                text = dsk,
                 style = TextStyle(
                     fontSize = 14.sp,
                     color = yellow,

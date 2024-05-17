@@ -67,5 +67,21 @@ fun BaseSceneRt176(
                 selectedDate = stateRt171.value.selectedDate,
                 event = eventRt171)
         }
+
+        is ApplicationStRt176.H2h -> {
+            H2hScreen(
+                homeName = rst.homeName,
+                homeScore = rst.homeScore,
+                homeLogo = rst.homeLogo,
+                awayLogo = rst.awayLogo,
+                awayName = rst.awayName,
+                awayScore = rst.awayScore,
+                title = rst.title,
+                isLoading = stateRt171.value.isLoading,
+                matches = stateRt171.value.matches,
+                lastAppState = stateRt171.value.lastStatus,
+                event = eventRt171
+            )
+        }
     }
 }

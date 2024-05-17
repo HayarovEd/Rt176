@@ -212,7 +212,7 @@ class RemoteRepositoryrt176Impl @Inject constructor(
             val vbn = 8
             val sd = if (fg > vbn) fg else vbn
             println(sd)
-            val result = httpClient.get(URL_BASKETBALL_RT_145 + "games/h2h") {
+            val result = httpClient.get(URL_BASKETBALL_RT_145 + "games") {
                 contentType(ContentType.Application.Json)
                 url {
                     parameter("h2h", "$idHome-$idAway")

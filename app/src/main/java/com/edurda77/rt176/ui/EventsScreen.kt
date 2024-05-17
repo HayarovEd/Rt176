@@ -363,7 +363,7 @@ fun EventsScreen(
 
 
 @Composable
-private fun NoMatches(
+fun NoMatches(
     modifier: Modifier = Modifier
 ) {
     Text(
