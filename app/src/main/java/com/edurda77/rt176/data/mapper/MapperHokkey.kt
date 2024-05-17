@@ -1,6 +1,9 @@
 package com.edurda77.rt176.data.mapper
 
+import com.edurda77.rt176.data.remote.dto.h2h_football.H2hFootballDto
+import com.edurda77.rt176.data.remote.dto.h2h_hockey.H2hHockeyDto
 import com.edurda77.rt176.data.remote.dto.hokkey.HokkeyDto
+import com.edurda77.rt176.domain.model.H2HModel
 import com.edurda77.rt176.domain.model.HockeyMatchRt176
 
 
@@ -35,7 +38,19 @@ fun HokkeyDto.convertToHokkeyMatches(): List<HockeyMatchRt176> {
     }
 }
 
-
+fun H2hHockeyDto.convertHockeyToH2hModel(): List<H2HModel> {
+    return this.response.map {
+        H2HModel(
+            homeName = it.teams.home.name,
+            homeLogo = it.teams.home.logo,
+            homeScore = it.scores.home,
+            awayName = it.teams.away.name,
+            awayLogo = it.teams.away.logo,
+            awayScore = it.scores.away,
+            dateOfMatch = it.date.substring(0, 10)
+        )
+    }
+}
 private fun setStatusGame(status: String): String {
     return when (status) {
         "NS" -> "СК"

@@ -2,11 +2,11 @@ package com.edurda77.rt176.domain.repository
 
 import com.edurda77.rt176.domain.model.BasketballMatchRt176
 import com.edurda77.rt176.domain.model.FootballMatchRt176
+import com.edurda77.rt176.domain.model.H2HModel
 import com.edurda77.rt176.domain.model.HockeyMatchRt176
 import com.edurda77.rt176.domain.utils.ResourceRt176
 import kotlin.random.Random
 import kotlinx.coroutines.flow.MutableStateFlow
-import java.util.Date
 
 interface RemoteRepositoryrt176 {
     suspend fun getFootballData(
@@ -98,12 +98,15 @@ interface RemoteRepositoryrt176 {
     suspend fun getFootballH2HData(
         idHome: Int,
         idAway: Int
-    ): ResourceRt176<List<FootballMatchRt176>>
+    ): ResourceRt176<List<H2HModel>>
 
     suspend fun getBasketballH2hData(
         idHome: Int,
         idAway: Int
-    ): ResourceRt176<List<BasketballMatchRt176>>
+    ): ResourceRt176<List<H2HModel>>
 
-    suspend fun getHockeyH2HData(idHome: Int, idAway: Int): ResourceRt176<List<HockeyMatchRt176>>
+    suspend fun getHockeyH2HData(
+        idHome: Int,
+        idAway: Int
+    ): ResourceRt176<List<H2HModel>>
 }

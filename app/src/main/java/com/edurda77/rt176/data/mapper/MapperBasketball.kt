@@ -1,7 +1,10 @@
 package com.edurda77.rt176.data.mapper
 
 import com.edurda77.rt176.data.remote.dto.basketball.BasketBallDto
+import com.edurda77.rt176.data.remote.dto.h2h_basketball.H2hBasketballDto
+import com.edurda77.rt176.data.remote.dto.h2h_football.H2hFootballDto
 import com.edurda77.rt176.domain.model.BasketballMatchRt176
+import com.edurda77.rt176.domain.model.H2HModel
 
 
 fun BasketBallDto.convertToBasketBallMatches(): List<BasketballMatchRt176> {
@@ -32,6 +35,19 @@ fun BasketBallDto.convertToBasketBallMatches(): List<BasketballMatchRt176> {
     }
 }
 
+fun H2hBasketballDto.convertBasketballToH2hModel(): List<H2HModel> {
+    return this.response.map {
+        H2HModel(
+            homeName = it.teams.home.name,
+            homeLogo = it.teams.home.logo,
+            homeScore = it.scores.home.total,
+            awayName = it.teams.away.name,
+            awayLogo = it.teams.away.logo,
+            awayScore = it.scores.away.total,
+            dateOfMatch = it.date.substring(0, 10)
+        )
+    }
+}
 
 private fun setStatusGame(status: String): String {
     return when (status) {
