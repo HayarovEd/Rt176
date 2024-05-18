@@ -18,4 +18,8 @@
     <string name="sport">СПОРТ</string>
     <string name="best_score">Наивысший рекорд:</string>
     <string name="is_play">Играть</string>
+    <string name="game_over">Игра окончена</string>
+    <string name="your_score">Ваш счет</string>
+    <string name="repeat">Повторить</string>
+    <string name="exit">Выход</string>
 </resources>

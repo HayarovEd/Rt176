@@ -4,6 +4,8 @@ import com.edurda77.rt176.domain.model.BasketballMatchRt176
 import com.edurda77.rt176.domain.model.FootballMatchRt176
 import com.edurda77.rt176.domain.model.H2HModel
 import com.edurda77.rt176.domain.model.HockeyMatchRt176
+import com.edurda77.rt176.domain.model.NameSport
+import com.edurda77.rt176.domain.model.Sport
 import java.time.LocalDate
 import java.util.Calendar
 import java.util.Date
@@ -26,4 +28,8 @@ data class MainStateRt176(
     val isLoading: Boolean = true,
     val isLoadingUrl: Boolean = true,
     val message: String = "",
+    val leftTime:Int = 3,
+    val score:Int = 0,
+    val questImage: Sport = Sport.FOOTBALL,
+    val nameSport: NameSport = NameSport.GOLF
 )

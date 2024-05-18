@@ -19,7 +19,6 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             Rt176Theme {
-                //val sport = Sport.entries.toTypedArray().random()
                 BaseSceneRt176()
             }
         }

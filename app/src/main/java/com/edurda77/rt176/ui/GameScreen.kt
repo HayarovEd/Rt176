@@ -142,7 +142,7 @@ fun GameScreen(
                     containerColor = yellow
                 ),
                 onClick = {
-
+                    event(ApplicationEventRt176.StartMiniGame)
                 }
             ) {
                 Text(

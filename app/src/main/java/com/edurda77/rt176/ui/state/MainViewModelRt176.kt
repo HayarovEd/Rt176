@@ -3,13 +3,28 @@ package com.edurda77.rt176.ui.state
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.edurda77.rt176.domain.model.NameSport
+import com.edurda77.rt176.domain.model.Sport
 import com.edurda77.rt176.domain.repository.RemoteRepositoryrt176
 import com.edurda77.rt176.domain.utils.ResourceRt176
 import com.edurda77.rt176.domain.utils.formattedDateRt176
+import com.edurda77.rt176.ui.state.ApplicationEventRt176.GetH2hData176
+import com.edurda77.rt176.ui.state.ApplicationEventRt176.OnSetApplicationStateRt176
+import com.edurda77.rt176.ui.state.ApplicationEventRt176.OnSetSelectedDateRt176
+import com.edurda77.rt176.ui.state.ApplicationEventRt176.OnUpdateProfileRt176
+import com.edurda77.rt176.ui.state.ApplicationEventRt176.SetAnswer
+import com.edurda77.rt176.ui.state.ApplicationEventRt176.StartMiniGame
+import com.edurda77.rt176.ui.state.ApplicationEventRt176.StopMiniGame
+import com.edurda77.rt176.ui.state.ApplicationStRt176.EventsRt176
+import com.edurda77.rt176.ui.state.ApplicationStRt176.H2h
+import com.edurda77.rt176.ui.state.ApplicationStRt176.MiniGame
+import com.edurda77.rt176.ui.state.TypeMiniGame.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -21,7 +36,7 @@ class MainViewModelRt176 @Inject constructor(
 ) : ViewModel() {
     private var _state = MutableStateFlow(MainStateRt176())
     val state = _state.asStateFlow()
-
+    private var job: Job? = null
 
     init {
         viewModelScope.launch(Dispatchers.IO) {
@@ -154,13 +169,13 @@ class MainViewModelRt176 @Inject constructor(
 
     fun onEventRt171(mainEvent: ApplicationEventRt176) {
         when (mainEvent) {
-            is ApplicationEventRt176.OnSetApplicationStateRt176 -> {
+            is OnSetApplicationStateRt176 -> {
                 _state.value.copy(
                     applicationStRt176 = mainEvent.applicationStRt176
                 )
                     .fusUpdateStateUIRt171()
             }
-            is ApplicationEventRt176.OnSetSelectedDateRt176 -> {
+            is OnSetSelectedDateRt176 -> {
                 _state.value.copy(
                     selectedDate = mainEvent.selectedDate,
                     isLoading = true,
@@ -172,12 +187,12 @@ class MainViewModelRt176 @Inject constructor(
                     async { getHockeyDataRt171() }.onAwait
                 }
             }
-            is ApplicationEventRt176.OnUpdateProfileRt176 -> TODO()
-            is ApplicationEventRt176.GetH2hData176 -> {
+            is OnUpdateProfileRt176 -> TODO()
+            is GetH2hData176 -> {
                 _state.value.copy(
-                    lastStatus = ApplicationStRt176.EventsRt176(mainEvent.typeEventsRt176),
+                    lastStatus = EventsRt176(mainEvent.typeEventsRt176),
                     isLoading = true,
-                    applicationStRt176 = ApplicationStRt176.H2h(
+                    applicationStRt176 = H2h(
                         homeName = mainEvent.homeName,
                         homeScore = mainEvent.homeScore,
                         homeLogo = mainEvent.homeLogo,
@@ -194,9 +209,66 @@ class MainViewModelRt176 @Inject constructor(
                     typeEventsRt176 = mainEvent.typeEventsRt176
                 )
             }
+
+            StartMiniGame -> {
+                _state.value.copy(
+                    applicationStRt176 = MiniGame(TypeMiniGame.Play),
+                    score = 0,
+                    leftTime = 3
+                )
+                    .fusUpdateStateUIRt171()
+                generateTask()
+                startTimer()
+            }
+
+            is SetAnswer -> {
+                val currentScore = _state.value.score
+                if (mainEvent.isRight) {
+                    if (_state.value.questImage.title == _state.value.nameSport.title) {
+                        _state.value.copy(
+                            score = currentScore+1,
+                            leftTime = 3
+                        )
+                            .fusUpdateStateUIRt171()
+                        generateTask()
+                        startTimer()
+                    } else {
+                        _state.value.copy(
+                            applicationStRt176 = MiniGame(Result),
+                            leftTime = 3
+                        )
+                            .fusUpdateStateUIRt171()
+                    }
+                } else {
+                    if (_state.value.questImage.title != _state.value.nameSport.title) {
+                        _state.value.copy(
+                            score = currentScore+1,
+                            leftTime = 3
+                        )
+                            .fusUpdateStateUIRt171()
+                        generateTask()
+                        startTimer()
+                    } else {
+                        _state.value.copy(
+                            applicationStRt176 = MiniGame(Result),
+                            leftTime = 3
+                        )
+                            .fusUpdateStateUIRt171()
+                    }
+                }
+                checkBestScore()
+            }
+
+            StopMiniGame -> {
+                job?.cancel()
+                _state.value.copy(
+                    applicationStRt176 = ApplicationStRt176.GameRt176(),
+                    leftTime = 3
+                )
+                    .fusUpdateStateUIRt171()
+            }
         }
     }
-
 
 
 
@@ -335,6 +407,46 @@ class MainViewModelRt176 @Inject constructor(
                         }
                     }
                 }
+            }
+        }
+    }
+
+    private fun startTimer() {
+        val time = _state.value.leftTime
+        job?.cancel()
+        job = viewModelScope.launch {
+            for (i in time downTo 0 step 1) {
+                _state.value.copy(
+                    leftTime = i
+                )
+                    .fusUpdateStateUIRt171()
+                delay(1000)
+            }
+            _state.value.copy(
+                applicationStRt176 = MiniGame(Result),
+                leftTime = 3
+            )
+                .fusUpdateStateUIRt171()
+            checkBestScore()
+        }
+    }
+
+    private fun generateTask() {
+        _state.value.copy(
+            questImage = Sport.entries.toTypedArray().random(),
+            nameSport = NameSport.entries.toTypedArray().random(),
+        )
+            .fusUpdateStateUIRt171()
+    }
+
+    private fun checkBestScore() {
+        if (_state.value.score>_state.value.bestScore) {
+            _state.value.copy(
+                bestScore = _state.value.score
+            )
+                .fusUpdateStateUIRt171()
+            viewModelScope.launch {
+                remoteRepositoryRt176.setBestScorert176(_state.value.score)
             }
         }
     }
