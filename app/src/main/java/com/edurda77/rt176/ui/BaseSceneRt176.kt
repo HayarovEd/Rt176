@@ -14,21 +14,13 @@ fun BaseSceneRt176(
     val eventRt171 = viewModel::onEventRt171
     when (val rst = stateRt171.value.applicationStRt176) {
         is ApplicationStRt176.GameRt176 -> {
-            /* RacingGameScreen(
-                 gameScore = { stateRt171.value.gameScore },
-                 highscore = { stateRt171.value.highScore },
-                 name = stateRt171.value.name,
-                 phone = stateRt171.value.phone,
-                 acceleration = { stateRt171.value.accelerationCarData },
-                 moveInput = { stateRt171.value.moveInput },
-                 resourcePack = { stateRt171.value.resourcePack },
-                 isDevMode = { true },
-                 ApplicationStRt176 = stateRt171.value.ApplicationStRt176,
-                 gameState = stateRt171.value.gameState,
-                 onGameScoreIncrease = { eventRt171(ApplicationEventRt171.IncreaseGameScoreRt171()) },
-                 onResetGameScore = { eventRt171(ApplicationEventRt171.RstGmeScoreRt171()) },
-                 event = eventRt171
-             )*/
+            GameScreen(
+                applicationStRt176 =  stateRt171.value.applicationStRt176,
+                name = stateRt171.value.name,
+                phone = stateRt171.value.phone,
+                bestScore = stateRt171.value.bestScore,
+                event = eventRt171
+            )
         }
 
         is ApplicationStRt176.LoadingRt176 -> {

@@ -14,4 +14,8 @@
     <string name="match">Матч</string>
     <string name="h2h">H2H</string>
     <string name="last_5">Последние 5 матчей</string>
+    <string name="mini_game">Мини-игра</string>
+    <string name="sport">СПОРТ</string>
+    <string name="best_score">Наивысший рекорд:</string>
+    <string name="is_play">Играть</string>
 </resources>

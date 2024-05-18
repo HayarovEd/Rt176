@@ -22,6 +22,7 @@ data class MainStateRt176(
     val liveHockeyData: List<HockeyMatchRt176> = emptyList(),
     val name: String = "",
     val phone: String = "",
+    val bestScore: Int = 0,
     val isLoading: Boolean = true,
     val isLoadingUrl: Boolean = true,
     val message: String = "",

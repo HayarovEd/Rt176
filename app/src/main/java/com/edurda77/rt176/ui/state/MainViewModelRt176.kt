@@ -41,7 +41,8 @@ class MainViewModelRt176 @Inject constructor(
                 _state.value.copy(
                     applicationStRt176 = ApplicationStRt176.StartRt176(),
                     name = remoteRepositoryRt176.getNamert176() ?: "",
-                    phone = remoteRepositoryRt176.getPhonert176() ?: ""
+                    phone = remoteRepositoryRt176.getPhonert176() ?: "",
+                    bestScore = remoteRepositoryRt176.getBestScorert176()
                 )
                     .fusUpdateStateUIRt171()
             } else {
