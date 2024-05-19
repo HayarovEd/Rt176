@@ -1,6 +1,5 @@
 package com.edurda77.rt176.ui.state
 
-import com.edurda77.rt176.domain.model.NameSport
 import java.time.LocalDate
 
 sealed class ApplicationEventRt176 {
@@ -18,7 +17,7 @@ sealed class ApplicationEventRt176 {
         val awayScore:Int?,
         val awayLogo:String,
         val title:String,) : ApplicationEventRt176()
-    data object StartMiniGame:ApplicationEventRt176()
+    data object StartMiniGameRt176:ApplicationEventRt176()
     class SetAnswer(val isRight:Boolean):ApplicationEventRt176()
-    data object StopMiniGame:ApplicationEventRt176()
+    data object StopMiniGameRt176:ApplicationEventRt176()
 }

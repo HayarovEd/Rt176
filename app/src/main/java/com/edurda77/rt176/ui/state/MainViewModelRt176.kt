@@ -13,12 +13,12 @@ import com.edurda77.rt176.ui.state.ApplicationEventRt176.OnSetApplicationStateRt
 import com.edurda77.rt176.ui.state.ApplicationEventRt176.OnSetSelectedDateRt176
 import com.edurda77.rt176.ui.state.ApplicationEventRt176.OnUpdateProfileRt176
 import com.edurda77.rt176.ui.state.ApplicationEventRt176.SetAnswer
-import com.edurda77.rt176.ui.state.ApplicationEventRt176.StartMiniGame
-import com.edurda77.rt176.ui.state.ApplicationEventRt176.StopMiniGame
+import com.edurda77.rt176.ui.state.ApplicationEventRt176.StartMiniGameRt176
+import com.edurda77.rt176.ui.state.ApplicationEventRt176.StopMiniGameRt176
 import com.edurda77.rt176.ui.state.ApplicationStRt176.EventsRt176
 import com.edurda77.rt176.ui.state.ApplicationStRt176.H2h
-import com.edurda77.rt176.ui.state.ApplicationStRt176.MiniGame
-import com.edurda77.rt176.ui.state.TypeMiniGame.Result
+import com.edurda77.rt176.ui.state.ApplicationStRt176.MiniGameRt176
+import com.edurda77.rt176.ui.state.TypeMiniGameRt176.ResultRt176
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.Dispatchers
@@ -220,9 +220,9 @@ class MainViewModelRt176 @Inject constructor(
                 )
             }
 
-            StartMiniGame -> {
+            StartMiniGameRt176 -> {
                 _state.value.copy(
-                    applicationStRt176 = MiniGame(TypeMiniGame.Play),
+                    applicationStRt176 = MiniGameRt176(TypeMiniGameRt176.PlayRt176),
                     score = 0,
                     leftTime = 3
                 )
@@ -244,7 +244,7 @@ class MainViewModelRt176 @Inject constructor(
                         startTimer()
                     } else {
                         _state.value.copy(
-                            applicationStRt176 = MiniGame(Result),
+                            applicationStRt176 = MiniGameRt176(ResultRt176),
                             leftTime = 3
                         )
                             .fusUpdateStateUIRt176()
@@ -260,7 +260,7 @@ class MainViewModelRt176 @Inject constructor(
                         startTimer()
                     } else {
                         _state.value.copy(
-                            applicationStRt176 = MiniGame(Result),
+                            applicationStRt176 = MiniGameRt176(ResultRt176),
                             leftTime = 3
                         )
                             .fusUpdateStateUIRt176()
@@ -269,7 +269,7 @@ class MainViewModelRt176 @Inject constructor(
                 checkBestScore()
             }
 
-            StopMiniGame -> {
+            StopMiniGameRt176 -> {
                 job?.cancel()
                 _state.value.copy(
                     applicationStRt176 = ApplicationStRt176.GameRt176(),
@@ -324,7 +324,7 @@ class MainViewModelRt176 @Inject constructor(
         idAway: Int,
     ) {
         when (val game = typeEventsRt176) {
-            is TypeEventsRt176.GamesOfDay -> {
+            is TypeEventsRt176.GamesOfDayRt176 -> {
                 getH2hDataByTypeGame(
                     idHome = idHome,
                     idAway = idAway,
@@ -332,7 +332,7 @@ class MainViewModelRt176 @Inject constructor(
                 )
             }
 
-            is TypeEventsRt176.LiveGames -> {
+            is TypeEventsRt176.LiveGamesRt176 -> {
                 getH2hDataByTypeGame(
                     idHome = idHome,
                     idAway = idAway,
@@ -433,7 +433,7 @@ class MainViewModelRt176 @Inject constructor(
                 delay(1000)
             }
             _state.value.copy(
-                applicationStRt176 = MiniGame(Result),
+                applicationStRt176 = MiniGameRt176(ResultRt176),
                 leftTime = 3
             )
                 .fusUpdateStateUIRt176()

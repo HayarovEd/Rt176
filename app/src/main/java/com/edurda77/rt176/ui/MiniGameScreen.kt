@@ -42,9 +42,9 @@ import com.edurda77.rt176.R
 import com.edurda77.rt176.domain.model.NameSport
 import com.edurda77.rt176.domain.model.Sport
 import com.edurda77.rt176.ui.state.ApplicationEventRt176
-import com.edurda77.rt176.ui.state.TypeMiniGame
-import com.edurda77.rt176.ui.state.TypeMiniGame.Play
-import com.edurda77.rt176.ui.state.TypeMiniGame.Result
+import com.edurda77.rt176.ui.state.TypeMiniGameRt176
+import com.edurda77.rt176.ui.state.TypeMiniGameRt176.PlayRt176
+import com.edurda77.rt176.ui.state.TypeMiniGameRt176.ResultRt176
 import com.edurda77.rt176.ui.theme.black
 import com.edurda77.rt176.ui.theme.darkRed
 import com.edurda77.rt176.ui.theme.green
@@ -55,7 +55,7 @@ import com.edurda77.rt176.ui.theme.yellow
 @Composable
 private fun Sample() {
     MiniGameScreen(
-        typeMiniGame = Result,
+        typeMiniGameRt176 = ResultRt176,
         leftTime = 1,
         score = 4,
         bestScore = 10,
@@ -67,7 +67,7 @@ private fun Sample() {
 @Composable
 fun MiniGameScreen(
     modifier: Modifier = Modifier,
-    typeMiniGame: TypeMiniGame,
+    typeMiniGameRt176: TypeMiniGameRt176,
     leftTime: Int,
     score: Int,
     bestScore: Int,
@@ -76,7 +76,7 @@ fun MiniGameScreen(
     eventRt176: (ApplicationEventRt176) -> Unit
 ) {
     BackHandler {
-        eventRt176(ApplicationEventRt176.StopMiniGame)
+        eventRt176(ApplicationEventRt176.StopMiniGameRt176)
     }
     Scaffold(
         modifier = modifier.fillMaxSize(),
@@ -93,7 +93,7 @@ fun MiniGameScreen(
                     modifier = modifier
                         .align(Alignment.CenterStart),
                     onClick = {
-                        eventRt176(ApplicationEventRt176.StopMiniGame)
+                        eventRt176(ApplicationEventRt176.StopMiniGameRt176)
                     }) {
                     Icon(
                         imageVector = ImageVector.vectorResource(id = R.drawable.baseline_arrow_back_ios_new_24),
@@ -122,8 +122,8 @@ fun MiniGameScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.SpaceAround
         ) {
-            when (typeMiniGame) {
-                Play -> {
+            when (typeMiniGameRt176) {
+                PlayRt176 -> {
                     Box {
                         CircularProgressIndicator(
                             modifier = modifier
@@ -211,7 +211,7 @@ fun MiniGameScreen(
                     }
                 }
 
-                Result -> {
+                ResultRt176 -> {
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
@@ -294,7 +294,7 @@ fun MiniGameScreen(
                                 containerColor = darkRed
                             ),
                             onClick = {
-                                eventRt176(ApplicationEventRt176.StartMiniGame)
+                                eventRt176(ApplicationEventRt176.StartMiniGameRt176)
                             }
                         ) {
                             Text(
@@ -318,7 +318,7 @@ fun MiniGameScreen(
                                 containerColor = black
                             ),
                             onClick = {
-                                eventRt176(ApplicationEventRt176.StopMiniGame)
+                                eventRt176(ApplicationEventRt176.StopMiniGameRt176)
                             }
                         ) {
                             Text(

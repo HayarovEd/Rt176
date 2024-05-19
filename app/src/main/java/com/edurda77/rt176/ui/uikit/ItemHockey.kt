@@ -63,7 +63,7 @@ fun ItemHockey(
                         awayName = hockeyMatchRt176.awayName,
                         awayScore = hockeyMatchRt176.awayScore,
                         title = "$dsk в ${hockeyMatchRt176.timeStamp}",
-                        typeEventsRt176 = TypeEventsRt176.GamesOfDay(TypeGame.HockeyRt176())
+                        typeEventsRt176 = TypeEventsRt176.GamesOfDayRt176(TypeGame.HockeyRt176())
                     )
                 )
             }

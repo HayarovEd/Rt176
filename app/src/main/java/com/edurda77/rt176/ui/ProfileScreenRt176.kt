@@ -62,7 +62,7 @@ private fun Sample() {
    ProfileScreenRt176(
        nameRt176 = "",
        phoneRt176 = "7888888",
-       applicationStRt176 = ApplicationStRt176.Profile(DataRt176()),
+       applicationStRt176 = ApplicationStRt176.ProfileRt176(DataRt176()),
        typeProfileRt176 = EditDataRt176(),
        event = {})
 }
@@ -210,7 +210,7 @@ fun ProfileScreenRt176(
                         onClick = {
                             event(
                                 ApplicationEventRt176.OnSetApplicationStateRt176(
-                                    ApplicationStRt176.Profile(
+                                    ApplicationStRt176.ProfileRt176(
                                         EditDataRt176()
                                     )
                                 )
@@ -319,7 +319,7 @@ fun ProfileScreenRt176(
                                 )
                                 event(
                                     ApplicationEventRt176.OnSetApplicationStateRt176(
-                                        ApplicationStRt176.Profile(
+                                        ApplicationStRt176.ProfileRt176(
                                             DataRt176()
                                         )
                                     )

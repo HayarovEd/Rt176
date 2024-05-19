@@ -59,7 +59,7 @@ fun ItemLiveBasketball(
                         awayName = basketballMatchRt176.awayName,
                         awayScore = basketballMatchRt176.awayScore,
                         title = dsk,
-                        typeEventsRt176 = TypeEventsRt176.LiveGames(TypeGame.BasketballRt176())
+                        typeEventsRt176 = TypeEventsRt176.LiveGamesRt176(TypeGame.BasketballRt176())
                     )
                 )
             }

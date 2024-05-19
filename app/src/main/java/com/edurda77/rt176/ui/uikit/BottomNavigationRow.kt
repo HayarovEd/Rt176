@@ -50,7 +50,7 @@ fun BottomNavigationRow(
                 eventRt176(
                     ApplicationEventRt176.OnSetApplicationStateRt176(
                         ApplicationStRt176.EventsRt176(
-                            TypeEventsRt176.GamesOfDay(TypeGame.FootballRt176())
+                            TypeEventsRt176.GamesOfDayRt176(TypeGame.FootballRt176())
                         )
                     )
                 )
@@ -69,18 +69,18 @@ fun BottomNavigationRow(
         )
         ItemNavigation(
             iconRt176 = ImageVector.vectorResource(id = R.drawable.profile),
-            colorRt176 = if (applicationStRt176 is ApplicationStRt176.Profile) darkRed else grey,
+            colorRt176 = if (applicationStRt176 is ApplicationStRt176.ProfileRt176) darkRed else grey,
             onClickClRt176 = {
                 if (nameRt176.isEmpty()||phoneRt176.isEmpty()) {
                     eventRt176(
                         ApplicationEventRt176.OnSetApplicationStateRt176(
-                            ApplicationStRt176.Profile(TypeProfileRt176.EditDataRt176())
+                            ApplicationStRt176.ProfileRt176(TypeProfileRt176.EditDataRt176())
                         )
                     )
                 } else {
                     eventRt176(
                         ApplicationEventRt176.OnSetApplicationStateRt176(
-                            ApplicationStRt176.Profile(TypeProfileRt176.DataRt176())
+                            ApplicationStRt176.ProfileRt176(TypeProfileRt176.DataRt176())
                         )
                     )
                 }

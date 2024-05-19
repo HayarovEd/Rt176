@@ -127,7 +127,7 @@ fun StartScreenRt176(
                     eventRt176(
                         ApplicationEventRt176.OnSetApplicationStateRt176(
                             ApplicationStRt176.EventsRt176(
-                                TypeEventsRt176.GamesOfDay(TypeGame.FootballRt176())
+                                TypeEventsRt176.GamesOfDayRt176(TypeGame.FootballRt176())
                             )
                         )
                     )

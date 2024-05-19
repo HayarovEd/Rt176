@@ -87,7 +87,7 @@ fun ItemFootball(
                     awayName = footballMatchRt176.awayName,
                     awayScore = footballMatchRt176.awayScore,
                     title = "$dsk в ${footballMatchRt176.timeStamp}",
-                    typeEventsRt176 = TypeEventsRt176.GamesOfDay(TypeGame.FootballRt176())
+                    typeEventsRt176 = TypeEventsRt176.GamesOfDayRt176(TypeGame.FootballRt176())
                 ))
             }
             .background(color = darkRed)

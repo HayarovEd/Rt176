@@ -48,21 +48,21 @@ fun SliderTypeGames(
                 colorBk = if (typeGame is TypeGame.FootballRt176) darkRed else Color.Transparent,
                 onClickRt176Sl = {
                     when (typeEventsRt176) {
-                        is TypeEventsRt176.GamesOfDay -> {
+                        is TypeEventsRt176.GamesOfDayRt176 -> {
                             eventRt176Sl(
                                 ApplicationEventRt176.OnSetApplicationStateRt176(
                                     ApplicationStRt176.EventsRt176(
-                                        TypeEventsRt176.GamesOfDay(
+                                        TypeEventsRt176.GamesOfDayRt176(
                                             TypeGame.FootballRt176()))
                                 )
                             )
                         }
 
-                        is TypeEventsRt176.LiveGames -> {
+                        is TypeEventsRt176.LiveGamesRt176 -> {
                             eventRt176Sl(
                                 ApplicationEventRt176.OnSetApplicationStateRt176(
                                     ApplicationStRt176.EventsRt176(
-                                        TypeEventsRt176.LiveGames(
+                                        TypeEventsRt176.LiveGamesRt176(
                                             TypeGame.FootballRt176()))
                                 )
                             )
@@ -76,21 +76,21 @@ fun SliderTypeGames(
                 colorBk = if (typeGame is TypeGame.HockeyRt176) darkRed else Color.Transparent,
                 onClickRt176Sl = {
                     when (typeEventsRt176) {
-                        is TypeEventsRt176.GamesOfDay -> {
+                        is TypeEventsRt176.GamesOfDayRt176 -> {
                             eventRt176Sl(
                                 ApplicationEventRt176.OnSetApplicationStateRt176(
                                     ApplicationStRt176.EventsRt176(
-                                        TypeEventsRt176.GamesOfDay(
+                                        TypeEventsRt176.GamesOfDayRt176(
                                             TypeGame.HockeyRt176()))
                                 )
                             )
                         }
 
-                        is TypeEventsRt176.LiveGames -> {
+                        is TypeEventsRt176.LiveGamesRt176 -> {
                             eventRt176Sl(
                                 ApplicationEventRt176.OnSetApplicationStateRt176(
                                     ApplicationStRt176.EventsRt176(
-                                        TypeEventsRt176.LiveGames(
+                                        TypeEventsRt176.LiveGamesRt176(
                                             TypeGame.HockeyRt176()))
                                 )
                             )
@@ -104,21 +104,21 @@ fun SliderTypeGames(
                 colorBk = if (typeGame is TypeGame.BasketballRt176) darkRed else Color.Transparent,
                 onClickRt176Sl = {
                     when (typeEventsRt176) {
-                        is TypeEventsRt176.GamesOfDay -> {
+                        is TypeEventsRt176.GamesOfDayRt176 -> {
                             eventRt176Sl(
                                 ApplicationEventRt176.OnSetApplicationStateRt176(
                                     ApplicationStRt176.EventsRt176(
-                                        TypeEventsRt176.GamesOfDay(
+                                        TypeEventsRt176.GamesOfDayRt176(
                                             TypeGame.BasketballRt176()))
                                 )
                             )
                         }
 
-                        is TypeEventsRt176.LiveGames -> {
+                        is TypeEventsRt176.LiveGamesRt176 -> {
                             eventRt176Sl(
                                 ApplicationEventRt176.OnSetApplicationStateRt176(
                                     ApplicationStRt176.EventsRt176(
-                                        TypeEventsRt176.LiveGames(
+                                        TypeEventsRt176.LiveGamesRt176(
                                             TypeGame.BasketballRt176()))
                                 )
                             )

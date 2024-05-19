@@ -7,8 +7,8 @@ import com.edurda77.rt176.ui.state.ApplicationStRt176.EventsRt176
 import com.edurda77.rt176.ui.state.ApplicationStRt176.GameRt176
 import com.edurda77.rt176.ui.state.ApplicationStRt176.H2h
 import com.edurda77.rt176.ui.state.ApplicationStRt176.LoadingRt176
-import com.edurda77.rt176.ui.state.ApplicationStRt176.MiniGame
-import com.edurda77.rt176.ui.state.ApplicationStRt176.Profile
+import com.edurda77.rt176.ui.state.ApplicationStRt176.MiniGameRt176
+import com.edurda77.rt176.ui.state.ApplicationStRt176.ProfileRt176
 import com.edurda77.rt176.ui.state.ApplicationStRt176.StartRt176
 import com.edurda77.rt176.ui.state.MainViewModelRt176
 
@@ -33,7 +33,7 @@ fun BaseSceneRt176(
             LoadingScreenRt176()
         }
 
-        is Profile -> {
+        is ProfileRt176 -> {
             ProfileScreenRt176(
                 nameRt176 = stateRt176.value.name,
                 phoneRt176 = stateRt176.value.phone,
@@ -83,9 +83,9 @@ fun BaseSceneRt176(
             )
         }
 
-        is MiniGame -> {
+        is MiniGameRt176 -> {
             MiniGameScreen(
-                typeMiniGame = rst.typeMiniGame,
+                typeMiniGameRt176 = rst.typeMiniGameRt176,
                 leftTime = stateRt176.value.leftTime,
                 score = stateRt176.value.score,
                 bestScore = stateRt176.value.bestScore,

@@ -89,12 +89,12 @@ fun EventsScreen(
     }
 
     val titleRt176Es = when (val rt = typeEventsRt176) {
-        is TypeEventsRt176.GamesOfDay -> when (rt.typeGame) {
+        is TypeEventsRt176.GamesOfDayRt176 -> when (rt.typeGame) {
             is TypeGame.BasketballRt176 -> stringResource(R.string.basketbal)
             is TypeGame.FootballRt176 ->  stringResource(R.string.football)
             is TypeGame.HockeyRt176 ->  stringResource(R.string.hockey)
         }
-        is TypeEventsRt176.LiveGames -> when (rt.typeGame) {
+        is TypeEventsRt176.LiveGamesRt176 -> when (rt.typeGame) {
             is TypeGame.BasketballRt176 -> stringResource(R.string.basketbal)
             is TypeGame.FootballRt176 ->  stringResource(R.string.football)
             is TypeGame.HockeyRt176 ->  stringResource(R.string.hockey)
@@ -121,14 +121,14 @@ fun EventsScreen(
                         shape = RoundedCornerShape(16.dp),
                         contentPadding = PaddingValues(vertical = 12.dp),
                         colors = ButtonDefaults.buttonColors(
-                            containerColor = if (typeEventsRt176 is TypeEventsRt176.GamesOfDay) yellow else darkRed,
-                            contentColor = if (typeEventsRt176 is TypeEventsRt176.GamesOfDay) darkRed else yellow,
+                            containerColor = if (typeEventsRt176 is TypeEventsRt176.GamesOfDayRt176) yellow else darkRed,
+                            contentColor = if (typeEventsRt176 is TypeEventsRt176.GamesOfDayRt176) darkRed else yellow,
                         ),
                         onClick = {
                             event(
                                 ApplicationEventRt176.OnSetApplicationStateRt176(
                                     ApplicationStRt176.EventsRt176(
-                                        TypeEventsRt176.GamesOfDay(TypeGame.FootballRt176())
+                                        TypeEventsRt176.GamesOfDayRt176(TypeGame.FootballRt176())
                                     )
                                 )
                             )
@@ -149,14 +149,14 @@ fun EventsScreen(
                         shape = RoundedCornerShape(16.dp),
                         contentPadding = PaddingValues(vertical = 12.dp),
                         colors = ButtonDefaults.buttonColors(
-                            containerColor = if (typeEventsRt176 is TypeEventsRt176.LiveGames) yellow else darkRed,
-                            contentColor = if (typeEventsRt176 is TypeEventsRt176.LiveGames) darkRed else yellow,
+                            containerColor = if (typeEventsRt176 is TypeEventsRt176.LiveGamesRt176) yellow else darkRed,
+                            contentColor = if (typeEventsRt176 is TypeEventsRt176.LiveGamesRt176) darkRed else yellow,
                         ),
                         onClick = {
                             event(
                                 ApplicationEventRt176.OnSetApplicationStateRt176(
                                     ApplicationStRt176.EventsRt176(
-                                        TypeEventsRt176.LiveGames(TypeGame.FootballRt176())
+                                        TypeEventsRt176.LiveGamesRt176(TypeGame.FootballRt176())
                                     )
                                 )
                             )
@@ -173,8 +173,8 @@ fun EventsScreen(
                         )
                     }
                     val typeGame = when (val rt = typeEventsRt176) {
-                        is TypeEventsRt176.GamesOfDay -> rt.typeGame
-                        is TypeEventsRt176.LiveGames -> rt.typeGame
+                        is TypeEventsRt176.GamesOfDayRt176 -> rt.typeGame
+                        is TypeEventsRt176.LiveGamesRt176 -> rt.typeGame
                     }
                     Spacer(modifier = modifier.width(3.dp))
                     SliderTypeGames(
@@ -184,7 +184,7 @@ fun EventsScreen(
                     )
                 }
                 Spacer(modifier = modifier.height(16.dp))
-                if (typeEventsRt176 is TypeEventsRt176.GamesOfDay) {
+                if (typeEventsRt176 is TypeEventsRt176.GamesOfDayRt176) {
                     SliderOfDate(
                         selectedDate = selectedDateRt176Es,
                         event = event
@@ -226,7 +226,7 @@ fun EventsScreen(
                 )
             } else {
                 when (val rt = typeEventsRt176) {
-                    is TypeEventsRt176.GamesOfDay -> when (rt.typeGame) {
+                    is TypeEventsRt176.GamesOfDayRt176 -> when (rt.typeGame) {
                         is TypeGame.BasketballRt176 -> {
                             if (basketballMatches.isEmpty()) {
                                 NoMatches(
@@ -291,7 +291,7 @@ fun EventsScreen(
                         }
                     }
 
-                    is TypeEventsRt176.LiveGames -> when (rt.typeGame) {
+                    is TypeEventsRt176.LiveGamesRt176 -> when (rt.typeGame) {
                         is TypeGame.BasketballRt176 -> {
                             if (basketballLiveMatches.isEmpty()) {
                                 NoMatches(
