@@ -39,7 +39,7 @@ fun BottomNavigationRow(
             .fillMaxWidth()
             .clip(shape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp))
             .background(color = yellow)
-            .padding(vertical = 20.dp),
+            .padding(vertical = 10.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceAround
     ) {

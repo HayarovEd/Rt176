@@ -187,7 +187,17 @@ class MainViewModelRt176 @Inject constructor(
                     async { getHockeyDataRt171() }.onAwait
                 }
             }
-            is OnUpdateProfileRt176 -> TODO()
+            is OnUpdateProfileRt176 -> {
+                _state.value.copy(
+                    name = mainEvent.name,
+                    phone = mainEvent.phone,
+                )
+                    .fusUpdateStateUIRt171()
+                viewModelScope.launch {
+                    remoteRepositoryRt176.setNamert176(_state.value.name)
+                    remoteRepositoryRt176.setPhonert176(_state.value.phone)
+                }
+            }
             is GetH2hData176 -> {
                 _state.value.copy(
                     lastStatus = EventsRt176(mainEvent.typeEventsRt176),

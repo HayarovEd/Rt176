@@ -22,4 +22,11 @@
     <string name="your_score">Ваш счет</string>
     <string name="repeat">Повторить</string>
     <string name="exit">Выход</string>
+    <string name="profile">Мой профиль</string>
+    <string name="correct">Редактировать</string>
+    <string name="enter_phone">Введите номер телефона</string>
+    <string name="your_name">Введите Ваше имя</string>
+    <string name="to_save">Сохранить</string>
+    <string name="tr_1">Нажимая сохранить вы даете согласие на обработку</string>
+    <string name="tr_2">персональных данных</string>
 </resources>

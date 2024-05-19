@@ -42,10 +42,9 @@ import com.edurda77.rt176.domain.utils.SHARED_URL_RT176
 import com.edurda77.rt176.domain.utils.TABLE_NAME_RT176
 import com.edurda77.rt176.domain.utils.TIME_ZONE
 import com.edurda77.rt176.domain.utils.UNKNOWN_ERROR_RT_176
-import com.edurda77.rt176.domain.utils.URL_BASKETBALL_RT_145
-import com.edurda77.rt176.domain.utils.URL_FOOTBALL_RT_145
-import com.edurda77.rt176.domain.utils.URL_HOKKEY_RT_145
-import com.edurda77.rt176.domain.utils.formattedDateRt176
+import com.edurda77.rt176.domain.utils.URL_BASKETBALL_RT_176
+import com.edurda77.rt176.domain.utils.URL_FOOTBALL_RT_176
+import com.edurda77.rt176.domain.utils.URL_HOKKEY_RT_176
 import com.yandex.metrica.AppMetricaDeviceIDListener
 import com.yandex.metrica.YandexMetrica
 import io.ktor.client.HttpClient
@@ -60,7 +59,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import java.util.Date
 import javax.inject.Inject
 import kotlin.random.Random
 
@@ -82,7 +80,7 @@ class RemoteRepositoryrt176Impl @Inject constructor(
             val vbn = 8
             val sd = if (fg > vbn) fg else vbn
             println(sd)
-            val result = httpClient.get(URL_FOOTBALL_RT_145 + "fixtures") {
+            val result = httpClient.get(URL_FOOTBALL_RT_176 + "fixtures") {
                 contentType(ContentType.Application.Json)
                 url {
                     parameter("date", timeStamp)
@@ -114,7 +112,7 @@ class RemoteRepositoryrt176Impl @Inject constructor(
             val vbn = 8
             val sd = if (fg > vbn) fg else vbn
             println(sd)
-            val result = httpClient.get(URL_BASKETBALL_RT_145 + "games") {
+            val result = httpClient.get(URL_BASKETBALL_RT_176 + "games") {
                 contentType(ContentType.Application.Json)
                 url {
                     parameter("date", timeStamp)
@@ -146,7 +144,7 @@ class RemoteRepositoryrt176Impl @Inject constructor(
             val vbn = 8
             val sd = if (fg > vbn) fg else vbn
             println(sd)
-            val result = httpClient.get(URL_HOKKEY_RT_145 + "games") {
+            val result = httpClient.get(URL_HOKKEY_RT_176 + "games") {
                 contentType(ContentType.Application.Json)
                 url {
                     parameter("date", timeStamp)
@@ -179,7 +177,7 @@ class RemoteRepositoryrt176Impl @Inject constructor(
             val vbn = 8
             val sd = if (fg > vbn) fg else vbn
             println(sd)
-            val result = httpClient.get(URL_FOOTBALL_RT_145 + "fixtures/headtohead") {
+            val result = httpClient.get(URL_FOOTBALL_RT_176 + "fixtures/headtohead") {
                 contentType(ContentType.Application.Json)
                 url {
                     parameter("h2h", "$idHome-$idAway")
@@ -212,7 +210,7 @@ class RemoteRepositoryrt176Impl @Inject constructor(
             val vbn = 8
             val sd = if (fg > vbn) fg else vbn
             println(sd)
-            val result = httpClient.get(URL_BASKETBALL_RT_145 + "games") {
+            val result = httpClient.get(URL_BASKETBALL_RT_176 + "games") {
                 contentType(ContentType.Application.Json)
                 url {
                     parameter("h2h", "$idHome-$idAway")
@@ -245,7 +243,7 @@ class RemoteRepositoryrt176Impl @Inject constructor(
             val vbn = 8
             val sd = if (fg > vbn) fg else vbn
             println(sd)
-            val result = httpClient.get(URL_HOKKEY_RT_145 + "games/h2h") {
+            val result = httpClient.get(URL_HOKKEY_RT_176 + "games/h2h") {
                 contentType(ContentType.Application.Json)
                 url {
                     parameter("h2h", "$idHome-$idAway")
