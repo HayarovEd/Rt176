@@ -61,7 +61,7 @@ private fun Sample() {
         bestScore = 10,
         questImage = Sport.FOOTBALL,
         nameSport = NameSport.GOLF,
-        event = {})
+        eventRt176 = {})
 }
 
 @Composable
@@ -73,10 +73,10 @@ fun MiniGameScreen(
     bestScore: Int,
     questImage: Sport,
     nameSport: NameSport,
-    event: (ApplicationEventRt176) -> Unit
+    eventRt176: (ApplicationEventRt176) -> Unit
 ) {
     BackHandler {
-        event(ApplicationEventRt176.StopMiniGame)
+        eventRt176(ApplicationEventRt176.StopMiniGame)
     }
     Scaffold(
         modifier = modifier.fillMaxSize(),
@@ -93,7 +93,7 @@ fun MiniGameScreen(
                     modifier = modifier
                         .align(Alignment.CenterStart),
                     onClick = {
-                        event(ApplicationEventRt176.StopMiniGame)
+                        eventRt176(ApplicationEventRt176.StopMiniGame)
                     }) {
                     Icon(
                         imageVector = ImageVector.vectorResource(id = R.drawable.baseline_arrow_back_ios_new_24),
@@ -154,7 +154,7 @@ fun MiniGameScreen(
                     ) {
                         Text(
                             modifier = modifier.fillMaxWidth(),
-                            text = nameSport.title,
+                            text = nameSport.titleSport,
                             style = TextStyle(
                                 fontSize = 32.sp,
                                 color = darkRed,
@@ -174,7 +174,7 @@ fun MiniGameScreen(
                                     containerColor = darkRed
                                 ),
                                 onClick = {
-                                    event(
+                                    eventRt176(
                                         ApplicationEventRt176.SetAnswer(false)
                                     )
                                 }
@@ -195,7 +195,7 @@ fun MiniGameScreen(
                                     containerColor = green
                                 ),
                                 onClick = {
-                                    event(
+                                    eventRt176(
                                         ApplicationEventRt176.SetAnswer(true)
                                     )
                                 }
@@ -294,7 +294,7 @@ fun MiniGameScreen(
                                 containerColor = darkRed
                             ),
                             onClick = {
-                                event(ApplicationEventRt176.StartMiniGame)
+                                eventRt176(ApplicationEventRt176.StartMiniGame)
                             }
                         ) {
                             Text(
@@ -318,7 +318,7 @@ fun MiniGameScreen(
                                 containerColor = black
                             ),
                             onClick = {
-                                event(ApplicationEventRt176.StopMiniGame)
+                                eventRt176(ApplicationEventRt176.StopMiniGame)
                             }
                         ) {
                             Text(

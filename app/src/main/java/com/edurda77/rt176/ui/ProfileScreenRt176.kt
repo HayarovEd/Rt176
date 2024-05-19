@@ -60,8 +60,8 @@ import com.edurda77.rt176.ui.uikit.BottomNavigationRow
 @Composable
 private fun Sample() {
    ProfileScreenRt176(
-       name = "",
-       phone = "7888888",
+       nameRt176 = "",
+       phoneRt176 = "7888888",
        applicationStRt176 = ApplicationStRt176.Profile(DataRt176()),
        typeProfileRt176 = EditDataRt176(),
        event = {})
@@ -72,14 +72,14 @@ private fun Sample() {
 @Composable
 fun ProfileScreenRt176(
     modifier: Modifier = Modifier,
-    name: String,
-    phone: String,
+    nameRt176: String,
+    phoneRt176: String,
     applicationStRt176: ApplicationStRt176,
     typeProfileRt176: TypeProfileRt176,
     event: (ApplicationEventRt176) -> Unit
 ) {
-    val updatedName = remember { mutableStateOf(name) }
-    val updatedPhone = remember { mutableStateOf(phone) }
+    val updatedNameRt176 = remember { mutableStateOf(nameRt176) }
+    val updatedPhoneRt176 = remember { mutableStateOf(phoneRt176) }
     val context = LocalContext.current
 
     val terms = buildAnnotatedString {
@@ -143,9 +143,9 @@ fun ProfileScreenRt176(
         bottomBar = {
             BottomNavigationRow(
                 applicationStRt176 = applicationStRt176,
-                name = name,
-                phone = phone,
-                event = event
+                nameRt176 = nameRt176,
+                phoneRt176 = phoneRt176,
+                eventRt176 = event
             )
         }
     ) { paddings ->
@@ -169,7 +169,7 @@ fun ProfileScreenRt176(
                         Spacer(modifier = modifier.height(16.dp))
                         Text(
                             modifier = modifier.fillMaxWidth(),
-                            text = name,
+                            text = nameRt176,
                             style = TextStyle(
                                 fontSize = 20.sp,
                                 color = yellow,
@@ -188,7 +188,7 @@ fun ProfileScreenRt176(
                         ) {
                             Text(
                                 modifier = modifier.align(alignment = Alignment.CenterStart),
-                                text = phone,
+                                text = phoneRt176,
                                 style = TextStyle(
                                     fontSize = 14.sp,
                                     color = black,
@@ -242,9 +242,9 @@ fun ProfileScreenRt176(
                         TextField(
                             modifier = modifier
                                 .fillMaxWidth(),
-                            value = updatedPhone.value,
+                            value = updatedPhoneRt176.value,
                             onValueChange = {
-                                updatedPhone.value = it
+                                updatedPhoneRt176.value = it
                             },
                             textStyle = TextStyle(
                                 fontSize = 14.sp,
@@ -274,9 +274,9 @@ fun ProfileScreenRt176(
                         TextField(
                             modifier = modifier
                                 .fillMaxWidth(),
-                            value = updatedName.value,
+                            value = updatedNameRt176.value,
                             onValueChange = {
-                                updatedName.value = it
+                                updatedNameRt176.value = it
                             },
                             textStyle = TextStyle(
                                 fontSize = 14.sp,
@@ -313,8 +313,8 @@ fun ProfileScreenRt176(
                             onClick = {
                                 event(
                                     ApplicationEventRt176.OnUpdateProfileRt176(
-                                        name = updatedName.value,
-                                        phone = updatedPhone.value
+                                        name = updatedNameRt176.value,
+                                        phone = updatedPhoneRt176.value
                                     )
                                 )
                                 event(
@@ -328,7 +328,7 @@ fun ProfileScreenRt176(
                         ) {
                             Text(
                                 modifier = modifier,
-                                text = if (updatedName.value.isNotBlank() && updatedPhone.value.isNotBlank()) stringResource(
+                                text = if (updatedNameRt176.value.isNotBlank() && updatedPhoneRt176.value.isNotBlank()) stringResource(
                                     R.string.to_save
                                 ) else stringResource(
                                     R.string.correct

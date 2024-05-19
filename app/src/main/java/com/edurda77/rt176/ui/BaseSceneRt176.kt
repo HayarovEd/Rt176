@@ -17,7 +17,7 @@ fun BaseSceneRt176(
     viewModel: MainViewModelRt176 = hiltViewModel()
 ) {
     val stateRt176 = viewModel.state.collectAsState()
-    val eventRt171 = viewModel::onEventRt171
+    val eventRt171 = viewModel::onEventRt176
     when (val rst = stateRt176.value.applicationStRt176) {
         is GameRt176 -> {
             GameScreen(
@@ -35,8 +35,8 @@ fun BaseSceneRt176(
 
         is Profile -> {
             ProfileScreenRt176(
-                name = stateRt176.value.name,
-                phone = stateRt176.value.phone,
+                nameRt176 = stateRt176.value.name,
+                phoneRt176 = stateRt176.value.phone,
                 applicationStRt176 = stateRt176.value.applicationStRt176,
                 typeProfileRt176 = rst.typeProfileRt176,
                 event = eventRt171
@@ -46,7 +46,7 @@ fun BaseSceneRt176(
         is StartRt176 -> {
             StartScreenRt176(
                 url = stateRt176.value.destinationUrl,
-                event = eventRt171
+                eventRt176 = eventRt171
             )
         }
 
@@ -61,9 +61,9 @@ fun BaseSceneRt176(
                 hockeyMatches = stateRt176.value.allHockey,
                 hockeyLiveMatches = stateRt176.value.liveHockeyData,
                 isLoading = stateRt176.value.isLoading,
-                name = stateRt176.value.name,
-                phone = stateRt176.value.phone,
-                selectedDate = stateRt176.value.selectedDate,
+                nameRt176 = stateRt176.value.name,
+                phoneRt176 = stateRt176.value.phone,
+                selectedDateRt176Es = stateRt176.value.selectedDate,
                 event = eventRt171)
         }
 
@@ -91,7 +91,7 @@ fun BaseSceneRt176(
                 bestScore = stateRt176.value.bestScore,
                 questImage = stateRt176.value.questImage,
                 nameSport = stateRt176.value.nameSport,
-                event = eventRt171
+                eventRt176 = eventRt171
             )
         }
     }

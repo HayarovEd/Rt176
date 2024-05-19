@@ -24,12 +24,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.edurda77.rt176.R
-import com.edurda77.rt176.domain.model.FootballMatchRt176
 import com.edurda77.rt176.domain.model.HockeyMatchRt176
 import com.edurda77.rt176.domain.utils.formattedDateRt176
 import com.edurda77.rt176.ui.state.ApplicationEventRt176
@@ -45,7 +43,7 @@ import java.time.LocalDate
 fun ItemHockey(
     modifier: Modifier = Modifier,
     hockeyMatchRt176: HockeyMatchRt176,
-    event: (ApplicationEventRt176) -> Unit
+    eventRt176: (ApplicationEventRt176) -> Unit
 ) {
     val isToday = LocalDate.now().formattedDateRt176() == hockeyMatchRt176.dateStamp
     val dsk = if (isToday) stringResource(R.string.today) else hockeyMatchRt176.dateStamp
@@ -54,7 +52,7 @@ fun ItemHockey(
             .fillMaxWidth()
             .clip(shape = RoundedCornerShape(16.dp))
             .clickable {
-                event(
+                eventRt176(
                     ApplicationEventRt176.GetH2hData176(
                         idHome = hockeyMatchRt176.homeId,
                         homeLogo = hockeyMatchRt176.homeImage,

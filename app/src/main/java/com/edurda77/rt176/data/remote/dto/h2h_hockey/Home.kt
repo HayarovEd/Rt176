@@ -11,5 +11,5 @@ data class Home(
     @SerialName("logo")
     val logo: String,
     @SerialName("name")
-    val name: String
+    val nameRT176hcDto: String
 )

@@ -64,7 +64,7 @@ private fun Sample() {
         isPlay = false,
         statusGame = "Окончен"
     ),
-        event = {})
+        eventRt176 = {})
 }
 
 
@@ -72,7 +72,7 @@ private fun Sample() {
 fun ItemBasketball(
     modifier: Modifier = Modifier,
     basketballMatchRt176: BasketballMatchRt176,
-    event: (ApplicationEventRt176) -> Unit
+    eventRt176: (ApplicationEventRt176) -> Unit
 ) {
     val isToday = LocalDate.now().formattedDateRt176() == basketballMatchRt176.dateStamp
     val dsk = if (isToday) stringResource(R.string.today) else basketballMatchRt176.dateStamp
@@ -81,7 +81,7 @@ fun ItemBasketball(
             .fillMaxWidth()
             .clip(shape = RoundedCornerShape(16.dp))
             .clickable {
-                event(ApplicationEventRt176.GetH2hData176(
+                eventRt176(ApplicationEventRt176.GetH2hData176(
                     idHome = basketballMatchRt176.homeId,
                     homeLogo = basketballMatchRt176.homeImage,
                     homeName = basketballMatchRt176.homeName,

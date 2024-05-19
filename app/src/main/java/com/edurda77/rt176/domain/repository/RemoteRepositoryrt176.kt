@@ -9,8 +9,8 @@ import kotlin.random.Random
 import kotlinx.coroutines.flow.MutableStateFlow
 
 interface RemoteRepositoryrt176 {
-    suspend fun getFootballData(
-        timeStamp: String,
+    suspend fun getFootballDataRt176(
+        timeStampRt176ft: String,
     ): ResourceRt176<List<FootballMatchRt176>> {
         val fg = Random.nextDouble(0.0, 20.0)
         val vbn = 8
@@ -90,11 +90,11 @@ interface RemoteRepositoryrt176 {
 
     val remoteData: MutableStateFlow<ResourceRt176<String>>
     suspend fun isInternetConnectedrt176(): Boolean
-    suspend fun getBasketballData(
-        timeStamp: String,
+    suspend fun getBasketballDataRt176(
+        timeStampRt176bsk: String,
     ): ResourceRt176<List<BasketballMatchRt176>>
 
-    suspend fun getHockeyData(timeStamp: String): ResourceRt176<List<HockeyMatchRt176>>
+    suspend fun getHockeyDataRt176(timeStampRt176hc: String): ResourceRt176<List<HockeyMatchRt176>>
     suspend fun getFootballH2HData(
         idHome: Int,
         idAway: Int

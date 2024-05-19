@@ -2,8 +2,6 @@ package com.edurda77.rt176.ui.uikit
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -31,7 +29,7 @@ fun SliderTypeGames(
     modifier: Modifier = Modifier,
     typeEventsRt176: TypeEventsRt176,
     typeGame: TypeGame,
-    event: (ApplicationEventRt176) -> Unit
+    eventRt176Sl: (ApplicationEventRt176) -> Unit
 ) {
     Card(
         shape = RoundedCornerShape(16.dp),
@@ -45,13 +43,13 @@ fun SliderTypeGames(
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             ItemNavigation(
-                icon = ImageVector.vectorResource(id = R.drawable.ic_football),
-                color = if (typeGame is TypeGame.FootballRt176) yellow else darkRed,
+                iconRt176Sl = ImageVector.vectorResource(id = R.drawable.ic_football),
+                colorRt176Sl = if (typeGame is TypeGame.FootballRt176) yellow else darkRed,
                 colorBk = if (typeGame is TypeGame.FootballRt176) darkRed else Color.Transparent,
-                onClick = {
+                onClickRt176Sl = {
                     when (typeEventsRt176) {
                         is TypeEventsRt176.GamesOfDay -> {
-                            event(
+                            eventRt176Sl(
                                 ApplicationEventRt176.OnSetApplicationStateRt176(
                                     ApplicationStRt176.EventsRt176(
                                         TypeEventsRt176.GamesOfDay(
@@ -61,7 +59,7 @@ fun SliderTypeGames(
                         }
 
                         is TypeEventsRt176.LiveGames -> {
-                            event(
+                            eventRt176Sl(
                                 ApplicationEventRt176.OnSetApplicationStateRt176(
                                     ApplicationStRt176.EventsRt176(
                                         TypeEventsRt176.LiveGames(
@@ -73,13 +71,13 @@ fun SliderTypeGames(
                 }
             )
             ItemNavigation(
-                icon = ImageVector.vectorResource(id = R.drawable.ic_hockey),
-                color = if (typeGame is TypeGame.HockeyRt176) yellow else darkRed,
+                iconRt176Sl = ImageVector.vectorResource(id = R.drawable.ic_hockey),
+                colorRt176Sl = if (typeGame is TypeGame.HockeyRt176) yellow else darkRed,
                 colorBk = if (typeGame is TypeGame.HockeyRt176) darkRed else Color.Transparent,
-                onClick = {
+                onClickRt176Sl = {
                     when (typeEventsRt176) {
                         is TypeEventsRt176.GamesOfDay -> {
-                            event(
+                            eventRt176Sl(
                                 ApplicationEventRt176.OnSetApplicationStateRt176(
                                     ApplicationStRt176.EventsRt176(
                                         TypeEventsRt176.GamesOfDay(
@@ -89,7 +87,7 @@ fun SliderTypeGames(
                         }
 
                         is TypeEventsRt176.LiveGames -> {
-                            event(
+                            eventRt176Sl(
                                 ApplicationEventRt176.OnSetApplicationStateRt176(
                                     ApplicationStRt176.EventsRt176(
                                         TypeEventsRt176.LiveGames(
@@ -101,13 +99,13 @@ fun SliderTypeGames(
                 }
             )
             ItemNavigation(
-                icon = ImageVector.vectorResource(id = R.drawable.ic_basketball),
-                color = if (typeGame is TypeGame.BasketballRt176) yellow else darkRed,
+                iconRt176Sl = ImageVector.vectorResource(id = R.drawable.ic_basketball),
+                colorRt176Sl = if (typeGame is TypeGame.BasketballRt176) yellow else darkRed,
                 colorBk = if (typeGame is TypeGame.BasketballRt176) darkRed else Color.Transparent,
-                onClick = {
+                onClickRt176Sl = {
                     when (typeEventsRt176) {
                         is TypeEventsRt176.GamesOfDay -> {
-                            event(
+                            eventRt176Sl(
                                 ApplicationEventRt176.OnSetApplicationStateRt176(
                                     ApplicationStRt176.EventsRt176(
                                         TypeEventsRt176.GamesOfDay(
@@ -117,7 +115,7 @@ fun SliderTypeGames(
                         }
 
                         is TypeEventsRt176.LiveGames -> {
-                            event(
+                            eventRt176Sl(
                                 ApplicationEventRt176.OnSetApplicationStateRt176(
                                     ApplicationStRt176.EventsRt176(
                                         TypeEventsRt176.LiveGames(
@@ -134,21 +132,21 @@ fun SliderTypeGames(
 
 @Composable
 private fun ItemNavigation(
-    icon: ImageVector,
+    iconRt176Sl: ImageVector,
     colorBk: Color,
-    color: Color,
-    onClick: () -> Unit
+    colorRt176Sl: Color,
+    onClickRt176Sl: () -> Unit
 ) {
     IconButton(
-        onClick = onClick,
+        onClick = onClickRt176Sl,
         colors = IconButtonDefaults.iconButtonColors(
             containerColor = colorBk
         ),
     ) {
         Icon(
-            imageVector = icon,
+            imageVector = iconRt176Sl,
             contentDescription = "",
-            tint = color
+            tint = colorRt176Sl
         )
     }
 }

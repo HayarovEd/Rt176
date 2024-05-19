@@ -7,11 +7,11 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class Home(
     @SerialName("id")
-    val id: Int,
+    val idRt176FtHmDto: Int,
     @SerialName("logo")
     val logo: String,
     @SerialName("name")
-    val name: String,
+    val nameRt176Dto: String,
     @SerialName("winner")
-    val winner: Boolean?
+    val winnerRt176Dto: Boolean?
 )

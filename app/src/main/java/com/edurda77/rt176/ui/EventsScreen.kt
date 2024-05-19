@@ -71,8 +71,8 @@ private fun Sample() {
 fun EventsScreen(
     modifier: Modifier = Modifier,
     applicationStRt176: ApplicationStRt176,
-    name:String,
-    phone:String,
+    nameRt176:String,
+    phoneRt176:String,
     footballMatches: List<FootballMatchRt176>,
     footballLiveMatches: List<FootballMatchRt176>,
     basketballMatches: List<BasketballMatchRt176>,
@@ -81,14 +81,14 @@ fun EventsScreen(
     hockeyLiveMatches: List<HockeyMatchRt176>,
     isLoading: Boolean,
     typeEventsRt176: TypeEventsRt176,
-    selectedDate: LocalDate,
+    selectedDateRt176Es: LocalDate,
     event: (ApplicationEventRt176) -> Unit
 ) {
     BackHandler {
         event(ApplicationEventRt176.OnSetApplicationStateRt176(ApplicationStRt176.StartRt176()))
     }
 
-    val title = when (val rt = typeEventsRt176) {
+    val titleRt176Es = when (val rt = typeEventsRt176) {
         is TypeEventsRt176.GamesOfDay -> when (rt.typeGame) {
             is TypeGame.BasketballRt176 -> stringResource(R.string.basketbal)
             is TypeGame.FootballRt176 ->  stringResource(R.string.football)
@@ -180,19 +180,19 @@ fun EventsScreen(
                     SliderTypeGames(
                         typeEventsRt176 = typeEventsRt176,
                         typeGame = typeGame,
-                        event = event
+                        eventRt176Sl = event
                     )
                 }
                 Spacer(modifier = modifier.height(16.dp))
                 if (typeEventsRt176 is TypeEventsRt176.GamesOfDay) {
                     SliderOfDate(
-                        selectedDate = selectedDate,
+                        selectedDate = selectedDateRt176Es,
                         event = event
                     )
                     Spacer(modifier = modifier.height(16.dp))
                 }
                 Text(
-                    text = title,
+                    text = titleRt176Es,
                     style = TextStyle(
                         fontSize = 26.sp,
                         color = yellow,
@@ -205,9 +205,9 @@ fun EventsScreen(
         bottomBar = {
             BottomNavigationRow(
                 applicationStRt176 = applicationStRt176,
-                name = name,
-                phone = phone,
-                event = event)
+                nameRt176 = nameRt176,
+                phoneRt176 = phoneRt176,
+                eventRt176 = event)
         }
     ) {paddings->
         Column(
@@ -241,7 +241,7 @@ fun EventsScreen(
                                     items(basketballMatches) {
                                         ItemBasketball(
                                             basketballMatchRt176 = it,
-                                            event = event
+                                            eventRt176 = event
                                         )
                                     }
                                 }
@@ -283,7 +283,7 @@ fun EventsScreen(
                                     items(hockeyMatches) {
                                         ItemHockey(
                                             hockeyMatchRt176 = it,
-                                            event = event
+                                            eventRt176 = event
                                         )
                                     }
                                 }

@@ -17,12 +17,12 @@ import kotlinx.serialization.json.Json
 
 @Module
 @InstallIn(SingletonComponent::class)
-object RtApiMMMModuleRt171 {
+object RtApiMMMModuleRt176 {
 
 
     @Provides
     @Singleton
-    fun provideHttpClient(): HttpClient {
+    fun provideHttpClientRt176(): HttpClient {
         return HttpClient(OkHttp) {
             //defaultRequest { url(URL_ANALYTICS_RT_145) }
             install(Logging) {

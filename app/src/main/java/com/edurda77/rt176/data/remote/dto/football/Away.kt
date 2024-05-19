@@ -7,11 +7,11 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class Away(
     @SerialName("id")
-    val id: Int,
+    val idRt176AwFtDto: Int,
     @SerialName("logo")
     val logo: String,
     @SerialName("name")
-    val name: String,
+    val nameRt176AwFtDto: String,
     @SerialName("winner")
     val winner: Boolean?
 )

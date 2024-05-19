@@ -41,9 +41,9 @@ class MainViewModelRt176 @Inject constructor(
     init {
         viewModelScope.launch(Dispatchers.IO) {
             if (remoteRepositoryRt176.isInternetConnectedrt176()) {
-                async { getFootballDataRt171() }.onAwait
-                async { getBasketballDataRt171() }.onAwait
-                async { getHockeyDataRt171() }.onAwait
+                async { getFootballDataRt176() }.onAwait
+                async { getBasketballDataRt176() }.onAwait
+                async { getHockeyDataRt176() }.onAwait
                 val savedUrl = remoteRepositoryRt176.getSharedUrlrt176()
                 if (savedUrl.isNullOrBlank()) {
                     getUrlRt176()
@@ -51,7 +51,7 @@ class MainViewModelRt176 @Inject constructor(
                     _state.value.copy(
                         destinationUrl = savedUrl
                     )
-                        .fusUpdateStateUIRt171()
+                        .fusUpdateStateUIRt176()
                 }
                 _state.value.copy(
                     applicationStRt176 = ApplicationStRt176.StartRt176(),
@@ -59,132 +59,132 @@ class MainViewModelRt176 @Inject constructor(
                     phone = remoteRepositoryRt176.getPhonert176() ?: "",
                     bestScore = remoteRepositoryRt176.getBestScorert176()
                 )
-                    .fusUpdateStateUIRt171()
+                    .fusUpdateStateUIRt176()
             } else {
                 _state.value.copy(
                     isLoadingUrl = false,
                     applicationStRt176 = ApplicationStRt176.StartRt176()
                 )
-                    .fusUpdateStateUIRt171()
+                    .fusUpdateStateUIRt176()
             }
         }
     }
 
-    private suspend fun getFootballDataRt171() {
+    private suspend fun getFootballDataRt176() {
         when (val result =
-            remoteRepositoryRt176.getFootballData(
-               timeStamp = _state.value.selectedDate.formattedDateRt176()
+            remoteRepositoryRt176.getFootballDataRt176(
+               timeStampRt176ft = _state.value.selectedDate.formattedDateRt176()
             )) {
             is ResourceRt176.ErrorRt176 -> {
-                Log.d("MainViewModelRt171", "error football -${result.message}")
+                Log.d("MainViewModelRt171", "error football -${result.messageRt176}")
                 _state.value.copy(
                     isLoading = false,
                     message = "Проверьте интернет соединение"
                 )
-                    .fusUpdateStateUIRt171()
+                    .fusUpdateStateUIRt176()
             }
 
             is ResourceRt176.SuccessRt176 -> {
-                Log.d("MainViewModelRt171", "football -${result.dvt}")
+                Log.d("MainViewModelRt171", "football -${result.dvtRt176}")
                 _state.value.copy(
                     isLoading = false,
                     message = "",
-                    allFootball = result.dvt?: emptyList()
+                    allFootball = result.dvtRt176?: emptyList()
                 )
-                    .fusUpdateStateUIRt171()
-                if (!result.dvt?.filter { it.isPlay }.isNullOrEmpty()) {
+                    .fusUpdateStateUIRt176()
+                if (!result.dvtRt176?.filter { it.isPlay }.isNullOrEmpty()) {
                     _state.value.copy(
-                        liveFootballData = result.dvt?.filter { it.isPlay }?: emptyList()
+                        liveFootballData = result.dvtRt176?.filter { it.isPlay }?: emptyList()
                     )
-                        .fusUpdateStateUIRt171()
+                        .fusUpdateStateUIRt176()
                 }
             }
         }
     }
 
-    private suspend fun getBasketballDataRt171() {
+    private suspend fun getBasketballDataRt176() {
         when (val result =
-            remoteRepositoryRt176.getBasketballData(
-                timeStamp = _state.value.selectedDate.formattedDateRt176()
+            remoteRepositoryRt176.getBasketballDataRt176(
+                timeStampRt176bsk = _state.value.selectedDate.formattedDateRt176()
             )) {
             is ResourceRt176.ErrorRt176 -> {
-                Log.d("MainViewModelRt171", "error basketball -${result.message}")
+                Log.d("MainViewModelRt171", "error basketball -${result.messageRt176}")
                 _state.value.copy(
                     isLoading = false,
                     message = "Проверьте интернет соединение"
                 )
-                    .fusUpdateStateUIRt171()
+                    .fusUpdateStateUIRt176()
             }
 
             is ResourceRt176.SuccessRt176 -> {
-                Log.d("MainViewModelRt171", "basketball -${result.dvt}")
+                Log.d("MainViewModelRt171", "basketball -${result.dvtRt176}")
                 _state.value.copy(
                     isLoading = false,
                     message = "",
-                    allBasketball = result.dvt?: emptyList()
+                    allBasketball = result.dvtRt176?: emptyList()
                 )
-                    .fusUpdateStateUIRt171()
-                if (!result.dvt?.filter { it.isPlay }.isNullOrEmpty()) {
+                    .fusUpdateStateUIRt176()
+                if (!result.dvtRt176?.filter { it.isPlay }.isNullOrEmpty()) {
                     _state.value.copy(
-                        liveBasketballData = result.dvt?.filter { it.isPlay }?: emptyList()
+                        liveBasketballData = result.dvtRt176?.filter { it.isPlay }?: emptyList()
                     )
-                        .fusUpdateStateUIRt171()
+                        .fusUpdateStateUIRt176()
                 }
             }
         }
     }
 
-    private suspend fun getHockeyDataRt171() {
+    private suspend fun getHockeyDataRt176() {
         when (val result =
-            remoteRepositoryRt176.getHockeyData(
-                timeStamp = _state.value.selectedDate.formattedDateRt176()
+            remoteRepositoryRt176.getHockeyDataRt176(
+                timeStampRt176hc = _state.value.selectedDate.formattedDateRt176()
             )) {
             is ResourceRt176.ErrorRt176 -> {
-                Log.d("MainViewModelRt171", "error hockey -${result.message}")
+                Log.d("MainViewModelRt171", "error hockey -${result.messageRt176}")
                 _state.value.copy(
                     isLoading = false,
                     message = "Проверьте интернет соединение"
                 )
-                    .fusUpdateStateUIRt171()
+                    .fusUpdateStateUIRt176()
             }
 
             is ResourceRt176.SuccessRt176 -> {
-                Log.d("MainViewModelRt171", "hockey -${result.dvt}")
+                Log.d("MainViewModelRt171", "hockey -${result.dvtRt176}")
                 _state.value.copy(
                     isLoading = false,
                     message = "",
-                    allHockey = result.dvt?: emptyList()
+                    allHockey = result.dvtRt176?: emptyList()
                 )
-                    .fusUpdateStateUIRt171()
-                if (!result.dvt?.filter { it.isPlay }.isNullOrEmpty()) {
+                    .fusUpdateStateUIRt176()
+                if (!result.dvtRt176?.filter { it.isPlay }.isNullOrEmpty()) {
                     _state.value.copy(
-                        liveHockeyData = result.dvt?.filter { it.isPlay }?: emptyList()
+                        liveHockeyData = result.dvtRt176?.filter { it.isPlay }?: emptyList()
                     )
-                        .fusUpdateStateUIRt171()
+                        .fusUpdateStateUIRt176()
                 }
             }
         }
     }
 
 
-    fun onEventRt171(mainEvent: ApplicationEventRt176) {
+    fun onEventRt176(mainEvent: ApplicationEventRt176) {
         when (mainEvent) {
             is OnSetApplicationStateRt176 -> {
                 _state.value.copy(
                     applicationStRt176 = mainEvent.applicationStRt176
                 )
-                    .fusUpdateStateUIRt171()
+                    .fusUpdateStateUIRt176()
             }
             is OnSetSelectedDateRt176 -> {
                 _state.value.copy(
                     selectedDate = mainEvent.selectedDate,
                     isLoading = true,
                 )
-                    .fusUpdateStateUIRt171()
+                    .fusUpdateStateUIRt176()
                 viewModelScope.launch {
-                    async { getFootballDataRt171() }.onAwait
-                    async { getBasketballDataRt171() }.onAwait
-                    async { getHockeyDataRt171() }.onAwait
+                    async { getFootballDataRt176() }.onAwait
+                    async { getBasketballDataRt176() }.onAwait
+                    async { getHockeyDataRt176() }.onAwait
                 }
             }
             is OnUpdateProfileRt176 -> {
@@ -192,7 +192,7 @@ class MainViewModelRt176 @Inject constructor(
                     name = mainEvent.name,
                     phone = mainEvent.phone,
                 )
-                    .fusUpdateStateUIRt171()
+                    .fusUpdateStateUIRt176()
                 viewModelScope.launch {
                     remoteRepositoryRt176.setNamert176(_state.value.name)
                     remoteRepositoryRt176.setPhonert176(_state.value.phone)
@@ -212,7 +212,7 @@ class MainViewModelRt176 @Inject constructor(
                         title = mainEvent.title
                     )
                 )
-                    .fusUpdateStateUIRt171()
+                    .fusUpdateStateUIRt176()
                 getH2hData(
                     idHome = mainEvent.idHome,
                     idAway = mainEvent.idAway,
@@ -226,7 +226,7 @@ class MainViewModelRt176 @Inject constructor(
                     score = 0,
                     leftTime = 3
                 )
-                    .fusUpdateStateUIRt171()
+                    .fusUpdateStateUIRt176()
                 generateTask()
                 startTimer()
             }
@@ -234,12 +234,12 @@ class MainViewModelRt176 @Inject constructor(
             is SetAnswer -> {
                 val currentScore = _state.value.score
                 if (mainEvent.isRight) {
-                    if (_state.value.questImage.title == _state.value.nameSport.title) {
+                    if (_state.value.questImage.title == _state.value.nameSport.titleSport) {
                         _state.value.copy(
                             score = currentScore+1,
                             leftTime = 3
                         )
-                            .fusUpdateStateUIRt171()
+                            .fusUpdateStateUIRt176()
                         generateTask()
                         startTimer()
                     } else {
@@ -247,15 +247,15 @@ class MainViewModelRt176 @Inject constructor(
                             applicationStRt176 = MiniGame(Result),
                             leftTime = 3
                         )
-                            .fusUpdateStateUIRt171()
+                            .fusUpdateStateUIRt176()
                     }
                 } else {
-                    if (_state.value.questImage.title != _state.value.nameSport.title) {
+                    if (_state.value.questImage.title != _state.value.nameSport.titleSport) {
                         _state.value.copy(
                             score = currentScore+1,
                             leftTime = 3
                         )
-                            .fusUpdateStateUIRt171()
+                            .fusUpdateStateUIRt176()
                         generateTask()
                         startTimer()
                     } else {
@@ -263,7 +263,7 @@ class MainViewModelRt176 @Inject constructor(
                             applicationStRt176 = MiniGame(Result),
                             leftTime = 3
                         )
-                            .fusUpdateStateUIRt171()
+                            .fusUpdateStateUIRt176()
                     }
                 }
                 checkBestScore()
@@ -275,7 +275,7 @@ class MainViewModelRt176 @Inject constructor(
                     applicationStRt176 = ApplicationStRt176.GameRt176(),
                     leftTime = 3
                 )
-                    .fusUpdateStateUIRt171()
+                    .fusUpdateStateUIRt176()
             }
         }
     }
@@ -287,24 +287,24 @@ class MainViewModelRt176 @Inject constructor(
         remoteRepositoryRt176.remoteData.collect { result ->
             when (result) {
                 is ResourceRt176.ErrorRt176 -> {
-                    Log.d("MainViewModelRt145", "url error -${result.message}")
+                    Log.d("MainViewModelRt145", "url error -${result.messageRt176}")
                     _state.value.copy(
                         isLoadingUrl = false,
                         applicationStRt176 = ApplicationStRt176.StartRt176()
                     )
-                        .fusUpdateStateUIRt171()
+                        .fusUpdateStateUIRt176()
 
                 }
 
                 is ResourceRt176.SuccessRt176 -> {
-                    if (result.dvt != null) {
-                        if (result.dvt.isNotBlank()) {
+                    if (result.dvtRt176 != null) {
+                        if (result.dvtRt176.isNotBlank()) {
                             _state.value.copy(
                                 isLoadingUrl = false,
-                                destinationUrl = result.dvt,
+                                destinationUrl = result.dvtRt176,
                                 applicationStRt176 = ApplicationStRt176.StartRt176()
                             )
-                                .fusUpdateStateUIRt171()
+                                .fusUpdateStateUIRt176()
                             Log.d(
                                 "MainViewModelRt171",
                                 "url SUCCESS -${_state.value.destinationUrl}"
@@ -359,15 +359,15 @@ class MainViewModelRt176 @Inject constructor(
                                 isLoading = false,
                                 matches = emptyList()
                             )
-                                .fusUpdateStateUIRt171()
+                                .fusUpdateStateUIRt176()
                         }
 
                         is ResourceRt176.SuccessRt176 -> {
                             _state.value.copy(
                                 isLoading = false,
-                                matches = res.dvt ?: emptyList()
+                                matches = res.dvtRt176 ?: emptyList()
                             )
-                                .fusUpdateStateUIRt171()
+                                .fusUpdateStateUIRt176()
                         }
                     }
                 }
@@ -382,15 +382,15 @@ class MainViewModelRt176 @Inject constructor(
                                 isLoading = false,
                                 matches = emptyList()
                             )
-                                .fusUpdateStateUIRt171()
+                                .fusUpdateStateUIRt176()
                         }
 
                         is ResourceRt176.SuccessRt176 -> {
                             _state.value.copy(
                                 isLoading = false,
-                                matches = res.dvt ?: emptyList()
+                                matches = res.dvtRt176 ?: emptyList()
                             )
-                                .fusUpdateStateUIRt171()
+                                .fusUpdateStateUIRt176()
                         }
                     }
                 }
@@ -405,15 +405,15 @@ class MainViewModelRt176 @Inject constructor(
                                 isLoading = false,
                                 matches = emptyList()
                             )
-                                .fusUpdateStateUIRt171()
+                                .fusUpdateStateUIRt176()
                         }
 
                         is ResourceRt176.SuccessRt176 -> {
                             _state.value.copy(
                                 isLoading = false,
-                                matches = res.dvt ?: emptyList()
+                                matches = res.dvtRt176 ?: emptyList()
                             )
-                                .fusUpdateStateUIRt171()
+                                .fusUpdateStateUIRt176()
                         }
                     }
                 }
@@ -429,14 +429,14 @@ class MainViewModelRt176 @Inject constructor(
                 _state.value.copy(
                     leftTime = i
                 )
-                    .fusUpdateStateUIRt171()
+                    .fusUpdateStateUIRt176()
                 delay(1000)
             }
             _state.value.copy(
                 applicationStRt176 = MiniGame(Result),
                 leftTime = 3
             )
-                .fusUpdateStateUIRt171()
+                .fusUpdateStateUIRt176()
             checkBestScore()
         }
     }
@@ -446,7 +446,7 @@ class MainViewModelRt176 @Inject constructor(
             questImage = Sport.entries.toTypedArray().random(),
             nameSport = NameSport.entries.toTypedArray().random(),
         )
-            .fusUpdateStateUIRt171()
+            .fusUpdateStateUIRt176()
     }
 
     private fun checkBestScore() {
@@ -454,14 +454,14 @@ class MainViewModelRt176 @Inject constructor(
             _state.value.copy(
                 bestScore = _state.value.score
             )
-                .fusUpdateStateUIRt171()
+                .fusUpdateStateUIRt176()
             viewModelScope.launch {
                 remoteRepositoryRt176.setBestScorert176(_state.value.score)
             }
         }
     }
 
-    private fun MainStateRt176.fusUpdateStateUIRt171() {
+    private fun MainStateRt176.fusUpdateStateUIRt176() {
         println("setSharedUrlRt14fyuiuirt145uf544")
         println("setSharedUrlRt14fyutttytiuirt145uf544")
         _state.update {

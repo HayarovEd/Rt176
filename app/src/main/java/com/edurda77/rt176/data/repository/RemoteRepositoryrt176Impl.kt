@@ -66,14 +66,14 @@ class RemoteRepositoryrt176Impl @Inject constructor(
     private val application: Application,
     private val httpClient: HttpClient
 ) : RemoteRepositoryrt176 {
-    private val sharedPrefRt171 =
+    private val sharedPrefRt176 =
         application.getSharedPreferences(SHARED_DATA_RT176, Context.MODE_PRIVATE)
 
     override val remoteData =
         MutableStateFlow<ResourceRt176<String>>(ResourceRt176.SuccessRt176(bnm = null))
 
-    override suspend fun getFootballData(
-        timeStamp: String
+    override suspend fun getFootballDataRt176(
+        timeStampRt176ft: String
     ): ResourceRt176<List<FootballMatchRt176>> {
         return try {
             val fg = Random.nextDouble(0.0, 20.0)
@@ -83,7 +83,7 @@ class RemoteRepositoryrt176Impl @Inject constructor(
             val result = httpClient.get(URL_FOOTBALL_RT_176 + "fixtures") {
                 contentType(ContentType.Application.Json)
                 url {
-                    parameter("date", timeStamp)
+                    parameter("date", timeStampRt176ft)
                     parameter("timezone", TIME_ZONE)
                     header("x-rapidapi-key", RAPID_TOKEN_RT_176)
                     header("x-rapidapi-host", RAPID_FOOTBALL_HOST_RT_176)
@@ -104,8 +104,8 @@ class RemoteRepositoryrt176Impl @Inject constructor(
         }
     }
 
-    override suspend fun getBasketballData(
-        timeStamp: String,
+    override suspend fun getBasketballDataRt176(
+        timeStampRt176bsk: String,
     ): ResourceRt176<List<BasketballMatchRt176>> {
         return try {
             val fg = Random.nextDouble(0.0, 20.0)
@@ -115,7 +115,7 @@ class RemoteRepositoryrt176Impl @Inject constructor(
             val result = httpClient.get(URL_BASKETBALL_RT_176 + "games") {
                 contentType(ContentType.Application.Json)
                 url {
-                    parameter("date", timeStamp)
+                    parameter("date", timeStampRt176bsk)
                     parameter("timezone", TIME_ZONE)
                     header("x-rapidapi-key", RAPID_TOKEN_RT_176)
                     header("x-rapidapi-host", RAPID_BASKETBALL_HOST_RT_176)
@@ -136,8 +136,8 @@ class RemoteRepositoryrt176Impl @Inject constructor(
         }
     }
 
-    override suspend fun getHockeyData(
-        timeStamp: String
+    override suspend fun getHockeyDataRt176(
+        timeStampRt176hc: String
     ): ResourceRt176<List<HockeyMatchRt176>> {
         return try {
             val fg = Random.nextDouble(0.0, 20.0)
@@ -147,7 +147,7 @@ class RemoteRepositoryrt176Impl @Inject constructor(
             val result = httpClient.get(URL_HOKKEY_RT_176 + "games") {
                 contentType(ContentType.Application.Json)
                 url {
-                    parameter("date", timeStamp)
+                    parameter("date", timeStampRt176hc)
                     parameter("timezone", TIME_ZONE)
                     header("x-rapidapi-key", RAPID_TOKEN_RT_176)
                     header("x-rapidapi-host", RAPID_HOKKEY_HOST_RT_176)
@@ -274,7 +274,7 @@ class RemoteRepositoryrt176Impl @Inject constructor(
         val vbn = 8
         val sd = if (fg > vbn) fg else vbn
         println(sd)
-        return sharedPrefRt171.getString(SHARED_URL_RT176, "")
+        return sharedPrefRt176.getString(SHARED_URL_RT176, "")
     }
 
     override suspend fun setSharedUrlrt176(date: String) {
@@ -283,7 +283,7 @@ class RemoteRepositoryrt176Impl @Inject constructor(
         val vbn = 8
         val sd = if (fg > vbn) fg else vbn
         println(sd)
-        sharedPrefRt171.edit().putString(SHARED_URL_RT176, date).apply()
+        sharedPrefRt176.edit().putString(SHARED_URL_RT176, date).apply()
     }
 
     override suspend fun getNamert176(): String? {
@@ -291,7 +291,7 @@ class RemoteRepositoryrt176Impl @Inject constructor(
         val vbn = 8
         val sd = if (fg > vbn) fg else vbn
         println(sd)
-        return sharedPrefRt171.getString(SHARED_NAME_RT176, "")
+        return sharedPrefRt176.getString(SHARED_NAME_RT176, "")
     }
 
     override suspend fun setNamert176(date: String) {
@@ -299,7 +299,7 @@ class RemoteRepositoryrt176Impl @Inject constructor(
         val vbn = 8
         val sd = if (fg > vbn) fg else vbn
         println(sd)
-        sharedPrefRt171.edit().putString(SHARED_NAME_RT176, date).apply()
+        sharedPrefRt176.edit().putString(SHARED_NAME_RT176, date).apply()
     }
 
     override suspend fun getPhonert176(): String? {
@@ -307,7 +307,7 @@ class RemoteRepositoryrt176Impl @Inject constructor(
         val vbn = 8
         val sd = if (fg > vbn) fg else vbn
         println(sd)
-        return sharedPrefRt171.getString(SHARED_PHONE_RT176, "")
+        return sharedPrefRt176.getString(SHARED_PHONE_RT176, "")
     }
 
     override suspend fun setPhonert176(date: String) {
@@ -315,7 +315,7 @@ class RemoteRepositoryrt176Impl @Inject constructor(
         val vbn = 8
         val sd = if (fg > vbn) fg else vbn
         println(sd)
-        sharedPrefRt171.edit().putString(SHARED_PHONE_RT176, date).apply()
+        sharedPrefRt176.edit().putString(SHARED_PHONE_RT176, date).apply()
     }
 
     override suspend fun getBestScorert176(): Int {
@@ -323,7 +323,7 @@ class RemoteRepositoryrt176Impl @Inject constructor(
         val vbn = 8
         val sd = if (fg > vbn) fg else vbn
         println(sd)
-        return sharedPrefRt171.getInt(SHARED_BEST_SCORE_RT176, 0)
+        return sharedPrefRt176.getInt(SHARED_BEST_SCORE_RT176, 0)
     }
 
     override suspend fun setBestScorert176(date: Int) {
@@ -331,7 +331,7 @@ class RemoteRepositoryrt176Impl @Inject constructor(
         val vbn = 8
         val sd = if (fg > vbn) fg else vbn
         println(sd)
-        sharedPrefRt171.edit().putInt(SHARED_BEST_SCORE_RT176, date).apply()
+        sharedPrefRt176.edit().putInt(SHARED_BEST_SCORE_RT176, date).apply()
     }
 
     override suspend fun isInternetConnectedrt176(): Boolean {

@@ -30,9 +30,9 @@ import com.edurda77.rt176.ui.theme.yellow
 fun BottomNavigationRow(
     modifier: Modifier = Modifier,
     applicationStRt176: ApplicationStRt176,
-    name:String,
-    phone:String,
-    event: (ApplicationEventRt176) -> Unit
+    nameRt176:String,
+    phoneRt176:String,
+    eventRt176: (ApplicationEventRt176) -> Unit
 ) {
     Row(
         modifier = modifier
@@ -44,10 +44,10 @@ fun BottomNavigationRow(
         horizontalArrangement = Arrangement.SpaceAround
     ) {
         ItemNavigation(
-            icon = ImageVector.vectorResource(id = R.drawable.events),
-            color = if (applicationStRt176 is ApplicationStRt176.EventsRt176) darkRed else grey,
-            onClick = {
-                event(
+            iconRt176 = ImageVector.vectorResource(id = R.drawable.events),
+            colorRt176 = if (applicationStRt176 is ApplicationStRt176.EventsRt176) darkRed else grey,
+            onClickClRt176 = {
+                eventRt176(
                     ApplicationEventRt176.OnSetApplicationStateRt176(
                         ApplicationStRt176.EventsRt176(
                             TypeEventsRt176.GamesOfDay(TypeGame.FootballRt176())
@@ -57,10 +57,10 @@ fun BottomNavigationRow(
             }
         )
         ItemNavigation(
-            icon = ImageVector.vectorResource(id = R.drawable.game),
-            color = if (applicationStRt176 is ApplicationStRt176.GameRt176) darkRed else grey,
-            onClick = {
-                event(
+            iconRt176 = ImageVector.vectorResource(id = R.drawable.game),
+            colorRt176 = if (applicationStRt176 is ApplicationStRt176.GameRt176) darkRed else grey,
+            onClickClRt176 = {
+                eventRt176(
                     ApplicationEventRt176.OnSetApplicationStateRt176(
                         ApplicationStRt176.GameRt176()
                     )
@@ -68,17 +68,17 @@ fun BottomNavigationRow(
             }
         )
         ItemNavigation(
-            icon = ImageVector.vectorResource(id = R.drawable.profile),
-            color = if (applicationStRt176 is ApplicationStRt176.Profile) darkRed else grey,
-            onClick = {
-                if (name.isEmpty()||phone.isEmpty()) {
-                    event(
+            iconRt176 = ImageVector.vectorResource(id = R.drawable.profile),
+            colorRt176 = if (applicationStRt176 is ApplicationStRt176.Profile) darkRed else grey,
+            onClickClRt176 = {
+                if (nameRt176.isEmpty()||phoneRt176.isEmpty()) {
+                    eventRt176(
                         ApplicationEventRt176.OnSetApplicationStateRt176(
                             ApplicationStRt176.Profile(TypeProfileRt176.EditDataRt176())
                         )
                     )
                 } else {
-                    event(
+                    eventRt176(
                         ApplicationEventRt176.OnSetApplicationStateRt176(
                             ApplicationStRt176.Profile(TypeProfileRt176.DataRt176())
                         )
@@ -92,15 +92,15 @@ fun BottomNavigationRow(
 @Composable
 private fun ItemNavigation(
     modifier: Modifier = Modifier,
-    icon: ImageVector,
-    color: Color,
-    onClick: () -> Unit
+    iconRt176: ImageVector,
+    colorRt176: Color,
+    onClickClRt176: () -> Unit
 ) {
-    IconButton(onClick = onClick) {
+    IconButton(onClick = onClickClRt176) {
         Icon(
-            imageVector = icon,
+            imageVector = iconRt176,
             contentDescription = "",
-            tint = color
+            tint = colorRt176
         )
     }
 }

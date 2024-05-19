@@ -29,11 +29,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.edurda77.rt176.R
 import com.edurda77.rt176.ui.state.ApplicationEventRt176
-import com.edurda77.rt176.ui.state.ApplicationEventRt176.OnSetApplicationStateRt176
 import com.edurda77.rt176.ui.state.ApplicationStRt176
-import com.edurda77.rt176.ui.state.ApplicationStRt176.EventsRt176
-import com.edurda77.rt176.ui.state.TypeEventsRt176.GamesOfDay
-import com.edurda77.rt176.ui.state.TypeGame.FootballRt176
 import com.edurda77.rt176.ui.theme.darkRed
 import com.edurda77.rt176.ui.theme.white176
 import com.edurda77.rt176.ui.theme.yellow
@@ -74,9 +70,9 @@ fun GameScreen(
         bottomBar = {
             BottomNavigationRow(
                 applicationStRt176 = applicationStRt176,
-                name = name,
-                phone = phone,
-                event = event)
+                nameRt176 = name,
+                phoneRt176 = phone,
+                eventRt176 = event)
         }
     ) {paddings->
         Column(
