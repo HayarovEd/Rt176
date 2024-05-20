@@ -229,7 +229,9 @@ class MainViewModelRt176 @Inject constructor(
                         awayName = mainEvent.awayName,
                         awayScore = mainEvent.awayScore,
                         awayLogo = mainEvent.awayLogo,
-                        title = mainEvent.title
+                        title = mainEvent.title,
+                        awayColor = mainEvent.awayColor,
+                        homeColor = mainEvent.homeColor
                     )
                 )
                     .fusUpdateStateUIRt176()

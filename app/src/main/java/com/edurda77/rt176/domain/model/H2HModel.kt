@@ -7,5 +7,5 @@ data class H2HModel(
     val awayName:String,
     val awayLogo:String,
     val awayScore:Int?,
-    val dateOfMatch: String
+    val dateOfMatch: String,
 )

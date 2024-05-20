@@ -2,6 +2,7 @@ package com.edurda77.rt176.ui.uikit
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -17,6 +18,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -29,6 +31,7 @@ import coil.compose.AsyncImage
 import com.edurda77.rt176.R
 import com.edurda77.rt176.domain.model.FootballMatchRt176
 import com.edurda77.rt176.domain.utils.formattedDateRt176
+import com.edurda77.rt176.domain.utils.generateRandomColorRt175
 import com.edurda77.rt176.ui.state.ApplicationEventRt176
 import com.edurda77.rt176.ui.state.TypeEventsRt176
 import com.edurda77.rt176.ui.state.TypeGame
@@ -56,7 +59,9 @@ private fun Sample() {
         dateStamp = "2024-05-14",
         timeStamp = "00:00",
         isPlay = false,
-        statusGame = "ОК"
+        statusGame = "ОК",
+        awayColor = generateRandomColorRt175(),
+        homeColor = generateRandomColorRt175()
     ),
         event = {})
 }
@@ -86,7 +91,9 @@ fun ItemLiveFootball(
                         awayName = footballMatchRt176.awayName,
                         awayScore = footballMatchRt176.awayScore,
                         title = dsk,
-                        typeEventsRt176 = TypeEventsRt176.LiveGamesRt176(TypeGame.FootballRt176())
+                        typeEventsRt176 = TypeEventsRt176.LiveGamesRt176(TypeGame.FootballRt176()),
+                        awayColor = footballMatchRt176.awayColor,
+                        homeColor = footballMatchRt176.homeColor
                     )
                 )
             }
@@ -132,11 +139,10 @@ fun ItemLiveFootball(
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                AsyncImage(
-                    modifier = modifier.size(36.dp),
-                    model = footballMatchRt176.homeImage,
-                    contentDescription = "",
-                    contentScale = ContentScale.FillBounds
+                Box(
+                    modifier = modifier
+                        .size(36.dp)
+                        .background(color = Color(footballMatchRt176.homeColor)),
                 )
                 Spacer(modifier = modifier.width(8.dp))
                 Text(
@@ -156,11 +162,10 @@ fun ItemLiveFootball(
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                AsyncImage(
-                    modifier = modifier.size(36.dp),
-                    model = footballMatchRt176.awayImage,
-                    contentDescription = "",
-                    contentScale = ContentScale.FillBounds
+                Box(
+                    modifier = modifier
+                        .size(36.dp)
+                        .background(color = Color(footballMatchRt176.awayColor)),
                 )
                 Spacer(modifier = modifier.width(8.dp))
                 Text(

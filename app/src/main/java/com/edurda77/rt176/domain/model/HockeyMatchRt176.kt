@@ -22,4 +22,6 @@ data class HockeyMatchRt176(
     val scoreOverTime: String?,
     val scorePenalties: String?,
     val isPlay: Boolean,
+    val awayColor:Int,
+    val homeColor:Int,
 )

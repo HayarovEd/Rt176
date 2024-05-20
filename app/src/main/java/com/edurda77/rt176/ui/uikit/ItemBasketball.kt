@@ -2,6 +2,7 @@ package com.edurda77.rt176.ui.uikit
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -18,6 +19,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
@@ -63,7 +65,9 @@ private fun Sample() {
         dateStamp = "2024-05-14",
         timeStamp = "00:00",
         isPlay = false,
-        statusGame = "Окончен"
+        statusGame = "Окончен",
+        awayColor = 1,
+        homeColor = 100
     ),
         eventRt176 = {})
 }
@@ -92,7 +96,9 @@ fun ItemBasketball(
                     awayName = basketballMatchRt176.awayName,
                     awayScore = basketballMatchRt176.awayScore,
                     title = "$dsk в ${basketballMatchRt176.timeStamp}",
-                    typeEventsRt176 = TypeEventsRt176.GamesOfDayRt176(TypeGame.BasketballRt176())
+                    typeEventsRt176 = TypeEventsRt176.GamesOfDayRt176(TypeGame.BasketballRt176()),
+                    awayColor = basketballMatchRt176.awayColor,
+                    homeColor = basketballMatchRt176.homeColor
                 ))
             }
             .background(color = darkRed)
@@ -117,12 +123,17 @@ fun ItemBasketball(
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                AsyncImage(
+                Box(
+                    modifier = modifier
+                        .size(36.dp)
+                        .background(color = Color(basketballMatchRt176.homeColor)),
+                )
+               /* AsyncImage(
                     modifier = modifier.size(36.dp),
                     model = basketballMatchRt176.homeImage,
                     contentDescription = "",
                     contentScale = ContentScale.FillBounds
-                )
+                )*/
                 Spacer(modifier = modifier.width(8.dp))
                 Text(
                     modifier = modifier,
@@ -141,12 +152,17 @@ fun ItemBasketball(
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                AsyncImage(
+                Box(
+                    modifier = modifier
+                        .size(36.dp)
+                        .background(color = Color(basketballMatchRt176.awayColor)),
+                )
+                /*AsyncImage(
                     modifier = modifier.size(36.dp),
                     model = basketballMatchRt176.awayImage,
                     contentDescription = "",
                     contentScale = ContentScale.FillBounds
-                )
+                )*/
                 Spacer(modifier = modifier.width(8.dp))
                 Text(
                     modifier = modifier,

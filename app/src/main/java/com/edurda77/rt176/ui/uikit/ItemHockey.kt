@@ -2,6 +2,7 @@ package com.edurda77.rt176.ui.uikit
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -18,6 +19,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
@@ -64,7 +66,9 @@ fun ItemHockey(
                         awayName = hockeyMatchRt176.awayName,
                         awayScore = hockeyMatchRt176.awayScore,
                         title = "$dsk в ${hockeyMatchRt176.timeStamp}",
-                        typeEventsRt176 = TypeEventsRt176.GamesOfDayRt176(TypeGame.HockeyRt176())
+                        typeEventsRt176 = TypeEventsRt176.GamesOfDayRt176(TypeGame.HockeyRt176()),
+                        awayColor = hockeyMatchRt176.awayColor,
+                        homeColor = hockeyMatchRt176.homeColor
                     )
                 )
             }
@@ -90,11 +94,10 @@ fun ItemHockey(
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                AsyncImage(
-                    modifier = modifier.size(36.dp),
-                    model = hockeyMatchRt176.homeImage,
-                    contentDescription = "",
-                    contentScale = ContentScale.FillBounds
+                Box(
+                    modifier = modifier
+                        .size(36.dp)
+                        .background(color = Color(hockeyMatchRt176.homeColor)),
                 )
                 Spacer(modifier = modifier.width(8.dp))
                 Text(
@@ -114,11 +117,10 @@ fun ItemHockey(
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                AsyncImage(
-                    modifier = modifier.size(36.dp),
-                    model = hockeyMatchRt176.awayImage,
-                    contentDescription = "",
-                    contentScale = ContentScale.FillBounds
+                Box(
+                    modifier = modifier
+                        .size(36.dp)
+                        .background(color = Color(hockeyMatchRt176.awayColor)),
                 )
                 Spacer(modifier = modifier.width(8.dp))
                 Text(

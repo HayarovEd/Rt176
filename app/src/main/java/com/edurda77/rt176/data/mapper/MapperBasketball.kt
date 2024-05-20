@@ -4,6 +4,7 @@ import com.edurda77.rt176.data.remote.dto.basketball.BasketBallDto
 import com.edurda77.rt176.data.remote.dto.h2h_basketball.H2hBasketballDto
 import com.edurda77.rt176.domain.model.BasketballMatchRt176
 import com.edurda77.rt176.domain.model.H2HModel
+import com.edurda77.rt176.domain.utils.generateRandomColorRt175
 
 
 fun BasketBallDto.convertToBasketBallMatches(): List<BasketballMatchRt176> {
@@ -29,7 +30,9 @@ fun BasketBallDto.convertToBasketBallMatches(): List<BasketballMatchRt176> {
             homeQuarter3 = response.scores.home.quarter3,
             homeQuarter4 = response.scores.home.quarter4,
             homeName = response.teams.home.nameRt176bskDtoX,
-            isPlay = checkLiveGame(response.statusRt176Dto.short)
+            isPlay = checkLiveGame(response.statusRt176Dto.short),
+            awayColor = generateRandomColorRt175(),
+            homeColor = generateRandomColorRt175()
         )
     }
 }

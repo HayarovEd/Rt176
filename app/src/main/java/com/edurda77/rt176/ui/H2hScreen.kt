@@ -53,9 +53,11 @@ fun H2hScreen(
     homeName: String,
     homeScore: Int?,
     homeLogo: String,
+    homeColor: Int,
     awayLogo: String,
     awayName: String,
     awayScore: Int?,
+    awayColor:Int,
     title: String,
     isLoading: Boolean,
     matches: List<H2HModel>,
@@ -210,11 +212,10 @@ fun H2hScreen(
                                         modifier = modifier,
                                         verticalAlignment = Alignment.CenterVertically,
                                     ) {
-                                        AsyncImage(
-                                            modifier = modifier.size(24.dp),
-                                            model = match.homeLogo,
-                                            contentDescription = "",
-                                            contentScale = ContentScale.FillBounds
+                                        Box(
+                                            modifier = modifier
+                                                .size(24.dp)
+                                                .background(color = Color(homeColor)),
                                         )
                                         Spacer(modifier = modifier.width(10.dp))
                                         Text(
@@ -233,11 +234,10 @@ fun H2hScreen(
                                         modifier = modifier,
                                         verticalAlignment = Alignment.CenterVertically,
                                     ) {
-                                        AsyncImage(
-                                            modifier = modifier.size(24.dp),
-                                            model = match.awayLogo,
-                                            contentDescription = "",
-                                            contentScale = ContentScale.FillBounds
+                                        Box(
+                                            modifier = modifier
+                                                .size(24.dp)
+                                                .background(color = Color(awayColor)),
                                         )
                                         Spacer(modifier = modifier.width(10.dp))
                                         Text(

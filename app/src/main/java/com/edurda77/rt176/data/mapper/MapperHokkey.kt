@@ -4,6 +4,7 @@ import com.edurda77.rt176.data.remote.dto.h2h_hockey.H2hHockeyDto
 import com.edurda77.rt176.data.remote.dto.hokkey.HokkeyDto
 import com.edurda77.rt176.domain.model.H2HModel
 import com.edurda77.rt176.domain.model.HockeyMatchRt176
+import com.edurda77.rt176.domain.utils.generateRandomColorRt175
 
 
 fun HokkeyDto.convertToHokkeyMatches(): List<HockeyMatchRt176> {
@@ -32,7 +33,9 @@ fun HokkeyDto.convertToHokkeyMatches(): List<HockeyMatchRt176> {
             scoreAwayThirdPeriod = scorePerPeriod3?.get(1),
             scoreOverTime = response.periods.overtime,
             scorePenalties = response.periods.penalties,
-            isPlay = checkLiveGame(response.statusRt176HcDto.short)
+            isPlay = checkLiveGame(response.statusRt176HcDto.short),
+            awayColor = generateRandomColorRt175(),
+            homeColor = generateRandomColorRt175()
         )
     }
 }

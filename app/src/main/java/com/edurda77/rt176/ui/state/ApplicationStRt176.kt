@@ -14,6 +14,8 @@ sealed interface ApplicationStRt176 {
         val title:String,
         val homeLogo:String,
         val awayLogo:String,
+        val awayColor:Int,
+        val homeColor:Int,
     ) : ApplicationStRt176
     class MiniGameRt176(val typeMiniGameRt176: TypeMiniGameRt176) : ApplicationStRt176
 }

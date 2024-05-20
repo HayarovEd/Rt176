@@ -4,6 +4,7 @@ import com.edurda77.rt176.data.remote.dto.football.FootballDto
 import com.edurda77.rt176.data.remote.dto.h2h_football.H2hFootballDto
 import com.edurda77.rt176.domain.model.FootballMatchRt176
 import com.edurda77.rt176.domain.model.H2HModel
+import com.edurda77.rt176.domain.utils.generateRandomColorRt175
 
 
 fun FootballDto.convertToFootballMatches(): List<FootballMatchRt176> {
@@ -25,7 +26,9 @@ fun FootballDto.convertToFootballMatches(): List<FootballMatchRt176> {
             homeScoreFirstTime = response.score.halftime.home,
             homeScoreSecondTime = response.score.halftime.away,
             homeName = response.teams.home.nameRt176Dto,
-            isPlay = checkLiveGame(response.fixture.status.short)
+            isPlay = checkLiveGame(response.fixture.status.short),
+            awayColor = generateRandomColorRt175(),
+            homeColor = generateRandomColorRt175()
         )
     }
 }

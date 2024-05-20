@@ -16,7 +16,10 @@ sealed class ApplicationEventRt176 {
         val awayName:String,
         val awayScore:Int?,
         val awayLogo:String,
-        val title:String,) : ApplicationEventRt176()
+        val title:String,
+        val awayColor:Int,
+        val homeColor:Int,
+    ) : ApplicationEventRt176()
     data object StartMiniGameRt176:ApplicationEventRt176()
     class SetAnswer(val isRight:Boolean):ApplicationEventRt176()
     data object StopMiniGameRt176:ApplicationEventRt176()

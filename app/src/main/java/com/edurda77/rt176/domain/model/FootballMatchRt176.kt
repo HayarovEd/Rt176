@@ -18,4 +18,6 @@ data class FootballMatchRt176(
     val statusGame: String,
     val currentTimeMatch: Int?,
     val isPlay: Boolean,
+    val awayColor:Int,
+    val homeColor:Int,
 )
