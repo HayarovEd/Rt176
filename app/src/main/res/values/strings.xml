@@ -10,7 +10,7 @@
     <string name="football">Футбол</string>
     <string name="hockey">Хоккей</string>
     <string name="today">Сегодня</string>
-    <string name="no_matches">Сейчас нет информации,\nпопробуйте позже</string>
+    <string name="no_matches">Сейчас нет информации</string>
     <string name="match">Матч</string>
     <string name="h2h">H2H</string>
     <string name="last_5">Последние 5 матчей</string>
@@ -29,4 +29,5 @@
     <string name="to_save">Сохранить</string>
     <string name="tr_1">Нажимая сохранить вы даете согласие на обработку</string>
     <string name="tr_2">персональных данных</string>
+    <string name="no_internet">Сейчас нет интернета, попробуйте позже</string>
 </resources>

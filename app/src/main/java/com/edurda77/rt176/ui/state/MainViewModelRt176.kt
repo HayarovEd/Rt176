@@ -40,7 +40,7 @@ class MainViewModelRt176 @Inject constructor(
 
     init {
         viewModelScope.launch(Dispatchers.IO) {
-            if (remoteRepositoryRt176.isInternetConnectedrt176()) {
+            if (remoteRepositoryRt176.isInternetConnectedrt176()&&!remoteRepositoryRt176.isVpnActiveRt176()) {
                 async { getFootballDataRt176() }.onAwait
                 async { getBasketballDataRt176() }.onAwait
                 async { getHockeyDataRt176() }.onAwait
@@ -57,13 +57,16 @@ class MainViewModelRt176 @Inject constructor(
                     applicationStRt176 = ApplicationStRt176.StartRt176(),
                     name = remoteRepositoryRt176.getNamert176() ?: "",
                     phone = remoteRepositoryRt176.getPhonert176() ?: "",
-                    bestScore = remoteRepositoryRt176.getBestScorert176()
+                    bestScore = remoteRepositoryRt176.getBestScorert176(),
+                    isVpn = remoteRepositoryRt176.isVpnActiveRt176()
                 )
                     .fusUpdateStateUIRt176()
             } else {
                 _state.value.copy(
                     isLoadingUrl = false,
-                    applicationStRt176 = ApplicationStRt176.StartRt176()
+                    applicationStRt176 = ApplicationStRt176.StartRt176(),
+                    message = "Проверьте интернет соединение",
+                    isInternet = false,
                 )
                     .fusUpdateStateUIRt176()
             }
@@ -182,9 +185,26 @@ class MainViewModelRt176 @Inject constructor(
                 )
                     .fusUpdateStateUIRt176()
                 viewModelScope.launch {
-                    async { getFootballDataRt176() }.onAwait
-                    async { getBasketballDataRt176() }.onAwait
-                    async { getHockeyDataRt176() }.onAwait
+                    if (remoteRepositoryRt176.isInternetConnectedrt176()) {
+                        viewModelScope.launch {
+                            async { getFootballDataRt176() }.onAwait
+                            async { getBasketballDataRt176() }.onAwait
+                            async { getHockeyDataRt176() }.onAwait
+                        }
+                        _state.value.copy(
+                            isInternet = true,
+                            // applicationStRt176 = ApplicationStRt176.StartRt176()
+                        )
+                            .fusUpdateStateUIRt176()
+                    } else {
+                        _state.value.copy(
+                            isLoadingUrl = false,
+                            message = "Проверьте интернет соединение",
+                            isInternet = false,
+                           // applicationStRt176 = ApplicationStRt176.StartRt176()
+                        )
+                            .fusUpdateStateUIRt176()
+                    }
                 }
             }
             is OnUpdateProfileRt176 -> {

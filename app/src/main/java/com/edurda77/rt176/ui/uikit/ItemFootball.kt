@@ -24,6 +24,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -49,7 +50,7 @@ private fun Sample() {
         awayScoreSecondTime = 0,
         awayScore = 0,
         homeId = 441,
-        homeName = "Union Santa Fe",
+        homeName = "Union Santa Fe cfvfvsv vdvdvdvdvdv  df",
         homeImage = "https://media.api-sports.io/football/teams/441.png",
         homeScoreFirstTime = 0,
         homeScoreSecondTime = 1,
@@ -106,7 +107,9 @@ fun ItemFootball(
             tint = yellow
         )
         Spacer(modifier = modifier.width(20.dp))
-        Column {
+        Column(
+           modifier = modifier.width(200.dp)
+        ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -125,7 +128,9 @@ fun ItemFootball(
                         color = yellow,
                         //fontFamily = FontFamily(Font(R.font.gilroy)),
                         fontWeight = FontWeight(700),
-                    )
+                    ),
+                    overflow = TextOverflow.Ellipsis,
+                    maxLines = 1
                 )
             }
             Spacer(modifier = modifier.height(14.dp))
@@ -147,7 +152,9 @@ fun ItemFootball(
                         color = yellow,
                         //fontFamily = FontFamily(Font(R.font.gilroy)),
                         fontWeight = FontWeight(700),
-                    )
+                    ),
+                    overflow = TextOverflow.Ellipsis,
+                    maxLines = 1
                 )
             }
         }

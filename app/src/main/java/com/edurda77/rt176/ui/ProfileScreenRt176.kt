@@ -162,11 +162,6 @@ fun ProfileScreenRt176(
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.image_profile),
-                            contentDescription = ""
-                        )
-                        Spacer(modifier = modifier.height(16.dp))
                         Text(
                             modifier = modifier.fillMaxWidth(),
                             text = nameRt176,
@@ -234,17 +229,14 @@ fun ProfileScreenRt176(
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.image_profile),
-                            contentDescription = ""
-                        )
-                        Spacer(modifier = modifier.height(16.dp))
                         TextField(
                             modifier = modifier
                                 .fillMaxWidth(),
                             value = updatedPhoneRt176.value,
                             onValueChange = {
-                                updatedPhoneRt176.value = it
+                                if (updatedPhoneRt176.value.length<12) {
+                                    updatedPhoneRt176.value = it
+                                }
                             },
                             textStyle = TextStyle(
                                 fontSize = 14.sp,
@@ -276,7 +268,9 @@ fun ProfileScreenRt176(
                                 .fillMaxWidth(),
                             value = updatedNameRt176.value,
                             onValueChange = {
-                                updatedNameRt176.value = it
+                                if (updatedNameRt176.value.length<20) {
+                                    updatedNameRt176.value = it
+                                }
                             },
                             textStyle = TextStyle(
                                 fontSize = 14.sp,

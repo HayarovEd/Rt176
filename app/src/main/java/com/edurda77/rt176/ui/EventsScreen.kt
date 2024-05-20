@@ -71,8 +71,8 @@ private fun Sample() {
 fun EventsScreen(
     modifier: Modifier = Modifier,
     applicationStRt176: ApplicationStRt176,
-    nameRt176:String,
-    phoneRt176:String,
+    nameRt176: String,
+    phoneRt176: String,
     footballMatches: List<FootballMatchRt176>,
     footballLiveMatches: List<FootballMatchRt176>,
     basketballMatches: List<BasketballMatchRt176>,
@@ -80,6 +80,7 @@ fun EventsScreen(
     hockeyMatches: List<HockeyMatchRt176>,
     hockeyLiveMatches: List<HockeyMatchRt176>,
     isLoading: Boolean,
+    isInternet: Boolean,
     typeEventsRt176: TypeEventsRt176,
     selectedDateRt176Es: LocalDate,
     event: (ApplicationEventRt176) -> Unit
@@ -91,13 +92,14 @@ fun EventsScreen(
     val titleRt176Es = when (val rt = typeEventsRt176) {
         is TypeEventsRt176.GamesOfDayRt176 -> when (rt.typeGame) {
             is TypeGame.BasketballRt176 -> stringResource(R.string.basketbal)
-            is TypeGame.FootballRt176 ->  stringResource(R.string.football)
-            is TypeGame.HockeyRt176 ->  stringResource(R.string.hockey)
+            is TypeGame.FootballRt176 -> stringResource(R.string.football)
+            is TypeGame.HockeyRt176 -> stringResource(R.string.hockey)
         }
+
         is TypeEventsRt176.LiveGamesRt176 -> when (rt.typeGame) {
             is TypeGame.BasketballRt176 -> stringResource(R.string.basketbal)
-            is TypeGame.FootballRt176 ->  stringResource(R.string.football)
-            is TypeGame.HockeyRt176 ->  stringResource(R.string.hockey)
+            is TypeGame.FootballRt176 -> stringResource(R.string.football)
+            is TypeGame.HockeyRt176 -> stringResource(R.string.hockey)
         }
     }
     Scaffold(
@@ -207,155 +209,170 @@ fun EventsScreen(
                 applicationStRt176 = applicationStRt176,
                 nameRt176 = nameRt176,
                 phoneRt176 = phoneRt176,
-                eventRt176 = event)
+                eventRt176 = event
+            )
         }
-    ) {paddings->
+    ) { paddings ->
         Column(
             modifier = modifier
                 .padding(paddings)
                 .fillMaxWidth()
                 .padding(15.dp)
         ) {
-            if (isLoading) {
-                CircularProgressIndicator(
-                    modifier = modifier
-                        .align(Alignment.CenterHorizontally)
-                        .size(100.dp)
-                        .padding(top = 200.dp),
-                    color = darkRed,
-                )
-            } else {
-                when (val rt = typeEventsRt176) {
-                    is TypeEventsRt176.GamesOfDayRt176 -> when (rt.typeGame) {
-                        is TypeGame.BasketballRt176 -> {
-                            if (basketballMatches.isEmpty()) {
-                                NoMatches(
-                                    modifier = modifier.align(Alignment.CenterHorizontally)
-                                )
-                            } else {
-                                LazyColumn(
-                                    modifier = modifier
-                                        .fillMaxWidth(),
-                                    verticalArrangement = Arrangement.spacedBy(15.dp)
-                                ) {
-                                    items(basketballMatches) {
-                                        ItemBasketball(
-                                            basketballMatchRt176 = it,
-                                            eventRt176 = event
-                                        )
+            if (isInternet) {
+                if (isLoading) {
+                    CircularProgressIndicator(
+                        modifier = modifier
+                            .align(Alignment.CenterHorizontally)
+                            .size(100.dp)
+                            .padding(top = 200.dp),
+                        color = darkRed,
+                    )
+                } else {
+                    when (val rt = typeEventsRt176) {
+                        is TypeEventsRt176.GamesOfDayRt176 -> when (rt.typeGame) {
+                            is TypeGame.BasketballRt176 -> {
+                                if (basketballMatches.isEmpty()) {
+                                    NoMatches(
+                                        modifier = modifier.align(Alignment.CenterHorizontally)
+                                    )
+                                } else {
+                                    LazyColumn(
+                                        modifier = modifier
+                                            .fillMaxWidth(),
+                                        verticalArrangement = Arrangement.spacedBy(15.dp)
+                                    ) {
+                                        items(basketballMatches) {
+                                            ItemBasketball(
+                                                basketballMatchRt176 = it,
+                                                eventRt176 = event
+                                            )
+                                        }
+                                    }
+                                }
+                            }
+
+                            is TypeGame.FootballRt176 -> {
+                                if (footballMatches.isEmpty()) {
+                                    NoMatches(
+                                        modifier = modifier.align(Alignment.CenterHorizontally)
+                                    )
+                                } else {
+                                    LazyColumn(
+                                        modifier = modifier
+                                            .fillMaxWidth(),
+                                        verticalArrangement = Arrangement.spacedBy(15.dp)
+                                    ) {
+                                        items(footballMatches) {
+                                            ItemFootball(
+                                                footballMatchRt176 = it,
+                                                event = event
+                                            )
+                                        }
+                                    }
+                                }
+                            }
+
+                            is TypeGame.HockeyRt176 -> {
+                                if (hockeyMatches.isEmpty()) {
+                                    NoMatches(
+                                        modifier = modifier.align(Alignment.CenterHorizontally)
+                                    )
+                                } else {
+                                    LazyColumn(
+                                        modifier = modifier
+                                            .fillMaxWidth(),
+                                        verticalArrangement = Arrangement.spacedBy(15.dp)
+                                    ) {
+                                        items(hockeyMatches) {
+                                            ItemHockey(
+                                                hockeyMatchRt176 = it,
+                                                eventRt176 = event
+                                            )
+                                        }
                                     }
                                 }
                             }
                         }
 
-                        is TypeGame.FootballRt176 -> {
-                            if (footballMatches.isEmpty()) {
-                                NoMatches(
-                                    modifier = modifier.align(Alignment.CenterHorizontally)
-                                )
-                            } else {
-                                LazyColumn(
-                                    modifier = modifier
-                                        .fillMaxWidth(),
-                                    verticalArrangement = Arrangement.spacedBy(15.dp)
-                                ) {
-                                    items(footballMatches) {
-                                        ItemFootball(
-                                            footballMatchRt176 = it,
-                                            event = event
-                                        )
+                        is TypeEventsRt176.LiveGamesRt176 -> when (rt.typeGame) {
+                            is TypeGame.BasketballRt176 -> {
+                                if (basketballLiveMatches.isEmpty()) {
+                                    NoMatches(
+                                        modifier = modifier.align(Alignment.CenterHorizontally)
+                                    )
+                                } else {
+                                    LazyColumn(
+                                        modifier = modifier
+                                            .fillMaxWidth(),
+                                        verticalArrangement = Arrangement.spacedBy(15.dp)
+                                    ) {
+                                        items(basketballLiveMatches) {
+                                            ItemLiveBasketball(
+                                                basketballMatchRt176 = it,
+                                                event = event
+                                            )
+                                        }
                                     }
                                 }
                             }
-                        }
 
-                        is TypeGame.HockeyRt176 -> {
-                            if (hockeyMatches.isEmpty()) {
-                                NoMatches(
-                                    modifier = modifier.align(Alignment.CenterHorizontally)
-                                )
-                            } else {
-                                LazyColumn(
-                                    modifier = modifier
-                                        .fillMaxWidth(),
-                                    verticalArrangement = Arrangement.spacedBy(15.dp)
-                                ) {
-                                    items(hockeyMatches) {
-                                        ItemHockey(
-                                            hockeyMatchRt176 = it,
-                                            eventRt176 = event
-                                        )
+                            is TypeGame.FootballRt176 -> {
+                                if (footballLiveMatches.isEmpty()) {
+                                    NoMatches(
+                                        modifier = modifier.align(Alignment.CenterHorizontally)
+                                    )
+                                } else {
+                                    LazyColumn(
+                                        modifier = modifier
+                                            .fillMaxWidth(),
+                                        verticalArrangement = Arrangement.spacedBy(15.dp)
+                                    ) {
+                                        items(footballLiveMatches) {
+                                            ItemLiveFootball(
+                                                footballMatchRt176 = it,
+                                                event = event
+                                            )
+                                        }
                                     }
                                 }
                             }
-                        }
-                    }
 
-                    is TypeEventsRt176.LiveGamesRt176 -> when (rt.typeGame) {
-                        is TypeGame.BasketballRt176 -> {
-                            if (basketballLiveMatches.isEmpty()) {
-                                NoMatches(
-                                    modifier = modifier.align(Alignment.CenterHorizontally)
-                                )
-                            } else {
-                                LazyColumn(
-                                    modifier = modifier
-                                        .fillMaxWidth(),
-                                    verticalArrangement = Arrangement.spacedBy(15.dp)
-                                ) {
-                                    items(basketballLiveMatches) {
-                                        ItemLiveBasketball(
-                                            basketballMatchRt176 = it,
-                                            event = event
-                                        )
-                                    }
-                                }
-                            }
-                        }
-
-                        is TypeGame.FootballRt176 -> {
-                            if (footballLiveMatches.isEmpty()) {
-                                NoMatches(
-                                    modifier = modifier.align(Alignment.CenterHorizontally)
-                                )
-                            } else {
-                                LazyColumn(
-                                    modifier = modifier
-                                        .fillMaxWidth(),
-                                    verticalArrangement = Arrangement.spacedBy(15.dp)
-                                ) {
-                                    items(footballLiveMatches) {
-                                        ItemLiveFootball(
-                                            footballMatchRt176 = it,
-                                            event = event
-                                        )
-                                    }
-                                }
-                            }
-                        }
-
-                        is TypeGame.HockeyRt176 -> {
-                            if (hockeyLiveMatches.isEmpty()) {
-                                NoMatches(
-                                    modifier = modifier.align(Alignment.CenterHorizontally)
-                                )
-                            } else {
-                                LazyColumn(
-                                    modifier = modifier
-                                        .fillMaxWidth(),
-                                    verticalArrangement = Arrangement.spacedBy(15.dp)
-                                ) {
-                                    items(hockeyLiveMatches) {
-                                        ItemLiveHockey(
-                                            hockeyMatchRt176 = it,
-                                            event = event
-                                        )
+                            is TypeGame.HockeyRt176 -> {
+                                if (hockeyLiveMatches.isEmpty()) {
+                                    NoMatches(
+                                        modifier = modifier.align(Alignment.CenterHorizontally)
+                                    )
+                                } else {
+                                    LazyColumn(
+                                        modifier = modifier
+                                            .fillMaxWidth(),
+                                        verticalArrangement = Arrangement.spacedBy(15.dp)
+                                    ) {
+                                        items(hockeyLiveMatches) {
+                                            ItemLiveHockey(
+                                                hockeyMatchRt176 = it,
+                                                event = event
+                                            )
+                                        }
                                     }
                                 }
                             }
                         }
                     }
                 }
+            } else  {
+                Text(
+                    modifier = modifier
+                        .fillMaxWidth(),
+                    text = stringResource(R.string.no_internet),
+                    style = TextStyle(
+                        fontSize = 24.sp,
+                        fontWeight = FontWeight(700),
+                        color = darkRed,
+                        textAlign = TextAlign.Center
+                    )
+                )
             }
         }
     }

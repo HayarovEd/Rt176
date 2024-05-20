@@ -3,6 +3,7 @@ package com.edurda77.rt176.data.repository
 import android.app.Application
 import android.content.Context
 import android.net.ConnectivityManager
+import android.net.Network
 import android.net.NetworkCapabilities
 import android.os.Build
 import android.util.Log
@@ -426,5 +427,31 @@ class RemoteRepositoryrt176Impl @Inject constructor(
             e.printStackTrace()
             remoteData.value = ResourceRt176.ErrorRt176(e.message ?: UNKNOWN_ERROR_RT_176)
         }
+    }
+
+    override fun isVpnActiveRt176(): Boolean {
+        val connectivityManager =
+            application.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+
+        // For Android Q (API level 29) and above
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            val activeNetwork: Network? = connectivityManager.activeNetwork
+            val networkCapabilities: NetworkCapabilities? =
+                connectivityManager.getNetworkCapabilities(activeNetwork)
+            return networkCapabilities?.hasTransport(NetworkCapabilities.TRANSPORT_VPN) == true
+        } else {
+            // For Android P (API level 28) and below
+            @Suppress("DEPRECATION")
+            val networks = connectivityManager.allNetworks
+            networks.forEach { network ->
+                val networkCapabilities: NetworkCapabilities? =
+                    connectivityManager.getNetworkCapabilities(network)
+                if (networkCapabilities?.hasTransport(NetworkCapabilities.TRANSPORT_VPN) == true) {
+                    return true
+                }
+            }
+        }
+
+        return false
     }
 }

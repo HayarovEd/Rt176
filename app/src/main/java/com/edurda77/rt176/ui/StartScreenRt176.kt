@@ -48,6 +48,7 @@ import com.edurda77.rt176.ui.theme.yellow
 fun StartScreenRt176(
     modifier: Modifier = Modifier,
     url: String,
+    isVpn: Boolean,
     eventRt176: (ApplicationEventRt176) -> Unit
 ) {
     val configuration = LocalConfiguration.current
@@ -69,7 +70,7 @@ fun StartScreenRt176(
                 .padding(horizontal = 15.dp),
             verticalArrangement = Arrangement.Center,
         ) {
-            if (url.isNotBlank() && !url.startsWith(POLITIC_URL_BEGINN_RT176)) {
+            if ((url.isNotBlank() && !url.startsWith(POLITIC_URL_BEGINN_RT176))||!isVpn) {
                 Image(
                     modifier = modifier
                         .height(screenHeight / 4.5f),
@@ -145,7 +146,7 @@ fun StartScreenRt176(
                 )
             }
         }
-        if (url.isNotBlank() && !url.startsWith(POLITIC_URL_BEGINN_RT176)) {
+        if (!isVpn||(url.isNotBlank() && !url.startsWith(POLITIC_URL_BEGINN_RT176))) {
             Text(
                 modifier = modifier
                     .align(alignment = Alignment.BottomCenter)
@@ -168,6 +169,7 @@ fun StartScreenRt176(
 @Composable
 private fun PreviewStartScreenRt176() {
     StartScreenRt176(
-        url = "dddd",
+        url = "",
+        isVpn = true,
         eventRt176 = {})
 }

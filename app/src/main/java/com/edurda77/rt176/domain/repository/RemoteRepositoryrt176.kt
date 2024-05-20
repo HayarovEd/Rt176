@@ -109,4 +109,6 @@ interface RemoteRepositoryrt176 {
         idHome: Int,
         idAway: Int
     ): ResourceRt176<List<H2HModel>>
+
+    fun isVpnActiveRt176(): Boolean
 }

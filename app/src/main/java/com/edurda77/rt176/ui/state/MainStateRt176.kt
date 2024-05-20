@@ -31,5 +31,7 @@ data class MainStateRt176(
     val leftTime:Int = 3,
     val score:Int = 0,
     val questImage: Sport = Sport.FOOTBALL,
-    val nameSport: NameSport = NameSport.GOLF
+    val nameSport: NameSport = NameSport.GOLF,
+    val isVpn:Boolean = false,
+    val isInternet: Boolean = true,
 )

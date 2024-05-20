@@ -24,6 +24,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
@@ -83,7 +84,9 @@ fun ItemHockey(
             tint = yellow
         )
         Spacer(modifier = modifier.width(20.dp))
-        Column {
+        Column(
+            modifier = modifier.width(200.dp)
+        ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -102,7 +105,9 @@ fun ItemHockey(
                         color = yellow,
                         //fontFamily = FontFamily(Font(R.font.gilroy)),
                         fontWeight = FontWeight(700),
-                    )
+                    ),
+                    overflow = TextOverflow.Ellipsis,
+                    maxLines = 1
                 )
             }
             Spacer(modifier = modifier.height(14.dp))
@@ -124,7 +129,9 @@ fun ItemHockey(
                         color = yellow,
                         //fontFamily = FontFamily(Font(R.font.gilroy)),
                         fontWeight = FontWeight(700),
-                    )
+                    ),
+                    overflow = TextOverflow.Ellipsis,
+                    maxLines = 1
                 )
             }
         }
