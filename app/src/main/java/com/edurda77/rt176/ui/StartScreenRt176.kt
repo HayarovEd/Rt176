@@ -49,6 +49,7 @@ fun StartScreenRt176(
     modifier: Modifier = Modifier,
     url: String,
     isVpn: Boolean,
+    isInternet: Boolean,
     eventRt176: (ApplicationEventRt176) -> Unit
 ) {
     val configuration = LocalConfiguration.current
@@ -70,7 +71,7 @@ fun StartScreenRt176(
                 .padding(horizontal = 15.dp),
             verticalArrangement = Arrangement.Center,
         ) {
-            if ((url.isNotBlank() && !url.startsWith(POLITIC_URL_BEGINN_RT176))||!isVpn) {
+            if (!isVpn&&(url.isNotBlank() && !url.startsWith(POLITIC_URL_BEGINN_RT176))&&isInternet) {
                 Image(
                     modifier = modifier
                         .height(screenHeight / 4.5f),
@@ -146,7 +147,7 @@ fun StartScreenRt176(
                 )
             }
         }
-        if (!isVpn||(url.isNotBlank() && !url.startsWith(POLITIC_URL_BEGINN_RT176))) {
+        if (!isVpn&&(url.isNotBlank() && !url.startsWith(POLITIC_URL_BEGINN_RT176))&&isInternet) {
             Text(
                 modifier = modifier
                     .align(alignment = Alignment.BottomCenter)
@@ -169,7 +170,8 @@ fun StartScreenRt176(
 @Composable
 private fun PreviewStartScreenRt176() {
     StartScreenRt176(
-        url = "",
-        isVpn = true,
+        url = "ddddd",
+        isVpn = false,
+        isInternet = true,
         eventRt176 = {})
 }

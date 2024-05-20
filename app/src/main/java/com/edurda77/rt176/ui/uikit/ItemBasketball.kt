@@ -186,7 +186,7 @@ fun ItemBasketball(
                 modifier = modifier,
                 text = dsk,
                 style = TextStyle(
-                    fontSize = 14.sp,
+                    fontSize = 12.sp,
                     color = yellow,
                     //fontFamily = FontFamily(Font(R.font.gilroy)),
                     fontWeight = FontWeight(700),
@@ -197,7 +197,7 @@ fun ItemBasketball(
                 modifier = modifier,
                 text = basketballMatchRt176.timeStamp,
                 style = TextStyle(
-                    fontSize = 14.sp,
+                    fontSize = 12.sp,
                     color = yellow,
                     //fontFamily = FontFamily(Font(R.font.gilroy)),
                     fontWeight = FontWeight(700),

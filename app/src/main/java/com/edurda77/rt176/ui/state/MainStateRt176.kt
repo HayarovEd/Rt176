@@ -26,7 +26,6 @@ data class MainStateRt176(
     val phone: String = "",
     val bestScore: Int = 0,
     val isLoading: Boolean = true,
-    val isLoadingUrl: Boolean = true,
     val message: String = "",
     val leftTime:Int = 3,
     val score:Int = 0,

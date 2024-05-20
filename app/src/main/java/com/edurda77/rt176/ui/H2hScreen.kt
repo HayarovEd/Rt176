@@ -118,14 +118,14 @@ fun H2hScreen(
                 )
                 Spacer(modifier = modifier.height(25.dp))
                 RowH2h(
-                    logo = homeLogo,
+                    color = homeColor,
                     name = homeName,
                     colorRect = yellow,
                     score = homeScore
                 )
                 Spacer(modifier = modifier.height(25.dp))
                 RowH2h(
-                    logo = awayLogo,
+                    color = awayColor,
                     name = awayName,
                     colorRect = white176,
                     score = awayScore
@@ -289,7 +289,7 @@ fun H2hScreen(
 @Composable
 private fun RowH2h(
     modifier: Modifier = Modifier,
-    logo: String,
+    color: Int,
     name: String,
     colorRect: Color,
     score: Int?
@@ -308,11 +308,10 @@ private fun RowH2h(
                 .background(color = colorRect)
         )
         Spacer(modifier = modifier.width(16.dp))
-        AsyncImage(
-            modifier = modifier.size(24.dp),
-            model = logo,
-            contentDescription = "",
-            contentScale = ContentScale.FillBounds
+        Box(
+            modifier = modifier
+                .size(24.dp)
+                .background(color = Color(color)),
         )
         Spacer(modifier = modifier.width(16.dp))
         Text(

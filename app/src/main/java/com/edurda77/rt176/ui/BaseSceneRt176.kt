@@ -47,6 +47,7 @@ fun BaseSceneRt176(
             StartScreenRt176(
                 url = stateRt176.value.destinationUrl,
                 isVpn = stateRt176.value.isVpn,
+                isInternet = stateRt176.value.isInternet,
                 eventRt176 = eventRt171
             )
         }

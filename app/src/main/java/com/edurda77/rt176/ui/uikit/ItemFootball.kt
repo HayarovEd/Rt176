@@ -171,7 +171,7 @@ fun ItemFootball(
                 modifier = modifier,
                 text = dsk,
                 style = TextStyle(
-                    fontSize = 14.sp,
+                    fontSize = 12.sp,
                     color = yellow,
                     //fontFamily = FontFamily(Font(R.font.gilroy)),
                     fontWeight = FontWeight(700),
@@ -182,7 +182,7 @@ fun ItemFootball(
                 modifier = modifier,
                 text = footballMatchRt176.timeStamp,
                 style = TextStyle(
-                    fontSize = 14.sp,
+                    fontSize = 12.sp,
                     color = yellow,
                     //fontFamily = FontFamily(Font(R.font.gilroy)),
                     fontWeight = FontWeight(700),

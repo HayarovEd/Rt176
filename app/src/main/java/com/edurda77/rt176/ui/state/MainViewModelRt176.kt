@@ -40,36 +40,27 @@ class MainViewModelRt176 @Inject constructor(
 
     init {
         viewModelScope.launch(Dispatchers.IO) {
-            if (remoteRepositoryRt176.isInternetConnectedrt176()&&!remoteRepositoryRt176.isVpnActiveRt176()) {
-                async { getFootballDataRt176() }.onAwait
-                async { getBasketballDataRt176() }.onAwait
-                async { getHockeyDataRt176() }.onAwait
-                val savedUrl = remoteRepositoryRt176.getSharedUrlrt176()
-                if (savedUrl.isNullOrBlank()) {
-                    getUrlRt176()
-                } else {
-                    _state.value.copy(
-                        destinationUrl = savedUrl
-                    )
-                        .fusUpdateStateUIRt176()
-                }
-                _state.value.copy(
-                    applicationStRt176 = ApplicationStRt176.StartRt176(),
-                    name = remoteRepositoryRt176.getNamert176() ?: "",
-                    phone = remoteRepositoryRt176.getPhonert176() ?: "",
-                    bestScore = remoteRepositoryRt176.getBestScorert176(),
-                    isVpn = remoteRepositoryRt176.isVpnActiveRt176()
-                )
-                    .fusUpdateStateUIRt176()
+            async { getFootballDataRt176() }.onAwait
+            async { getBasketballDataRt176() }.onAwait
+            async { getHockeyDataRt176() }.onAwait
+            val savedUrl = remoteRepositoryRt176.getSharedUrlrt176()
+            if (savedUrl.isNullOrBlank()) {
+                getUrlRt176()
             } else {
                 _state.value.copy(
-                    isLoadingUrl = false,
-                    applicationStRt176 = ApplicationStRt176.StartRt176(),
-                    message = "Проверьте интернет соединение",
-                    isInternet = false,
+                    destinationUrl = savedUrl
                 )
                     .fusUpdateStateUIRt176()
             }
+            _state.value.copy(
+                applicationStRt176 = ApplicationStRt176.StartRt176(),
+                name = remoteRepositoryRt176.getNamert176() ?: "",
+                phone = remoteRepositoryRt176.getPhonert176() ?: "",
+                bestScore = remoteRepositoryRt176.getBestScorert176(),
+                isVpn = remoteRepositoryRt176.isVpnActiveRt176(),
+                isInternet = remoteRepositoryRt176.isInternetConnectedrt176()
+            )
+                .fusUpdateStateUIRt176()
         }
     }
 
@@ -198,7 +189,6 @@ class MainViewModelRt176 @Inject constructor(
                             .fusUpdateStateUIRt176()
                     } else {
                         _state.value.copy(
-                            isLoadingUrl = false,
                             message = "Проверьте интернет соединение",
                             isInternet = false,
                            // applicationStRt176 = ApplicationStRt176.StartRt176()
@@ -311,7 +301,6 @@ class MainViewModelRt176 @Inject constructor(
                 is ResourceRt176.ErrorRt176 -> {
                     Log.d("MainViewModelRt145", "url error -${result.messageRt176}")
                     _state.value.copy(
-                        isLoadingUrl = false,
                         applicationStRt176 = ApplicationStRt176.StartRt176()
                     )
                         .fusUpdateStateUIRt176()
@@ -322,7 +311,6 @@ class MainViewModelRt176 @Inject constructor(
                     if (result.dvtRt176 != null) {
                         if (result.dvtRt176.isNotBlank()) {
                             _state.value.copy(
-                                isLoadingUrl = false,
                                 destinationUrl = result.dvtRt176,
                                 applicationStRt176 = ApplicationStRt176.StartRt176()
                             )

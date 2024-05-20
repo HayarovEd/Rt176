@@ -145,7 +145,7 @@ fun ItemHockey(
                 modifier = modifier,
                 text = dsk,
                 style = TextStyle(
-                    fontSize = 14.sp,
+                    fontSize = 12.sp,
                     color = yellow,
                     //fontFamily = FontFamily(Font(R.font.gilroy)),
                     fontWeight = FontWeight(700),
@@ -156,7 +156,7 @@ fun ItemHockey(
                 modifier = modifier,
                 text = hockeyMatchRt176.timeStamp,
                 style = TextStyle(
-                    fontSize = 14.sp,
+                    fontSize = 12.sp,
                     color = yellow,
                     //fontFamily = FontFamily(Font(R.font.gilroy)),
                     fontWeight = FontWeight(700),
