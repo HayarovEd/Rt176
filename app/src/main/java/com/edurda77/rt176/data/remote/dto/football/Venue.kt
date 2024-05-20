@@ -9,7 +9,7 @@ data class Venue(
     @SerialName("city")
     val city: String?,
     @SerialName("id")
-    val id: Int?,
+    val idRt176FtDto: Int?,
     @SerialName("name")
-    val name: String?
+    val nameRt176FtDto: String?
 )

@@ -7,9 +7,9 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class Home(
     @SerialName("id")
-    val id: Int,
+    val idRT176hcDto: Int,
     @SerialName("logo")
     val logo: String,
     @SerialName("name")
-    val name: String
+    val nameRT176hcDto: String
 )

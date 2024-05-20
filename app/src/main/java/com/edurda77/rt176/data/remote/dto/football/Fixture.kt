@@ -7,9 +7,9 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class Fixture(
     @SerialName("date")
-    val date: String,
+    val dateRt176FtDto: String,
     @SerialName("id")
-    val id: Int,
+    val idRt176FtDto: Int,
     @SerialName("periods")
     val periods: Periods,
     @SerialName("referee")
@@ -17,9 +17,9 @@ data class Fixture(
     @SerialName("status")
     val status: Status,
     @SerialName("timestamp")
-    val timestamp: Int,
+    val timestampRt176FtDto: Int,
     @SerialName("timezone")
-    val timezone: String,
+    val timezoneRt176FtDto: String,
     @SerialName("venue")
     val venue: Venue
 )

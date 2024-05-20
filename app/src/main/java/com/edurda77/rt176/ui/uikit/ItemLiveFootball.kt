@@ -11,17 +11,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -32,6 +29,8 @@ import com.edurda77.rt176.R
 import com.edurda77.rt176.domain.model.FootballMatchRt176
 import com.edurda77.rt176.domain.utils.formattedDateRt176
 import com.edurda77.rt176.ui.state.ApplicationEventRt176
+import com.edurda77.rt176.ui.state.TypeEventsRt176
+import com.edurda77.rt176.ui.state.TypeGame
 import com.edurda77.rt176.ui.theme.darkRed
 import com.edurda77.rt176.ui.theme.yellow
 import java.time.LocalDate
@@ -69,11 +68,27 @@ fun ItemLiveFootball(
     event: (ApplicationEventRt176) -> Unit
 ) {
     val isToday = LocalDate.now().formattedDateRt176() == footballMatchRt176.dateStamp
+    val dsk = "${stringResource(R.string.lives)}, ${footballMatchRt176.statusGame}, ${footballMatchRt176.currentTimeMatch}`"
     Row(
         modifier = modifier
             .fillMaxWidth()
             .clip(shape = RoundedCornerShape(16.dp))
-            .clickable { }
+            .clickable {
+                event(
+                    ApplicationEventRt176.GetH2hData176(
+                        idHome = footballMatchRt176.homeId,
+                        homeLogo = footballMatchRt176.homeImage,
+                        homeName = footballMatchRt176.homeName,
+                        homeScore = footballMatchRt176.homeScore,
+                        idAway = footballMatchRt176.awayId,
+                        awayLogo = footballMatchRt176.awayImage,
+                        awayName = footballMatchRt176.awayName,
+                        awayScore = footballMatchRt176.awayScore,
+                        title = dsk,
+                        typeEventsRt176 = TypeEventsRt176.LiveGamesRt176(TypeGame.FootballRt176())
+                    )
+                )
+            }
             .background(color = darkRed)
             .padding(top = 5.dp, bottom = 5.dp, end = 15.dp),
         verticalAlignment = Alignment.CenterVertically

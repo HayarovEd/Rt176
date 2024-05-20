@@ -12,7 +12,7 @@ data class FootballDto(
     @SerialName("get")
     val getSt: String,
     @SerialName("paging")
-    val paging: Paging,
+    val pagingRt176FtDto: Paging,
     @SerialName("parameters")
     val parameters: Parameters,
     @SerialName("response")

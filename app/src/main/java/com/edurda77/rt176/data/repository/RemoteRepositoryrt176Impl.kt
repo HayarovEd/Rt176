@@ -7,14 +7,21 @@ import android.net.NetworkCapabilities
 import android.os.Build
 import android.util.Log
 import com.backendless.Backendless
+import com.edurda77.rt176.data.mapper.convertBasketballToH2hModel
+import com.edurda77.rt176.data.mapper.convertFottballToH2hModel
+import com.edurda77.rt176.data.mapper.convertHockeyToH2hModel
 import com.edurda77.rt176.data.mapper.convertToBasketBallMatches
 import com.edurda77.rt176.data.mapper.convertToFootballMatches
 import com.edurda77.rt176.data.mapper.convertToHokkeyMatches
 import com.edurda77.rt176.data.remote.dto.basketball.BasketBallDto
 import com.edurda77.rt176.data.remote.dto.football.FootballDto
+import com.edurda77.rt176.data.remote.dto.h2h_basketball.H2hBasketballDto
+import com.edurda77.rt176.data.remote.dto.h2h_football.H2hFootballDto
+import com.edurda77.rt176.data.remote.dto.h2h_hockey.H2hHockeyDto
 import com.edurda77.rt176.data.remote.dto.hokkey.HokkeyDto
 import com.edurda77.rt176.domain.model.BasketballMatchRt176
 import com.edurda77.rt176.domain.model.FootballMatchRt176
+import com.edurda77.rt176.domain.model.H2HModel
 import com.edurda77.rt176.domain.model.HockeyMatchRt176
 import com.edurda77.rt176.domain.repository.RemoteRepositoryrt176
 import com.edurda77.rt176.domain.utils.ANDROID_API_KEY_RT176
@@ -35,10 +42,9 @@ import com.edurda77.rt176.domain.utils.SHARED_URL_RT176
 import com.edurda77.rt176.domain.utils.TABLE_NAME_RT176
 import com.edurda77.rt176.domain.utils.TIME_ZONE
 import com.edurda77.rt176.domain.utils.UNKNOWN_ERROR_RT_176
-import com.edurda77.rt176.domain.utils.URL_BASKETBALL_RT_145
-import com.edurda77.rt176.domain.utils.URL_FOOTBALL_RT_145
-import com.edurda77.rt176.domain.utils.URL_HOKKEY_RT_145
-import com.edurda77.rt176.domain.utils.formattedDateRt176
+import com.edurda77.rt176.domain.utils.URL_BASKETBALL_RT_176
+import com.edurda77.rt176.domain.utils.URL_FOOTBALL_RT_176
+import com.edurda77.rt176.domain.utils.URL_HOKKEY_RT_176
 import com.yandex.metrica.AppMetricaDeviceIDListener
 import com.yandex.metrica.YandexMetrica
 import io.ktor.client.HttpClient
@@ -53,7 +59,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import java.util.Date
 import javax.inject.Inject
 import kotlin.random.Random
 
@@ -61,24 +66,24 @@ class RemoteRepositoryrt176Impl @Inject constructor(
     private val application: Application,
     private val httpClient: HttpClient
 ) : RemoteRepositoryrt176 {
-    private val sharedPrefRt171 =
+    private val sharedPrefRt176 =
         application.getSharedPreferences(SHARED_DATA_RT176, Context.MODE_PRIVATE)
 
     override val remoteData =
         MutableStateFlow<ResourceRt176<String>>(ResourceRt176.SuccessRt176(bnm = null))
 
-    override suspend fun getFootballData(
-        timeStamp: String
+    override suspend fun getFootballDataRt176(
+        timeStampRt176ft: String
     ): ResourceRt176<List<FootballMatchRt176>> {
         return try {
             val fg = Random.nextDouble(0.0, 20.0)
             val vbn = 8
             val sd = if (fg > vbn) fg else vbn
             println(sd)
-            val result = httpClient.get(URL_FOOTBALL_RT_145 + "fixtures") {
+            val result = httpClient.get(URL_FOOTBALL_RT_176 + "fixtures") {
                 contentType(ContentType.Application.Json)
                 url {
-                    parameter("date", timeStamp)
+                    parameter("date", timeStampRt176ft)
                     parameter("timezone", TIME_ZONE)
                     header("x-rapidapi-key", RAPID_TOKEN_RT_176)
                     header("x-rapidapi-host", RAPID_FOOTBALL_HOST_RT_176)
@@ -99,18 +104,18 @@ class RemoteRepositoryrt176Impl @Inject constructor(
         }
     }
 
-    override suspend fun getBasketballData(
-        timeStamp: String,
+    override suspend fun getBasketballDataRt176(
+        timeStampRt176bsk: String,
     ): ResourceRt176<List<BasketballMatchRt176>> {
         return try {
             val fg = Random.nextDouble(0.0, 20.0)
             val vbn = 8
             val sd = if (fg > vbn) fg else vbn
             println(sd)
-            val result = httpClient.get(URL_BASKETBALL_RT_145 + "games") {
+            val result = httpClient.get(URL_BASKETBALL_RT_176 + "games") {
                 contentType(ContentType.Application.Json)
                 url {
-                    parameter("date", timeStamp)
+                    parameter("date", timeStampRt176bsk)
                     parameter("timezone", TIME_ZONE)
                     header("x-rapidapi-key", RAPID_TOKEN_RT_176)
                     header("x-rapidapi-host", RAPID_BASKETBALL_HOST_RT_176)
@@ -131,18 +136,18 @@ class RemoteRepositoryrt176Impl @Inject constructor(
         }
     }
 
-    override suspend fun getHockeyData(
-        timeStamp: String
+    override suspend fun getHockeyDataRt176(
+        timeStampRt176hc: String
     ): ResourceRt176<List<HockeyMatchRt176>> {
         return try {
             val fg = Random.nextDouble(0.0, 20.0)
             val vbn = 8
             val sd = if (fg > vbn) fg else vbn
             println(sd)
-            val result = httpClient.get(URL_HOKKEY_RT_145 + "games") {
+            val result = httpClient.get(URL_HOKKEY_RT_176 + "games") {
                 contentType(ContentType.Application.Json)
                 url {
-                    parameter("date", timeStamp)
+                    parameter("date", timeStampRt176hc)
                     parameter("timezone", TIME_ZONE)
                     header("x-rapidapi-key", RAPID_TOKEN_RT_176)
                     header("x-rapidapi-host", RAPID_HOKKEY_HOST_RT_176)
@@ -166,13 +171,13 @@ class RemoteRepositoryrt176Impl @Inject constructor(
     override suspend fun getFootballH2HData(
         idHome: Int,
         idAway: Int
-    ): ResourceRt176<List<FootballMatchRt176>> {
+    ): ResourceRt176<List<H2HModel>> {
         return try {
             val fg = Random.nextDouble(0.0, 20.0)
             val vbn = 8
             val sd = if (fg > vbn) fg else vbn
             println(sd)
-            val result = httpClient.get(URL_FOOTBALL_RT_145 + "fixtures/headtohead") {
+            val result = httpClient.get(URL_FOOTBALL_RT_176 + "fixtures/headtohead") {
                 contentType(ContentType.Application.Json)
                 url {
                     parameter("h2h", "$idHome-$idAway")
@@ -182,9 +187,9 @@ class RemoteRepositoryrt176Impl @Inject constructor(
                 }
             }
                 .call
-                .body<FootballDto>()
+                .body<H2hFootballDto>()
             ResourceRt176.SuccessRt176(
-                bnm = result.convertToFootballMatches()
+                bnm = result.convertFottballToH2hModel().takeLast(5)
             )
         } catch (e: Exception) {
             val fg = Random.nextInt(0, 20)
@@ -199,13 +204,13 @@ class RemoteRepositoryrt176Impl @Inject constructor(
     override suspend fun getBasketballH2hData(
         idHome: Int,
         idAway: Int
-    ): ResourceRt176<List<BasketballMatchRt176>> {
+    ): ResourceRt176<List<H2HModel>> {
         return try {
             val fg = Random.nextDouble(0.0, 20.0)
             val vbn = 8
             val sd = if (fg > vbn) fg else vbn
             println(sd)
-            val result = httpClient.get(URL_BASKETBALL_RT_145 + "games/h2h") {
+            val result = httpClient.get(URL_BASKETBALL_RT_176 + "games") {
                 contentType(ContentType.Application.Json)
                 url {
                     parameter("h2h", "$idHome-$idAway")
@@ -215,9 +220,9 @@ class RemoteRepositoryrt176Impl @Inject constructor(
                 }
             }
                 .call
-                .body<BasketBallDto>()
+                .body<H2hBasketballDto>()
             ResourceRt176.SuccessRt176(
-                bnm = result.convertToBasketBallMatches()
+                bnm = result.convertBasketballToH2hModel().takeLast(5)
             )
         } catch (e: Exception) {
             val fg = Random.nextInt(0, 20)
@@ -232,13 +237,13 @@ class RemoteRepositoryrt176Impl @Inject constructor(
     override suspend fun getHockeyH2HData(
         idHome: Int,
         idAway: Int
-    ): ResourceRt176<List<HockeyMatchRt176>> {
+    ): ResourceRt176<List<H2HModel>> {
         return try {
             val fg = Random.nextDouble(0.0, 20.0)
             val vbn = 8
             val sd = if (fg > vbn) fg else vbn
             println(sd)
-            val result = httpClient.get(URL_HOKKEY_RT_145 + "games/h2h") {
+            val result = httpClient.get(URL_HOKKEY_RT_176 + "games/h2h") {
                 contentType(ContentType.Application.Json)
                 url {
                     parameter("h2h", "$idHome-$idAway")
@@ -248,9 +253,9 @@ class RemoteRepositoryrt176Impl @Inject constructor(
                 }
             }
                 .call
-                .body<HokkeyDto>()
+                .body<H2hHockeyDto>()
             ResourceRt176.SuccessRt176(
-                bnm = result.convertToHokkeyMatches()
+                bnm = result.convertHockeyToH2hModel().takeLast(5)
             )
         } catch (e: Exception) {
             val fg = Random.nextInt(0, 20)
@@ -269,7 +274,7 @@ class RemoteRepositoryrt176Impl @Inject constructor(
         val vbn = 8
         val sd = if (fg > vbn) fg else vbn
         println(sd)
-        return sharedPrefRt171.getString(SHARED_URL_RT176, "")
+        return sharedPrefRt176.getString(SHARED_URL_RT176, "")
     }
 
     override suspend fun setSharedUrlrt176(date: String) {
@@ -278,7 +283,7 @@ class RemoteRepositoryrt176Impl @Inject constructor(
         val vbn = 8
         val sd = if (fg > vbn) fg else vbn
         println(sd)
-        sharedPrefRt171.edit().putString(SHARED_URL_RT176, date).apply()
+        sharedPrefRt176.edit().putString(SHARED_URL_RT176, date).apply()
     }
 
     override suspend fun getNamert176(): String? {
@@ -286,7 +291,7 @@ class RemoteRepositoryrt176Impl @Inject constructor(
         val vbn = 8
         val sd = if (fg > vbn) fg else vbn
         println(sd)
-        return sharedPrefRt171.getString(SHARED_NAME_RT176, "")
+        return sharedPrefRt176.getString(SHARED_NAME_RT176, "")
     }
 
     override suspend fun setNamert176(date: String) {
@@ -294,7 +299,7 @@ class RemoteRepositoryrt176Impl @Inject constructor(
         val vbn = 8
         val sd = if (fg > vbn) fg else vbn
         println(sd)
-        sharedPrefRt171.edit().putString(SHARED_NAME_RT176, date).apply()
+        sharedPrefRt176.edit().putString(SHARED_NAME_RT176, date).apply()
     }
 
     override suspend fun getPhonert176(): String? {
@@ -302,7 +307,7 @@ class RemoteRepositoryrt176Impl @Inject constructor(
         val vbn = 8
         val sd = if (fg > vbn) fg else vbn
         println(sd)
-        return sharedPrefRt171.getString(SHARED_PHONE_RT176, "")
+        return sharedPrefRt176.getString(SHARED_PHONE_RT176, "")
     }
 
     override suspend fun setPhonert176(date: String) {
@@ -310,7 +315,7 @@ class RemoteRepositoryrt176Impl @Inject constructor(
         val vbn = 8
         val sd = if (fg > vbn) fg else vbn
         println(sd)
-        sharedPrefRt171.edit().putString(SHARED_PHONE_RT176, date).apply()
+        sharedPrefRt176.edit().putString(SHARED_PHONE_RT176, date).apply()
     }
 
     override suspend fun getBestScorert176(): Int {
@@ -318,7 +323,7 @@ class RemoteRepositoryrt176Impl @Inject constructor(
         val vbn = 8
         val sd = if (fg > vbn) fg else vbn
         println(sd)
-        return sharedPrefRt171.getInt(SHARED_BEST_SCORE_RT176, 0)
+        return sharedPrefRt176.getInt(SHARED_BEST_SCORE_RT176, 0)
     }
 
     override suspend fun setBestScorert176(date: Int) {
@@ -326,7 +331,7 @@ class RemoteRepositoryrt176Impl @Inject constructor(
         val vbn = 8
         val sd = if (fg > vbn) fg else vbn
         println(sd)
-        sharedPrefRt171.edit().putInt(SHARED_BEST_SCORE_RT176, date).apply()
+        sharedPrefRt176.edit().putInt(SHARED_BEST_SCORE_RT176, date).apply()
     }
 
     override suspend fun isInternetConnectedrt176(): Boolean {

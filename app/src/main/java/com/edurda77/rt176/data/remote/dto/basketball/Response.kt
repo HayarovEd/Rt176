@@ -6,28 +6,24 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Response(
-    @SerialName("country")
-    val country: Country,
     @SerialName("date")
-    val date: String,
+    val dateBskRt176: String,
     @SerialName("id")
-    val id: Int,
-    @SerialName("league")
-    val league: League,
+    val idBskRt176: Int,
     @SerialName("scores")
     val scores: Scores,
     @SerialName("stage")
     val stage: String?,
     @SerialName("status")
-    val status: Status,
+    val statusRt176Dto: Status,
     @SerialName("teams")
     val teams: Teams,
     @SerialName("time")
-    val time: String,
+    val timeRt176Dto: String,
     @SerialName("timestamp")
-    val timestamp: Int,
+    val timestampRt176Dto: Int,
     @SerialName("timezone")
-    val timezone: String,
+    val timezoneRt176Dto: String,
     @SerialName("week")
     val week: String?
 )

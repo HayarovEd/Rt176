@@ -10,7 +10,7 @@ enum class Sport(val image: Int, val title: String){
     VOLLEYBALL (R.drawable.volleyball, "Волейбол")
 }
 
-enum class NameSport(val title: String) {
+enum class NameSport(val titleSport: String) {
     BASKETBALL("Баскетбол"),
     FOOTBALL("Футбол"),
     GOLF("Гольф"),

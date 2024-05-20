@@ -48,7 +48,7 @@ import com.edurda77.rt176.ui.theme.yellow
 fun StartScreenRt176(
     modifier: Modifier = Modifier,
     url: String,
-    event: (ApplicationEventRt176) -> Unit
+    eventRt176: (ApplicationEventRt176) -> Unit
 ) {
     val configuration = LocalConfiguration.current
     val screenHeight = configuration.screenHeightDp.dp
@@ -124,10 +124,10 @@ fun StartScreenRt176(
                     containerColor = yellow
                 ),
                 onClick = {
-                    event(
+                    eventRt176(
                         ApplicationEventRt176.OnSetApplicationStateRt176(
                             ApplicationStRt176.EventsRt176(
-                                TypeEventsRt176.GamesOfDay(TypeGame.FootballRt176())
+                                TypeEventsRt176.GamesOfDayRt176(TypeGame.FootballRt176())
                             )
                         )
                     )
@@ -166,8 +166,8 @@ fun StartScreenRt176(
 
 @Preview
 @Composable
-private fun PreviewStartScreenRt171() {
+private fun PreviewStartScreenRt176() {
     StartScreenRt176(
         url = "dddd",
-        event = {})
+        eventRt176 = {})
 }

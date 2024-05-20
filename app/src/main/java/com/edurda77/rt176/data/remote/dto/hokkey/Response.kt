@@ -9,29 +9,27 @@ data class Response(
     @SerialName("country")
     val country: Country,
     @SerialName("date")
-    val date: String,
+    val dateRt176HcDto: String,
     @SerialName("events")
-    val events: Boolean,
+    val eventsRt176HcDto: Boolean,
     @SerialName("id")
-    val id: Int,
-    @SerialName("league")
-    val league: League,
+    val idRt176HcDto: Int,
     @SerialName("periods")
     val periods: Periods,
     @SerialName("scores")
     val scores: Scores,
     @SerialName("status")
-    val status: Status,
+    val statusRt176HcDto: Status,
     @SerialName("teams")
     val teams: Teams,
     @SerialName("time")
-    val time: String,
+    val timeRt176Dto: String,
     @SerialName("timer")
     val timer: Int?,
     @SerialName("timestamp")
-    val timestamp: Int,
+    val timestampRt176HcDto: Int,
     @SerialName("timezone")
-    val timezone: String,
+    val timezoneRt176HcDto: String,
     @SerialName("week")
     val week: String?
 )

@@ -1,16 +1,18 @@
 package com.edurda77.rt176.data.mapper
 
 import com.edurda77.rt176.data.remote.dto.basketball.BasketBallDto
+import com.edurda77.rt176.data.remote.dto.h2h_basketball.H2hBasketballDto
 import com.edurda77.rt176.domain.model.BasketballMatchRt176
+import com.edurda77.rt176.domain.model.H2HModel
 
 
 fun BasketBallDto.convertToBasketBallMatches(): List<BasketballMatchRt176> {
     return this.response.map { response ->
         BasketballMatchRt176(
-            timeStamp = response.date.substring(11, 16),
-            dateStamp = response.date.substring(0, 10),
-            statusGame = setStatusGame(response.status.short),
-            currentTimeMatch = response.status.timer,
+            timeStamp = response.dateBskRt176.substring(11, 16),
+            dateStamp = response.dateBskRt176.substring(0, 10),
+            statusGame = setStatusGame(response.statusRt176Dto.short),
+            currentTimeMatch = response.statusRt176Dto.timer,
             awayId = response.teams.away.id,
             awayImage = response.teams.away.logo,
             awayScore = response.scores.away.total,
@@ -19,22 +21,35 @@ fun BasketBallDto.convertToBasketBallMatches(): List<BasketballMatchRt176> {
             awayQuarter3 = response.scores.away.quarter3,
             awayQuarter4 = response.scores.away.quarter4,
             awayName = response.teams.away.name,
-            homeId = response.teams.home.id,
+            homeId = response.teams.home.idRt176bskDtoX,
             homeImage = response.teams.home.logo,
             homeScore = response.scores.home.total,
             homeQuarter1 = response.scores.home.quarter1,
             homeQuarter2 = response.scores.home.quarter2,
             homeQuarter3 = response.scores.home.quarter3,
             homeQuarter4 = response.scores.home.quarter4,
-            homeName = response.teams.home.name,
-            isPlay = checkLiveGame(response.status.short)
+            homeName = response.teams.home.nameRt176bskDtoX,
+            isPlay = checkLiveGame(response.statusRt176Dto.short)
         )
     }
 }
 
+fun H2hBasketballDto.convertBasketballToH2hModel(): List<H2HModel> {
+    return this.response.map {
+        H2HModel(
+            homeName = it.teams.home.name,
+            homeLogo = it.teams.home.logo,
+            homeScore = it.scores.home.total,
+            awayName = it.teams.away.name,
+            awayLogo = it.teams.away.logo,
+            awayScore = it.scores.away.total,
+            dateOfMatch = it.date.substring(0, 10)
+        )
+    }
+}
 
-private fun setStatusGame(status: String): String {
-    return when (status) {
+private fun setStatusGame(statusBskRt176: String): String {
+    return when (statusBskRt176) {
         "NS" -> "СК"
         "Q1" -> "1Ч"
         "Q2" -> "2Ч"
@@ -48,8 +63,8 @@ private fun setStatusGame(status: String): String {
     }
 }
 
-private fun checkLiveGame(status: String): Boolean {
-    return when (status) {
+private fun checkLiveGame(statusBskRt176: String): Boolean {
+    return when (statusBskRt176) {
         "Q1", "Q2", "Q3", "Q4", "OT", "BT", "HT"  -> true
         else -> false
     }
