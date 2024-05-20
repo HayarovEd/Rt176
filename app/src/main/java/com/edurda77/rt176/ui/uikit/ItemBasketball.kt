@@ -28,6 +28,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
@@ -67,8 +68,9 @@ private fun Sample() {
         isPlay = false,
         statusGame = "Окончен",
         awayColor = 1,
-        homeColor = 100
+        homeColor = 100,
     ),
+        timeTexSize = 14.sp,
         eventRt176 = {})
 }
 
@@ -77,6 +79,7 @@ private fun Sample() {
 fun ItemBasketball(
     modifier: Modifier = Modifier,
     basketballMatchRt176: BasketballMatchRt176,
+    timeTexSize: TextUnit,
     eventRt176: (ApplicationEventRt176) -> Unit
 ) {
     val isToday = LocalDate.now().formattedDateRt176() == basketballMatchRt176.dateStamp
@@ -98,7 +101,8 @@ fun ItemBasketball(
                     title = "$dsk в ${basketballMatchRt176.timeStamp}",
                     typeEventsRt176 = TypeEventsRt176.GamesOfDayRt176(TypeGame.BasketballRt176()),
                     awayColor = basketballMatchRt176.awayColor,
-                    homeColor = basketballMatchRt176.homeColor
+                    homeColor = basketballMatchRt176.homeColor,
+                    icon = R.drawable.ic_basketball
                 ))
             }
             .background(color = darkRed)
@@ -123,10 +127,11 @@ fun ItemBasketball(
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Box(
-                    modifier = modifier
-                        .size(36.dp)
-                        .background(color = Color(basketballMatchRt176.homeColor)),
+                Icon(
+                    modifier = modifier.size(36.dp),
+                    imageVector = ImageVector.vectorResource(id = R.drawable.ic_basketball),
+                    contentDescription = "",
+                    tint = Color(basketballMatchRt176.homeColor)
                 )
                /* AsyncImage(
                     modifier = modifier.size(36.dp),
@@ -152,10 +157,11 @@ fun ItemBasketball(
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Box(
-                    modifier = modifier
-                        .size(36.dp)
-                        .background(color = Color(basketballMatchRt176.awayColor)),
+                Icon(
+                    modifier = modifier.size(36.dp),
+                    imageVector = ImageVector.vectorResource(id = R.drawable.ic_basketball),
+                    contentDescription = "",
+                    tint = Color(basketballMatchRt176.awayColor)
                 )
                 /*AsyncImage(
                     modifier = modifier.size(36.dp),
@@ -186,7 +192,7 @@ fun ItemBasketball(
                 modifier = modifier,
                 text = dsk,
                 style = TextStyle(
-                    fontSize = 12.sp,
+                    fontSize = timeTexSize,
                     color = yellow,
                     //fontFamily = FontFamily(Font(R.font.gilroy)),
                     fontWeight = FontWeight(700),
@@ -197,7 +203,7 @@ fun ItemBasketball(
                 modifier = modifier,
                 text = basketballMatchRt176.timeStamp,
                 style = TextStyle(
-                    fontSize = 12.sp,
+                    fontSize = timeTexSize,
                     color = yellow,
                     //fontFamily = FontFamily(Font(R.font.gilroy)),
                     fontWeight = FontWeight(700),

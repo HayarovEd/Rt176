@@ -2,7 +2,10 @@ package com.edurda77.rt176.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.edurda77.rt176.domain.utils.dpToSpRt176
 import com.edurda77.rt176.ui.state.ApplicationStRt176.EventsRt176
 import com.edurda77.rt176.ui.state.ApplicationStRt176.GameRt176
 import com.edurda77.rt176.ui.state.ApplicationStRt176.H2h
@@ -18,6 +21,9 @@ fun BaseSceneRt176(
 ) {
     val stateRt176 = viewModel.state.collectAsState()
     val eventRt171 = viewModel::onEventRt176
+    val configuration = LocalConfiguration.current
+    val screenWidth = configuration.screenWidthDp.dp
+    val timeTexSize = (screenWidth/120f).dpToSpRt176()
     when (val rst = stateRt176.value.applicationStRt176) {
         is GameRt176 -> {
             GameScreen(
@@ -67,6 +73,7 @@ fun BaseSceneRt176(
                 phoneRt176 = stateRt176.value.phone,
                 selectedDateRt176Es = stateRt176.value.selectedDate,
                 isInternet = stateRt176.value.isInternet,
+                timeTexSize = timeTexSize,
                 event = eventRt171)
         }
 
@@ -84,6 +91,7 @@ fun BaseSceneRt176(
                 isLoading = stateRt176.value.isLoading,
                 matches = stateRt176.value.matches,
                 lastAppState = stateRt176.value.lastStatus,
+                icon = rst.icon,
                 event = eventRt171
             )
         }

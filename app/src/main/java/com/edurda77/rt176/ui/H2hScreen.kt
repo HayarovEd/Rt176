@@ -61,6 +61,7 @@ fun H2hScreen(
     title: String,
     isLoading: Boolean,
     matches: List<H2HModel>,
+    icon: Int,
     lastAppState: ApplicationStRt176,
     event: (ApplicationEventRt176) -> Unit
 ) {
@@ -120,6 +121,7 @@ fun H2hScreen(
                 RowH2h(
                     color = homeColor,
                     name = homeName,
+                    icon = icon,
                     colorRect = yellow,
                     score = homeScore
                 )
@@ -127,6 +129,7 @@ fun H2hScreen(
                 RowH2h(
                     color = awayColor,
                     name = awayName,
+                    icon = icon,
                     colorRect = white176,
                     score = awayScore
                 )
@@ -212,10 +215,11 @@ fun H2hScreen(
                                         modifier = modifier,
                                         verticalAlignment = Alignment.CenterVertically,
                                     ) {
-                                        Box(
-                                            modifier = modifier
-                                                .size(24.dp)
-                                                .background(color = Color(homeColor)),
+                                        Icon(
+                                            modifier = modifier.size(36.dp),
+                                            imageVector = ImageVector.vectorResource(id = icon),
+                                            contentDescription = "",
+                                            tint = Color(homeColor)
                                         )
                                         Spacer(modifier = modifier.width(10.dp))
                                         Text(
@@ -234,10 +238,11 @@ fun H2hScreen(
                                         modifier = modifier,
                                         verticalAlignment = Alignment.CenterVertically,
                                     ) {
-                                        Box(
-                                            modifier = modifier
-                                                .size(24.dp)
-                                                .background(color = Color(awayColor)),
+                                        Icon(
+                                            modifier = modifier.size(36.dp),
+                                            imageVector = ImageVector.vectorResource(id = icon),
+                                            contentDescription = "",
+                                            tint = Color(awayColor)
                                         )
                                         Spacer(modifier = modifier.width(10.dp))
                                         Text(
@@ -289,6 +294,7 @@ fun H2hScreen(
 @Composable
 private fun RowH2h(
     modifier: Modifier = Modifier,
+    icon: Int,
     color: Int,
     name: String,
     colorRect: Color,
@@ -308,10 +314,11 @@ private fun RowH2h(
                 .background(color = colorRect)
         )
         Spacer(modifier = modifier.width(16.dp))
-        Box(
-            modifier = modifier
-                .size(24.dp)
-                .background(color = Color(color)),
+        Icon(
+            modifier = modifier.size(36.dp),
+            imageVector = ImageVector.vectorResource(id = icon),
+            contentDescription = "",
+            tint = Color(color)
         )
         Spacer(modifier = modifier.width(16.dp))
         Text(

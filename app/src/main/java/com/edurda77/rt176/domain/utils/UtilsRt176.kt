@@ -1,6 +1,11 @@
 package com.edurda77.rt176.domain.utils
 
 import android.graphics.Color
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.TextUnit
+import androidx.compose.ui.unit.sp
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.time.format.TextStyle
@@ -29,4 +34,9 @@ fun generateRandomColorRt175(): Int {
         random.nextInt(256),
         random.nextInt(256)
     )
+}
+
+@Composable
+internal fun Dp.dpToSpRt176(): TextUnit {
+    return (this.value * LocalDensity.current.density / LocalDensity.current.fontScale).sp
 }

@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
@@ -19,8 +20,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -64,7 +67,8 @@ fun ItemLiveHockey(
                         title = dsk,
                         typeEventsRt176 = TypeEventsRt176.LiveGamesRt176(TypeGame.HockeyRt176()),
                         awayColor = hockeyMatchRt176.awayColor,
-                        homeColor = hockeyMatchRt176.homeColor
+                        homeColor = hockeyMatchRt176.homeColor,
+                        icon = R.drawable.ic_hockey
                     )
                 )
             }
@@ -110,10 +114,11 @@ fun ItemLiveHockey(
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Box(
-                    modifier = modifier
-                        .size(36.dp)
-                        .background(color = Color(hockeyMatchRt176.homeColor)),
+                Icon(
+                    modifier = modifier.size(36.dp),
+                    imageVector = ImageVector.vectorResource(id = R.drawable.ic_hockey),
+                    contentDescription = "",
+                    tint = Color(hockeyMatchRt176.homeColor)
                 )
                 Spacer(modifier = modifier.width(8.dp))
                 Text(
@@ -133,10 +138,11 @@ fun ItemLiveHockey(
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Box(
-                    modifier = modifier
-                        .size(36.dp)
-                        .background(color = Color(hockeyMatchRt176.awayColor)),
+                Icon(
+                    modifier = modifier.size(36.dp),
+                    imageVector = ImageVector.vectorResource(id = R.drawable.ic_hockey),
+                    contentDescription = "",
+                    tint = Color(hockeyMatchRt176.awayColor)
                 )
                 Spacer(modifier = modifier.width(8.dp))
                 Text(

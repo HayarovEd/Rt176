@@ -29,6 +29,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.edurda77.rt176.R
@@ -83,7 +84,8 @@ fun EventsScreen(
     isInternet: Boolean,
     typeEventsRt176: TypeEventsRt176,
     selectedDateRt176Es: LocalDate,
-    event: (ApplicationEventRt176) -> Unit
+    event: (ApplicationEventRt176) -> Unit,
+    timeTexSize: TextUnit
 ) {
     BackHandler {
         event(ApplicationEventRt176.OnSetApplicationStateRt176(ApplicationStRt176.StartRt176()))
@@ -245,6 +247,7 @@ fun EventsScreen(
                                         items(basketballMatches) {
                                             ItemBasketball(
                                                 basketballMatchRt176 = it,
+                                                timeTexSize = timeTexSize,
                                                 eventRt176 = event
                                             )
                                         }
@@ -266,6 +269,7 @@ fun EventsScreen(
                                         items(footballMatches) {
                                             ItemFootball(
                                                 footballMatchRt176 = it,
+                                                timeTexSize = timeTexSize,
                                                 event = event
                                             )
                                         }
@@ -287,6 +291,7 @@ fun EventsScreen(
                                         items(hockeyMatches) {
                                             ItemHockey(
                                                 hockeyMatchRt176 = it,
+                                                timeTexSize = timeTexSize,
                                                 eventRt176 = event
                                             )
                                         }

@@ -28,6 +28,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
@@ -66,6 +67,7 @@ private fun Sample() {
         awayColor = generateRandomColorRt175(),
         homeColor = generateRandomColorRt175()
     ),
+        timeTexSize = 14.sp,
         event = {})
 }
 
@@ -74,6 +76,7 @@ private fun Sample() {
 fun ItemFootball(
     modifier: Modifier = Modifier,
     footballMatchRt176: FootballMatchRt176,
+    timeTexSize: TextUnit,
     event: (ApplicationEventRt176) -> Unit
 ) {
     val isToday = LocalDate.now().formattedDateRt176() == footballMatchRt176.dateStamp
@@ -95,7 +98,8 @@ fun ItemFootball(
                     title = "$dsk в ${footballMatchRt176.timeStamp}",
                     typeEventsRt176 = TypeEventsRt176.GamesOfDayRt176(TypeGame.FootballRt176()),
                     awayColor = footballMatchRt176.awayColor,
-                    homeColor = footballMatchRt176.homeColor
+                    homeColor = footballMatchRt176.homeColor,
+                    icon = R.drawable.ic_football,
                 ))
             }
             .background(color = darkRed)
@@ -120,10 +124,11 @@ fun ItemFootball(
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Box(
-                    modifier = modifier
-                        .size(36.dp)
-                        .background(color = Color(footballMatchRt176.homeColor)),
+                Icon(
+                    modifier = modifier.size(36.dp),
+                    imageVector = ImageVector.vectorResource(id = R.drawable.ic_football),
+                    contentDescription = "",
+                    tint = Color(footballMatchRt176.homeColor)
                 )
                 Spacer(modifier = modifier.width(8.dp))
                 Text(
@@ -143,10 +148,11 @@ fun ItemFootball(
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Box(
-                    modifier = modifier
-                        .size(36.dp)
-                        .background(color = Color(footballMatchRt176.awayColor)),
+                Icon(
+                    modifier = modifier.size(36.dp),
+                    imageVector = ImageVector.vectorResource(id = R.drawable.ic_football),
+                    contentDescription = "",
+                    tint = Color(footballMatchRt176.awayColor)
                 )
                 Spacer(modifier = modifier.width(8.dp))
                 Text(
@@ -171,7 +177,7 @@ fun ItemFootball(
                 modifier = modifier,
                 text = dsk,
                 style = TextStyle(
-                    fontSize = 12.sp,
+                    fontSize = timeTexSize,
                     color = yellow,
                     //fontFamily = FontFamily(Font(R.font.gilroy)),
                     fontWeight = FontWeight(700),
@@ -182,7 +188,7 @@ fun ItemFootball(
                 modifier = modifier,
                 text = footballMatchRt176.timeStamp,
                 style = TextStyle(
-                    fontSize = 12.sp,
+                    fontSize = timeTexSize,
                     color = yellow,
                     //fontFamily = FontFamily(Font(R.font.gilroy)),
                     fontWeight = FontWeight(700),

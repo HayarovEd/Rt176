@@ -27,6 +27,7 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
@@ -46,6 +47,7 @@ import java.time.LocalDate
 fun ItemHockey(
     modifier: Modifier = Modifier,
     hockeyMatchRt176: HockeyMatchRt176,
+    timeTexSize: TextUnit,
     eventRt176: (ApplicationEventRt176) -> Unit
 ) {
     val isToday = LocalDate.now().formattedDateRt176() == hockeyMatchRt176.dateStamp
@@ -68,7 +70,8 @@ fun ItemHockey(
                         title = "$dsk в ${hockeyMatchRt176.timeStamp}",
                         typeEventsRt176 = TypeEventsRt176.GamesOfDayRt176(TypeGame.HockeyRt176()),
                         awayColor = hockeyMatchRt176.awayColor,
-                        homeColor = hockeyMatchRt176.homeColor
+                        homeColor = hockeyMatchRt176.homeColor,
+                        icon = R.drawable.ic_hockey
                     )
                 )
             }
@@ -94,10 +97,11 @@ fun ItemHockey(
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Box(
-                    modifier = modifier
-                        .size(36.dp)
-                        .background(color = Color(hockeyMatchRt176.homeColor)),
+                Icon(
+                    modifier = modifier.size(36.dp),
+                    imageVector = ImageVector.vectorResource(id = R.drawable.ic_hockey),
+                    contentDescription = "",
+                    tint = Color(hockeyMatchRt176.homeColor)
                 )
                 Spacer(modifier = modifier.width(8.dp))
                 Text(
@@ -117,10 +121,11 @@ fun ItemHockey(
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Box(
-                    modifier = modifier
-                        .size(36.dp)
-                        .background(color = Color(hockeyMatchRt176.awayColor)),
+                Icon(
+                    modifier = modifier.size(36.dp),
+                    imageVector = ImageVector.vectorResource(id = R.drawable.ic_hockey),
+                    contentDescription = "",
+                    tint = Color(hockeyMatchRt176.awayColor)
                 )
                 Spacer(modifier = modifier.width(8.dp))
                 Text(
@@ -145,7 +150,7 @@ fun ItemHockey(
                 modifier = modifier,
                 text = dsk,
                 style = TextStyle(
-                    fontSize = 12.sp,
+                    fontSize = timeTexSize,
                     color = yellow,
                     //fontFamily = FontFamily(Font(R.font.gilroy)),
                     fontWeight = FontWeight(700),
@@ -156,7 +161,7 @@ fun ItemHockey(
                 modifier = modifier,
                 text = hockeyMatchRt176.timeStamp,
                 style = TextStyle(
-                    fontSize = 12.sp,
+                    fontSize = timeTexSize,
                     color = yellow,
                     //fontFamily = FontFamily(Font(R.font.gilroy)),
                     fontWeight = FontWeight(700),
