@@ -23,7 +23,7 @@ fun BaseSceneRt176(
     val eventRt171 = viewModel::onEventRt176
     val configuration = LocalConfiguration.current
     val screenWidth = configuration.screenWidthDp.dp
-    val timeTexSize = (screenWidth/90f).dpToSpRt176()
+    val timeTexSize = (screenWidth/70f).dpToSpRt176()
     when (val rst = stateRt176.value.applicationStRt176) {
         is GameRt176 -> {
             GameScreen(
