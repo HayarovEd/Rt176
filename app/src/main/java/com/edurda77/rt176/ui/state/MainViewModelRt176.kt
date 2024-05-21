@@ -41,30 +41,44 @@ class MainViewModelRt176 @Inject constructor(
 
     init {
         viewModelScope.launch(Dispatchers.IO) {
-            async { getFootballDataRt176() }.onAwait
-            async { getBasketballDataRt176() }.onAwait
-            async { getHockeyDataRt176() }.onAwait
-            val savedUrl = remoteRepositoryRt176.getSharedUrlrt176()
-            val isAccess = remoteRepositoryRt176.getStateEnterRt176()
-            if (isAccess) {
-                if (savedUrl.isNullOrBlank()) {
-                    getUrlRt176()
-                } else {
-                    _state.value.copy(
-                        destinationUrl = savedUrl
-                    )
-                        .fusUpdateStateUIRt176()
+            val isConnect = remoteRepositoryRt176.isInternetConnectedrt176()
+            if (isConnect) {
+                async { getFootballDataRt176() }.onAwait
+                async { getBasketballDataRt176() }.onAwait
+                async { getHockeyDataRt176() }.onAwait
+                val savedUrl = remoteRepositoryRt176.getSharedUrlrt176()
+                val isAccess = remoteRepositoryRt176.getStateEnterRt176()
+                if (isAccess) {
+                    if (savedUrl.isNullOrBlank()) {
+                        getUrlRt176()
+                    } else {
+                        _state.value.copy(
+                            destinationUrl = savedUrl
+                        )
+                            .fusUpdateStateUIRt176()
+                    }
                 }
+                _state.value.copy(
+                    applicationStRt176 = ApplicationStRt176.StartRt176(),
+                    name = remoteRepositoryRt176.getNamert176() ?: "",
+                    phone = remoteRepositoryRt176.getPhonert176() ?: "",
+                    bestScore = remoteRepositoryRt176.getBestScorert176(),
+                    isAccess = isAccess,
+                    isInternet = true
+                )
+                    .fusUpdateStateUIRt176()
+            } else {
+                val isAccess = remoteRepositoryRt176.getStateEnterRt176()
+                _state.value.copy(
+                    applicationStRt176 = ApplicationStRt176.StartRt176(),
+                    name = remoteRepositoryRt176.getNamert176() ?: "",
+                    phone = remoteRepositoryRt176.getPhonert176() ?: "",
+                    bestScore = remoteRepositoryRt176.getBestScorert176(),
+                    isAccess = isAccess,
+                    isInternet = false
+                )
+                    .fusUpdateStateUIRt176()
             }
-            _state.value.copy(
-                applicationStRt176 = ApplicationStRt176.StartRt176(),
-                name = remoteRepositoryRt176.getNamert176() ?: "",
-                phone = remoteRepositoryRt176.getPhonert176() ?: "",
-                bestScore = remoteRepositoryRt176.getBestScorert176(),
-                isAccess = isAccess,
-                isInternet = remoteRepositoryRt176.isInternetConnectedrt176()
-            )
-                .fusUpdateStateUIRt176()
         }
     }
 
