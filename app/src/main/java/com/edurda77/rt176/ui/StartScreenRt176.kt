@@ -48,7 +48,7 @@ import com.edurda77.rt176.ui.theme.yellow
 fun StartScreenRt176(
     modifier: Modifier = Modifier,
     url: String,
-    isVpn: Boolean,
+    isAccess: Boolean,
     isInternet: Boolean,
     eventRt176: (ApplicationEventRt176) -> Unit
 ) {
@@ -71,7 +71,7 @@ fun StartScreenRt176(
                 .padding(horizontal = 15.dp),
             verticalArrangement = Arrangement.Center,
         ) {
-            if (!isVpn&&(url.isNotBlank() && !url.startsWith(POLITIC_URL_BEGINN_RT176))&&isInternet) {
+            if (isAccess&&(url.isNotBlank() && !url.startsWith(POLITIC_URL_BEGINN_RT176))&&isInternet) {
                 Image(
                     modifier = modifier
                         .height(screenHeight / 4.5f),
@@ -147,7 +147,7 @@ fun StartScreenRt176(
                 )
             }
         }
-        if (!isVpn&&(url.isNotBlank() && !url.startsWith(POLITIC_URL_BEGINN_RT176))&&isInternet) {
+        if (isAccess&&(url.isNotBlank() && !url.startsWith(POLITIC_URL_BEGINN_RT176))&&isInternet) {
             Text(
                 modifier = modifier
                     .align(alignment = Alignment.BottomCenter)
@@ -171,7 +171,7 @@ fun StartScreenRt176(
 private fun PreviewStartScreenRt176() {
     StartScreenRt176(
         url = "ddddd",
-        isVpn = false,
+        isAccess = true,
         isInternet = true,
         eventRt176 = {})
 }

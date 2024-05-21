@@ -7,8 +7,6 @@ import com.edurda77.rt176.domain.model.HockeyMatchRt176
 import com.edurda77.rt176.domain.model.NameSport
 import com.edurda77.rt176.domain.model.Sport
 import java.time.LocalDate
-import java.util.Calendar
-import java.util.Date
 
 data class MainStateRt176(
     val applicationStRt176: ApplicationStRt176 = ApplicationStRt176.LoadingRt176(),
@@ -31,6 +29,6 @@ data class MainStateRt176(
     val score:Int = 0,
     val questImage: Sport = Sport.FOOTBALL,
     val nameSport: NameSport = NameSport.GOLF,
-    val isVpn:Boolean = false,
+    val isAccess:Boolean = false,
     val isInternet: Boolean = true,
 )

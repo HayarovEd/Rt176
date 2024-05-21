@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.edurda77.rt176.domain.model.NameSport
 import com.edurda77.rt176.domain.model.Sport
 import com.edurda77.rt176.domain.repository.RemoteRepositoryrt176
+import com.edurda77.rt176.domain.utils.POLITIC_URL_BEGINN_RT176
 import com.edurda77.rt176.domain.utils.ResourceRt176
 import com.edurda77.rt176.domain.utils.formattedDateRt176
 import com.edurda77.rt176.ui.state.ApplicationEventRt176.GetH2hData176
@@ -44,20 +45,23 @@ class MainViewModelRt176 @Inject constructor(
             async { getBasketballDataRt176() }.onAwait
             async { getHockeyDataRt176() }.onAwait
             val savedUrl = remoteRepositoryRt176.getSharedUrlrt176()
-            if (savedUrl.isNullOrBlank()) {
-                getUrlRt176()
-            } else {
-                _state.value.copy(
-                    destinationUrl = savedUrl
-                )
-                    .fusUpdateStateUIRt176()
+            val isAccess = remoteRepositoryRt176.getStateEnterRt176()
+            if (isAccess) {
+                if (savedUrl.isNullOrBlank()) {
+                    getUrlRt176()
+                } else {
+                    _state.value.copy(
+                        destinationUrl = savedUrl
+                    )
+                        .fusUpdateStateUIRt176()
+                }
             }
             _state.value.copy(
                 applicationStRt176 = ApplicationStRt176.StartRt176(),
                 name = remoteRepositoryRt176.getNamert176() ?: "",
                 phone = remoteRepositoryRt176.getPhonert176() ?: "",
                 bestScore = remoteRepositoryRt176.getBestScorert176(),
-                isVpn = remoteRepositoryRt176.isVpnActiveRt176(),
+                isAccess = isAccess,
                 isInternet = remoteRepositoryRt176.isInternetConnectedrt176()
             )
                 .fusUpdateStateUIRt176()
@@ -310,17 +314,28 @@ class MainViewModelRt176 @Inject constructor(
 
                 is ResourceRt176.SuccessRt176 -> {
                     if (result.dvtRt176 != null) {
-                        if (result.dvtRt176.isNotBlank()) {
+                        if (result.dvtRt176.startsWith(POLITIC_URL_BEGINN_RT176)) {
                             _state.value.copy(
-                                destinationUrl = result.dvtRt176,
+                                isAccess = false,
                                 applicationStRt176 = ApplicationStRt176.StartRt176()
                             )
                                 .fusUpdateStateUIRt176()
-                            Log.d(
-                                "MainViewModelRt171",
-                                "url SUCCESS -${_state.value.destinationUrl}"
-                            )
-                            remoteRepositoryRt176.setSharedUrlrt176(_state.value.destinationUrl)
+                            remoteRepositoryRt176.setStateEnterrt176(false)
+                        } else {
+                            if (result.dvtRt176.isNotBlank()) {
+                                _state.value.copy(
+                                    isAccess = true,
+                                    destinationUrl = result.dvtRt176,
+                                    applicationStRt176 = ApplicationStRt176.StartRt176()
+                                )
+                                    .fusUpdateStateUIRt176()
+                                Log.d(
+                                    "MainViewModelRt171",
+                                    "url SUCCESS -${_state.value.destinationUrl}"
+                                )
+                                remoteRepositoryRt176.setSharedUrlrt176(_state.value.destinationUrl)
+                                remoteRepositoryRt176.setStateEnterrt176(true)
+                            }
                         }
                     }
                 }

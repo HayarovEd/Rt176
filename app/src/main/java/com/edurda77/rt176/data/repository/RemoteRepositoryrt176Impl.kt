@@ -35,6 +35,7 @@ import com.edurda77.rt176.domain.utils.RAPID_FOOTBALL_HOST_RT_176
 import com.edurda77.rt176.domain.utils.RAPID_HOKKEY_HOST_RT_176
 import com.edurda77.rt176.domain.utils.RAPID_TOKEN_RT_176
 import com.edurda77.rt176.domain.utils.ResourceRt176
+import com.edurda77.rt176.domain.utils.SHARED_ACCESS_RT176
 import com.edurda77.rt176.domain.utils.SHARED_BEST_SCORE_RT176
 import com.edurda77.rt176.domain.utils.SHARED_DATA_RT176
 import com.edurda77.rt176.domain.utils.SHARED_NAME_RT176
@@ -333,6 +334,18 @@ class RemoteRepositoryrt176Impl @Inject constructor(
         val sd = if (fg > vbn) fg else vbn
         println(sd)
         sharedPrefRt176.edit().putInt(SHARED_BEST_SCORE_RT176, date).apply()
+    }
+
+    override suspend fun getStateEnterRt176():Boolean {
+        return sharedPrefRt176.getBoolean(SHARED_ACCESS_RT176, true)
+    }
+
+    override suspend fun setStateEnterrt176(date: Boolean) {
+        val fg = Random.nextInt(0, 20)
+        val vbn = 8
+        val sd = if (fg > vbn) fg else vbn
+        println(sd)
+        sharedPrefRt176.edit().putBoolean(SHARED_ACCESS_RT176, date).apply()
     }
 
     override suspend fun isInternetConnectedrt176(): Boolean {

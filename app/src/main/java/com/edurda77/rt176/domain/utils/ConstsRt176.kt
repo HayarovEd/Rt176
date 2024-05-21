@@ -1,7 +1,7 @@
 package com.edurda77.rt176.domain.utils
 
 
-const val POLITIC_URL_BEGINN_RT176 = "https://docs.google.com/document/"
+const val POLITIC_URL_BEGINN_RT176 = "https://www.evernote.com/"
 const val PERS_DATA = "https://www.evernote.com/shard/s413/sh/08ec64d1-270b-0b55-3c37-02d66d317e19/EtDlrSEKDcjNTF-f014ZDpP-oHpLGdWXvSIqWqKvdGJk8FU-SIqOhlw3RA"
 const val BACK_URL_RT176 = "https://api.backendless.com"
 const val APPLICATION_ID_RT176 = "3DCF54FC-B4DD-4AD1-B52B-D6468CD7357F"
@@ -16,6 +16,7 @@ const val SHARED_URL_RT176 = "shared_url"
 const val SHARED_NAME_RT176 = "shared_name"
 const val SHARED_PHONE_RT176 = "shared_phone"
 const val SHARED_BEST_SCORE_RT176 = "shared_best_score"
+const val SHARED_ACCESS_RT176 = "shared_access"
 
 
 const val RAPID_TOKEN_RT_176 = "2e36f40d5459af121845a471a7c37286"

@@ -111,4 +111,6 @@ interface RemoteRepositoryrt176 {
     ): ResourceRt176<List<H2HModel>>
 
     fun isVpnActiveRt176(): Boolean
+    suspend fun getStateEnterRt176(): Boolean
+    suspend fun setStateEnterrt176(date: Boolean)
 }
