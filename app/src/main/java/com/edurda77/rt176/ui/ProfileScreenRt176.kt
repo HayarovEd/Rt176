@@ -235,7 +235,9 @@ fun ProfileScreenRt176(
                             value = updatedPhoneRt176.value,
                             onValueChange = {
                                 if (updatedPhoneRt176.value.length<12) {
-                                    updatedPhoneRt176.value = it
+                                    if (it.matches(Regex("\\d*"))) {
+                                        updatedPhoneRt176.value = it
+                                    }
                                 }
                             },
                             textStyle = TextStyle(
@@ -269,7 +271,9 @@ fun ProfileScreenRt176(
                             value = updatedNameRt176.value,
                             onValueChange = {
                                 if (updatedNameRt176.value.length<20) {
-                                    updatedNameRt176.value = it
+                                    if (it.matches(Regex("^[а-яА-Я\\s]*\$"))) {
+                                        updatedNameRt176.value = it
+                                    }
                                 }
                             },
                             textStyle = TextStyle(
