@@ -195,6 +195,7 @@ class MainViewModelRt176 @Inject constructor(
                         _state.value.copy(
                             message = "Проверьте интернет соединение",
                             isInternet = false,
+                            isLoading = false,
                            // applicationStRt176 = ApplicationStRt176.StartRt176()
                         )
                             .fusUpdateStateUIRt176()
@@ -215,7 +216,7 @@ class MainViewModelRt176 @Inject constructor(
             is GetH2hData176 -> {
                 _state.value.copy(
                     lastStatus = EventsRt176(mainEvent.typeEventsRt176),
-                    isLoading = true,
+                    //isLoading = true,
                     applicationStRt176 = H2h(
                         homeName = mainEvent.homeName,
                         homeScore = mainEvent.homeScore,
