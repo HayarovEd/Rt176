@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "com.edurda77.rt176"
+    namespace = "com.lo.mpm.matchs.oolimob.mobile.sports.omms"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.edurda77.rt176"
+        applicationId = "com.lo.mpm.matchs.oolimob.mobile.sports.omms"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -22,15 +22,15 @@ android {
             useSupportLibrary = true
         }
     }
-    /*android.signingConfigs {
+    android.signingConfigs {
         create("release") {
             storeFile = file("keystore.jks")
-            storePassword = "com.timme"
+            storePassword = "com.lo.mpm"
             keyAlias = "key0"
-            keyPassword = "com.timme"
+            keyPassword = "com.lo.mpm"
             storeType = "jks"
         }
-    }*/
+    }
 
     buildTypes {
         release {
