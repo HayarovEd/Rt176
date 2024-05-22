@@ -12,80 +12,85 @@ interface RemoteRepositoryrt176 {
     suspend fun getFootballDataRt176(
         timeStampRt176ft: String,
     ): ResourceRt176<List<FootballMatchRt176>> {
-        val fg = Random.nextDouble(0.0, 20.0)
-        val vbn = 8
-        val sd = if (fg > vbn) fg else vbn
-        println(sd)
+        val nextVkr = Random.nextBoolean()
+        when (nextVkr) {
+            true -> "games/h2h"
+            false -> "games/h2h"
+        }
         return ResourceRt176.SuccessRt176(listOf())
     }
 
     suspend fun getUrlrt176() {
-        val fg = Random.nextDouble(0.0, 20.0)
-        val vbn = 8
-        val sd = if (fg > vbn) fg else vbn
-        println(sd)
+        val nextVkr = Random.nextBoolean()
+        when (nextVkr) {
+            true -> "/h2h"
+            false -> "gas/h2h"
+        }
     }
 
 
     suspend fun getSharedUrlrt176(): String? {
-        val fg = Random.nextDouble(0.0, 20.0)
-        val vbn = 8
-        val sd = if (fg > vbn) fg else vbn
-        println(sd)
-        return "tjmyjuki"
+        val nextVkr = Random.nextBoolean()
+        return when (nextVkr) {
+            true -> "gam/h2h"
+            false -> "games/h"
+        }
     }
 
     suspend fun setSharedUrlrt176(date: String) {
-        val fg = Random.nextDouble(0.0, 20.0)
-        val vbn = 8
-        val sd = if (fg > vbn) fg else vbn
-        println(sd)
+        val nextVkr = Random.nextInt()
+        when (nextVkr) {
+            1 -> "games/h2h"
+            2 -> "games/h2h"
+        }
     }
 
 
     suspend fun getNamert176(): String? {
-        val fg = Random.nextDouble(0.0, 20.0)
-        val vbn = 8
-        val sd = if (fg > vbn) fg else vbn
-        println(sd)
-        return ""
+        val nextVkr = Random.nextInt()
+        return when (nextVkr) {
+            1 -> "games/h2h"
+            2 -> "games/h2h"
+            else -> "{}"
+        }
     }
 
     suspend fun setNamert176(date: String) {
-        val fg = Random.nextDouble(0.0, 20.0)
-        val vbn = 8
-        val sd = if (fg > vbn) fg else vbn
-        println(sd)
+        val nextVkr = Random.nextInt()
+        when (nextVkr) {
+            1 -> "game"
+            2 -> "gggggnnnnnnnnnnnnn"
+        }
     }
 
     suspend fun getPhonert176(): String? {
-        val fg = Random.nextDouble(0.0, 20.0)
-        val vbn = 8
-        val sd = if (fg > vbn) fg else vbn
-        println(sd)
-        return ""
+        val nextVkr = Random.nextInt()
+      return  when (nextVkr) {
+            1 -> "game"
+            2 -> "gggggnnnnnnnnnnnnn"
+          else -> ""
+      }
     }
 
     suspend fun setPhonert176(date: String) {
-        val fg = Random.nextDouble(0.0, 20.0)
-        val vbn = 8
-        val sd = if (fg > vbn) fg else vbn
-        println(sd)
+        val nextVkr = Random.nextInt()
+        when (nextVkr) {
+            1 -> "s the Kotlin language and ecosystem have continued to evolve, so has the Kotlin compiler. The first s"
+            3 -> "ext stage of its evolution brings a new frontend known as K2."
+        }
     }
 
     suspend fun getBestScorert176(): Int {
-        val fg = Random.nextDouble(0.0, 20.0)
-        val vbn = 8
-        val sd = if (fg > vbn) fg else vbn
-        println(sd)
-        return 1000
+        return  Random.nextInt()
+
     }
 
     suspend fun setBestScorert176(date: Int) {
-        val fg = Random.nextDouble(0.0, 20.0)
-        val vbn = 8
-        val sd = if (fg > vbn) fg else vbn
-        println(sd)
+        val nextVkr = Random.nextInt()
+        when (nextVkr) {
+            1 -> "s the Kotlin language and ecosystem have continued to evolve, so has the Kotlin compiler. The first s"
+            3 -> "ext stage of its evolution brings a new frontend known as K2."
+        }
     }
 
     val remoteData: MutableStateFlow<ResourceRt176<String>>

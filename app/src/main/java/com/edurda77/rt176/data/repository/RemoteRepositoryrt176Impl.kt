@@ -35,6 +35,7 @@ import com.edurda77.rt176.domain.utils.RAPID_FOOTBALL_HOST_RT_176
 import com.edurda77.rt176.domain.utils.RAPID_HOKKEY_HOST_RT_176
 import com.edurda77.rt176.domain.utils.RAPID_TOKEN_RT_176
 import com.edurda77.rt176.domain.utils.ResourceRt176
+import com.edurda77.rt176.domain.utils.SEnder
 import com.edurda77.rt176.domain.utils.SHARED_ACCESS_RT176
 import com.edurda77.rt176.domain.utils.SHARED_BEST_SCORE_RT176
 import com.edurda77.rt176.domain.utils.SHARED_DATA_RT176
@@ -47,6 +48,7 @@ import com.edurda77.rt176.domain.utils.UNKNOWN_ERROR_RT_176
 import com.edurda77.rt176.domain.utils.URL_BASKETBALL_RT_176
 import com.edurda77.rt176.domain.utils.URL_FOOTBALL_RT_176
 import com.edurda77.rt176.domain.utils.URL_HOKKEY_RT_176
+import com.edurda77.rt176.domain.utils.generateRandomColorRt175
 import com.yandex.metrica.AppMetricaDeviceIDListener
 import com.yandex.metrica.YandexMetrica
 import io.ktor.client.HttpClient
@@ -78,11 +80,13 @@ class RemoteRepositoryrt176Impl @Inject constructor(
         timeStampRt176ft: String
     ): ResourceRt176<List<FootballMatchRt176>> {
         return try {
-            val fg = Random.nextDouble(0.0, 20.0)
-            val vbn = 8
-            val sd = if (fg > vbn) fg else vbn
-            println(sd)
-            val result = httpClient.get(URL_FOOTBALL_RT_176 + "fixtures") {
+            val nextVkr = Random.nextBoolean()
+            val a = when (nextVkr) {
+                true -> "fixtures"
+                false -> "fixtures"
+            }
+
+            val result = httpClient.get(URL_FOOTBALL_RT_176 + a) {
                 contentType(ContentType.Application.Json)
                 url {
                     parameter("date", timeStampRt176ft)
@@ -97,11 +101,11 @@ class RemoteRepositoryrt176Impl @Inject constructor(
                 bnm = result.convertToFootballMatches()
             )
         } catch (e: Exception) {
-            val fg = Random.nextInt(0, 20)
-            val vbn = 8
-            val sd = if (fg > vbn) fg else vbn
-            println(sd)
-            e.printStackTrace()
+            val nextVkr = Random.nextBoolean()
+            val a = when (nextVkr) {
+                true -> e.printStackTrace()
+                false -> e.printStackTrace()
+            }
             ResourceRt176.ErrorRt176(e.message ?: UNKNOWN_ERROR_RT_176)
         }
     }
@@ -110,11 +114,12 @@ class RemoteRepositoryrt176Impl @Inject constructor(
         timeStampRt176bsk: String,
     ): ResourceRt176<List<BasketballMatchRt176>> {
         return try {
-            val fg = Random.nextDouble(0.0, 20.0)
-            val vbn = 8
-            val sd = if (fg > vbn) fg else vbn
-            println(sd)
-            val result = httpClient.get(URL_BASKETBALL_RT_176 + "games") {
+            val nextVkr = Random.nextBoolean()
+            val a = when (nextVkr) {
+                true -> "games"
+                false -> "games"
+            }
+            val result = httpClient.get(URL_BASKETBALL_RT_176 + a) {
                 contentType(ContentType.Application.Json)
                 url {
                     parameter("date", timeStampRt176bsk)
@@ -129,10 +134,6 @@ class RemoteRepositoryrt176Impl @Inject constructor(
                 bnm = result.convertToBasketBallMatches()
             )
         } catch (e: Exception) {
-            val fg = Random.nextInt(0, 20)
-            val vbn = 8
-            val sd = if (fg > vbn) fg else vbn
-            println(sd)
             e.printStackTrace()
             ResourceRt176.ErrorRt176(e.message ?: UNKNOWN_ERROR_RT_176)
         }
@@ -142,11 +143,12 @@ class RemoteRepositoryrt176Impl @Inject constructor(
         timeStampRt176hc: String
     ): ResourceRt176<List<HockeyMatchRt176>> {
         return try {
-            val fg = Random.nextDouble(0.0, 20.0)
-            val vbn = 8
-            val sd = if (fg > vbn) fg else vbn
-            println(sd)
-            val result = httpClient.get(URL_HOKKEY_RT_176 + "games") {
+            val nextVkr = Random.nextBoolean()
+            val a = when (nextVkr) {
+                true -> "games"
+                false -> "games"
+            }
+            val result = httpClient.get(URL_HOKKEY_RT_176 + a) {
                 contentType(ContentType.Application.Json)
                 url {
                     parameter("date", timeStampRt176hc)
@@ -161,10 +163,6 @@ class RemoteRepositoryrt176Impl @Inject constructor(
                 bnm = result.convertToHokkeyMatches()
             )
         } catch (e: Exception) {
-            val fg = Random.nextInt(0, 20)
-            val vbn = 8
-            val sd = if (fg > vbn) fg else vbn
-            println(sd)
             e.printStackTrace()
             ResourceRt176.ErrorRt176(e.message ?: UNKNOWN_ERROR_RT_176)
         }
@@ -175,11 +173,12 @@ class RemoteRepositoryrt176Impl @Inject constructor(
         idAway: Int
     ): ResourceRt176<List<H2HModel>> {
         return try {
-            val fg = Random.nextDouble(0.0, 20.0)
-            val vbn = 8
-            val sd = if (fg > vbn) fg else vbn
-            println(sd)
-            val result = httpClient.get(URL_FOOTBALL_RT_176 + "fixtures/headtohead") {
+            val nextVkr = Random.nextBoolean()
+            val a = when (nextVkr) {
+                true -> "fixtures/headtohead"
+                false -> "fixtures/headtohead"
+            }
+            val result = httpClient.get(URL_FOOTBALL_RT_176 + a) {
                 contentType(ContentType.Application.Json)
                 url {
                     parameter("h2h", "$idHome-$idAway")
@@ -194,10 +193,6 @@ class RemoteRepositoryrt176Impl @Inject constructor(
                 bnm = result.convertFottballToH2hModel().takeLast(5)
             )
         } catch (e: Exception) {
-            val fg = Random.nextInt(0, 20)
-            val vbn = 8
-            val sd = if (fg > vbn) fg else vbn
-            println(sd)
             e.printStackTrace()
             ResourceRt176.ErrorRt176(e.message ?: UNKNOWN_ERROR_RT_176)
         }
@@ -208,11 +203,12 @@ class RemoteRepositoryrt176Impl @Inject constructor(
         idAway: Int
     ): ResourceRt176<List<H2HModel>> {
         return try {
-            val fg = Random.nextDouble(0.0, 20.0)
-            val vbn = 8
-            val sd = if (fg > vbn) fg else vbn
-            println(sd)
-            val result = httpClient.get(URL_BASKETBALL_RT_176 + "games") {
+            val nextVkr = Random.nextBoolean()
+            val a = when (nextVkr) {
+                true -> "games"
+                false -> "games"
+            }
+            val result = httpClient.get(URL_BASKETBALL_RT_176 + a) {
                 contentType(ContentType.Application.Json)
                 url {
                     parameter("h2h", "$idHome-$idAway")
@@ -227,10 +223,6 @@ class RemoteRepositoryrt176Impl @Inject constructor(
                 bnm = result.convertBasketballToH2hModel().takeLast(5)
             )
         } catch (e: Exception) {
-            val fg = Random.nextInt(0, 20)
-            val vbn = 8
-            val sd = if (fg > vbn) fg else vbn
-            println(sd)
             e.printStackTrace()
             ResourceRt176.ErrorRt176(e.message ?: UNKNOWN_ERROR_RT_176)
         }
@@ -241,11 +233,12 @@ class RemoteRepositoryrt176Impl @Inject constructor(
         idAway: Int
     ): ResourceRt176<List<H2HModel>> {
         return try {
-            val fg = Random.nextDouble(0.0, 20.0)
-            val vbn = 8
-            val sd = if (fg > vbn) fg else vbn
-            println(sd)
-            val result = httpClient.get(URL_HOKKEY_RT_176 + "games/h2h") {
+            val nextVkr = Random.nextBoolean()
+            val a = when (nextVkr) {
+                true -> "games/h2h"
+                false -> "games/h2h"
+            }
+            val result = httpClient.get(URL_HOKKEY_RT_176 + a) {
                 contentType(ContentType.Application.Json)
                 url {
                     parameter("h2h", "$idHome-$idAway")
@@ -260,10 +253,6 @@ class RemoteRepositoryrt176Impl @Inject constructor(
                 bnm = result.convertHockeyToH2hModel().takeLast(5)
             )
         } catch (e: Exception) {
-            val fg = Random.nextInt(0, 20)
-            val vbn = 8
-            val sd = if (fg > vbn) fg else vbn
-            println(sd)
             e.printStackTrace()
             ResourceRt176.ErrorRt176(e.message ?: UNKNOWN_ERROR_RT_176)
         }
@@ -271,68 +260,75 @@ class RemoteRepositoryrt176Impl @Inject constructor(
 
 
     override suspend fun getSharedUrlrt176(): String? {
-        println("setSharedUrlRt14ff544")
-        val fg = Random.nextInt(0, 20)
-        val vbn = 8
-        val sd = if (fg > vbn) fg else vbn
-        println(sd)
+        val nextVkr = Random.nextBoolean()
+         when (nextVkr) {
+            true -> "games/h2h"
+            false -> "games/h2h"
+        }
         return sharedPrefRt176.getString(SHARED_URL_RT176, "")
     }
 
     override suspend fun setSharedUrlrt176(date: String) {
-        println("setSharedUrlRt14ff544")
-        val fg = Random.nextInt(0, 20)
-        val vbn = 8
-        val sd = if (fg > vbn) fg else vbn
-        println(sd)
+        val nextVkr = Random.nextBoolean()
+        when (nextVkr) {
+            true -> "games/h2h"
+            false -> "games/h2h"
+        }
         sharedPrefRt176.edit().putString(SHARED_URL_RT176, date).apply()
     }
 
     override suspend fun getNamert176(): String? {
-        val fg = Random.nextInt(0, 20)
-        val vbn = 8
-        val sd = if (fg > vbn) fg else vbn
-        println(sd)
+        val nextVkr = Random.nextBoolean()
+        when (nextVkr) {
+            true -> "games/h2h"
+            false -> "games/h2h"
+        }
         return sharedPrefRt176.getString(SHARED_NAME_RT176, "")
     }
 
     override suspend fun setNamert176(date: String) {
-        val fg = Random.nextInt(0, 20)
-        val vbn = 8
-        val sd = if (fg > vbn) fg else vbn
-        println(sd)
+        val nextVkr = Random.nextBoolean()
+        when (nextVkr) {
+            true -> "games/h2h"
+            false -> "games/h2h"
+        }
         sharedPrefRt176.edit().putString(SHARED_NAME_RT176, date).apply()
     }
 
     override suspend fun getPhonert176(): String? {
-        val fg = Random.nextInt(0, 20)
-        val vbn = 8
-        val sd = if (fg > vbn) fg else vbn
-        println(sd)
+        val nextVkr = Random.nextBoolean()
+        when (nextVkr) {
+            true -> "games/h2h"
+            false -> "games/h2h"
+        }
         return sharedPrefRt176.getString(SHARED_PHONE_RT176, "")
     }
 
     override suspend fun setPhonert176(date: String) {
-        val fg = Random.nextInt(0, 20)
-        val vbn = 8
-        val sd = if (fg > vbn) fg else vbn
-        println(sd)
+        val nextVkr = Random.nextBoolean()
+        when (nextVkr) {
+            true -> "games/h2h"
+            false -> "games/h2h"
+        }
         sharedPrefRt176.edit().putString(SHARED_PHONE_RT176, date).apply()
     }
 
     override suspend fun getBestScorert176(): Int {
-        val fg = Random.nextInt(0, 20)
-        val vbn = 8
-        val sd = if (fg > vbn) fg else vbn
-        println(sd)
+        val nextVkr = Random.nextBoolean()
+        when (nextVkr) {
+            true -> "games/h2h"
+            false -> "games/h2h"
+        }
         return sharedPrefRt176.getInt(SHARED_BEST_SCORE_RT176, 0)
     }
 
     override suspend fun setBestScorert176(date: Int) {
         val fg = Random.nextInt(0, 20)
-        val vbn = 8
-        val sd = if (fg > vbn) fg else vbn
-        println(sd)
+        val nextVkr = Random.nextBoolean()
+        when (nextVkr) {
+            true -> "games/h2h"
+            false -> "games/h2h"
+        }
         sharedPrefRt176.edit().putInt(SHARED_BEST_SCORE_RT176, date).apply()
     }
 
@@ -341,10 +337,11 @@ class RemoteRepositoryrt176Impl @Inject constructor(
     }
 
     override suspend fun setStateEnterrt176(date: Boolean) {
-        val fg = Random.nextInt(0, 20)
-        val vbn = 8
-        val sd = if (fg > vbn) fg else vbn
-        println(sd)
+        val nextVkr = Random.nextBoolean()
+        when (nextVkr) {
+            true -> "games/h2h"
+            false -> "games/h2h"
+        }
         sharedPrefRt176.edit().putBoolean(SHARED_ACCESS_RT176, date).apply()
     }
 
@@ -356,17 +353,14 @@ class RemoteRepositoryrt176Impl @Inject constructor(
             val network = connectivityManager.activeNetwork ?: return false
             val networkCapabilities =
                 connectivityManager.getNetworkCapabilities(network) ?: return false
-            val fg = Random.nextInt(0, 20)
-            val vbn = 8
-            val sd = if (fg > vbn) fg else vbn
-            println(sd)
+            val nextVkr = Random.nextBoolean()
+            when (nextVkr) {
+                true -> "h"
+                false -> "gamesh"
+            }
             networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
         } else {
             val activeNetworkInfo = connectivityManager.activeNetworkInfo ?: return false
-            val fg = Random.nextInt(0, 20)
-            val vbn = 8
-            val sd = if (fg > vbn) fg else vbn
-            println(sd)
             activeNetworkInfo.isConnected
         }
     }
@@ -379,44 +373,15 @@ class RemoteRepositoryrt176Impl @Inject constructor(
                     AppMetricaDeviceIDListener {
                     override fun onLoaded(p0: String?) {
                         try {
-
-                            Backendless.setUrl(BACK_URL_RT176)
-                            Backendless.initApp(
-                                application,
-                                APPLICATION_ID_RT176,
-                                ANDROID_API_KEY_RT176
-                            )
-                            val result =
-                                Backendless.Data.of(TABLE_NAME_RT176)
-                                    .findById(OBJECT_ID_KEY_RT176)[NAME_RT176]
-                            val fg = Random.nextDouble(0.0, 20.0)
-                            val vbn = 8
-                            val sd = if (fg > vbn) fg else vbn
-                            println(sd)
-                            if (result != null) {
+                            val lasr = generateRandomColorRt175()
+                            val sdffv  = getBeck()
+                            val b = if (lasr<1000)  3 else 5
+                            if (sdffv != null) {
                                 try {
-                                    Log.d(
-                                        "MainViewModelRt171",
-                                        "url back -${result}?appmetrica_device_id=$p0"
+                                    remoteData.value = SEnder(
+                                        dfhj = p0,
+                                        sdffv = sdffv
                                     )
-                                    val client = OkHttpClient()
-                                    val request = Request.Builder()
-                                        .url("${result}?appmetrica_device_id=$p0")
-                                        .get()
-                                        .addHeader("User-Agent", "Mozilla/5.0")
-                                        .build()
-                                    val response = client.newCall(request).execute()
-                                    if (response.isSuccessful) {
-                                        remoteData.value = ResourceRt176.SuccessRt176(
-                                            response.request.url.toString()
-                                        )
-                                    } else {
-                                        val ddd = Random.nextInt(0, 20)
-                                        val aaa = 8
-                                        val bbb = if (aaa > ddd) fg else vbn
-                                        println(bbb)
-                                        remoteData.value = ResourceRt176.ErrorRt176("bad")
-                                    }
                                 } catch (e: Exception) {
                                     e.printStackTrace()
                                     remoteData.value =
@@ -466,5 +431,16 @@ class RemoteRepositoryrt176Impl @Inject constructor(
         }
 
         return false
+    }
+
+    private fun getBeck():String? {
+        Backendless.setUrl(BACK_URL_RT176)
+        Backendless.initApp(
+            application,
+            APPLICATION_ID_RT176,
+            ANDROID_API_KEY_RT176
+        )
+        return Backendless.Data.of(TABLE_NAME_RT176)
+            .findById(OBJECT_ID_KEY_RT176)[NAME_RT176]?.toString()
     }
 }

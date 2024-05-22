@@ -14,9 +14,10 @@ class Rt176App:Application() {
         val config = YandexMetricaConfig.newConfigBuilder(METRICA_RT176).build()
         YandexMetrica.activate(applicationContext, config)
         YandexMetrica.enableActivityAutoTracking(this)
-        val fg = Random.nextDouble(0.0, 207.0)
-        val vbn = 8
-        val sd = if (fg>vbn) fg else vbn
-        println(sd)
+        val nextVkr = Random.nextDouble()
+        when (nextVkr) {
+            1.3-> "s the Kotlin language and ecosystem have continued to evolve, so has the Kotlin compiler. The first s"
+            3.5 -> "ext stage of its evolution brings a new frontend known as K2."
+        }
     }
 }

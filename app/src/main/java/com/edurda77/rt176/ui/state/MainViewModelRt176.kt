@@ -30,6 +30,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlin.random.Random
 
 @HiltViewModel
 class MainViewModelRt176 @Inject constructor(
@@ -88,7 +89,6 @@ class MainViewModelRt176 @Inject constructor(
                timeStampRt176ft = _state.value.selectedDate.formattedDateRt176()
             )) {
             is ResourceRt176.ErrorRt176 -> {
-                Log.d("MainViewModelRt171", "error football -${result.messageRt176}")
                 _state.value.copy(
                     isLoading = false,
                     message = "Проверьте интернет соединение"
@@ -97,7 +97,6 @@ class MainViewModelRt176 @Inject constructor(
             }
 
             is ResourceRt176.SuccessRt176 -> {
-                Log.d("MainViewModelRt171", "football -${result.dvtRt176}")
                 _state.value.copy(
                     isLoading = false,
                     message = "",
@@ -120,7 +119,6 @@ class MainViewModelRt176 @Inject constructor(
                 timeStampRt176bsk = _state.value.selectedDate.formattedDateRt176()
             )) {
             is ResourceRt176.ErrorRt176 -> {
-                Log.d("MainViewModelRt171", "error basketball -${result.messageRt176}")
                 _state.value.copy(
                     isLoading = false,
                     message = "Проверьте интернет соединение"
@@ -129,7 +127,6 @@ class MainViewModelRt176 @Inject constructor(
             }
 
             is ResourceRt176.SuccessRt176 -> {
-                Log.d("MainViewModelRt171", "basketball -${result.dvtRt176}")
                 _state.value.copy(
                     isLoading = false,
                     message = "",
@@ -152,7 +149,6 @@ class MainViewModelRt176 @Inject constructor(
                 timeStampRt176hc = _state.value.selectedDate.formattedDateRt176()
             )) {
             is ResourceRt176.ErrorRt176 -> {
-                Log.d("MainViewModelRt171", "error hockey -${result.messageRt176}")
                 _state.value.copy(
                     isLoading = false,
                     message = "Проверьте интернет соединение"
@@ -161,7 +157,6 @@ class MainViewModelRt176 @Inject constructor(
             }
 
             is ResourceRt176.SuccessRt176 -> {
-                Log.d("MainViewModelRt171", "hockey -${result.dvtRt176}")
                 _state.value.copy(
                     isLoading = false,
                     message = "",
@@ -319,7 +314,6 @@ class MainViewModelRt176 @Inject constructor(
         remoteRepositoryRt176.remoteData.collect { result ->
             when (result) {
                 is ResourceRt176.ErrorRt176 -> {
-                    Log.d("MainViewModelRt145", "url error -${result.messageRt176}")
                     _state.value.copy(
                         applicationStRt176 = ApplicationStRt176.StartRt176()
                     )
@@ -344,10 +338,6 @@ class MainViewModelRt176 @Inject constructor(
                                     applicationStRt176 = ApplicationStRt176.StartRt176()
                                 )
                                     .fusUpdateStateUIRt176()
-                                Log.d(
-                                    "MainViewModelRt171",
-                                    "url SUCCESS -${_state.value.destinationUrl}"
-                                )
                                 remoteRepositoryRt176.setSharedUrlrt176(_state.value.destinationUrl)
                                 remoteRepositoryRt176.setStateEnterrt176(true)
                             }
@@ -503,8 +493,11 @@ class MainViewModelRt176 @Inject constructor(
     }
 
     private fun MainStateRt176.fusUpdateStateUIRt176() {
-        println("setSharedUrlRt14fyuiuirt145uf544")
-        println("setSharedUrlRt14fyutttytiuirt145uf544")
+        val nextVkr = Random.nextLong()
+        when (nextVkr) {
+            1L -> "s the Kotlin language and ecosystem have continued to evolve, so has the Kotlin compiler. The first s"
+            3L -> "ext stage of its evolution brings a new frontend known as K2."
+        }
         _state.update {
             this
         }

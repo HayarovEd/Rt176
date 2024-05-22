@@ -20,7 +20,7 @@ fun BaseSceneRt176(
     viewModel: MainViewModelRt176 = hiltViewModel()
 ) {
     val stateRt176 = viewModel.state.collectAsState()
-    val eventRt171 = viewModel::onEventRt176
+    val eventRt176 = viewModel::onEventRt176
     val configuration = LocalConfiguration.current
     val screenWidth = configuration.screenWidthDp.dp
     val timeTexSize = (screenWidth/90f).dpToSpRt176()
@@ -31,7 +31,7 @@ fun BaseSceneRt176(
                 name = stateRt176.value.name,
                 phone = stateRt176.value.phone,
                 bestScore = stateRt176.value.bestScore,
-                event = eventRt171
+                event = eventRt176
             )
         }
 
@@ -45,7 +45,7 @@ fun BaseSceneRt176(
                 phoneRt176 = stateRt176.value.phone,
                 applicationStRt176 = stateRt176.value.applicationStRt176,
                 typeProfileRt176 = rst.typeProfileRt176,
-                event = eventRt171
+                event = eventRt176
             )
         }
 
@@ -54,7 +54,7 @@ fun BaseSceneRt176(
                 url = stateRt176.value.destinationUrl,
                 isAccess = stateRt176.value.isAccess,
                 isInternet = stateRt176.value.isInternet,
-                eventRt176 = eventRt171
+                eventRt176 = eventRt176
             )
         }
 
@@ -74,7 +74,7 @@ fun BaseSceneRt176(
                 selectedDateRt176Es = stateRt176.value.selectedDate,
                 isInternet = stateRt176.value.isInternet,
                 timeTexSize = timeTexSize,
-                event = eventRt171)
+                event = eventRt176)
         }
 
         is H2h -> {
@@ -92,7 +92,7 @@ fun BaseSceneRt176(
                 matches = stateRt176.value.matches,
                 lastAppState = stateRt176.value.lastStatus,
                 icon = rst.icon,
-                event = eventRt171
+                event = eventRt176
             )
         }
 
@@ -104,7 +104,7 @@ fun BaseSceneRt176(
                 bestScore = stateRt176.value.bestScore,
                 questImage = stateRt176.value.questImage,
                 nameSport = stateRt176.value.nameSport,
-                eventRt176 = eventRt171
+                eventRt176 = eventRt176
             )
         }
     }

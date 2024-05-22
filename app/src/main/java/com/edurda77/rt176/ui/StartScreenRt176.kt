@@ -64,7 +64,6 @@ fun StartScreenRt176(
             contentDescription = "",
             contentScale = ContentScale.FillBounds
         )
-        Log.d("MainViewModelRt145", "url -$url")
         Column(
             modifier = modifier
                 .align(alignment = Alignment.Center)
